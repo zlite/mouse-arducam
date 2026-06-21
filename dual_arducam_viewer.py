@@ -37,6 +37,7 @@ def parse_args():
         description="Display high-resolution Arducam UVC cameras using exact DirectShow format selection."
     )
     parser.add_argument("--cameras", type=int, nargs="+", default=[1, 2, 3, 4], help="DirectShow camera indices.")
+    parser.add_argument("--all-cameras", action="store_true", help="Use every DirectShow camera except the integrated webcam at index 0.")
     parser.add_argument("--left", type=int, default=None, help="Legacy two-camera left index.")
     parser.add_argument("--right", type=int, default=None, help="Legacy two-camera right index.")
     parser.add_argument("--left-1", dest="left_1", type=int, default=None, help="Initial camera index for left 1.")
@@ -47,7 +48,7 @@ def parse_args():
     parser.add_argument("--height", type=int, default=800, help="Requested camera height.")
     parser.add_argument("--format", default="MJPG", help="Requested DirectShow media subtype, such as MJPG or YUY2.")
     parser.add_argument("--rotation", type=int, choices=(0, 90, 180, 270), default=180, help="Clockwise rotation applied to all camera frames.")
-    parser.add_argument("--cols", type=int, default=2, help="Grid columns.")
+    parser.add_argument("--cols", type=int, default=0, help="Grid columns. Defaults to a square-ish grid.")
     parser.add_argument("--display-height", type=int, default=400, help="Displayed height for each camera tile.")
     parser.add_argument("--duration", type=float, default=0, help="Stop after this many seconds. 0 runs until q/Esc.")
     parser.add_argument("--frames", type=int, default=0, help="Stop after this many displayed frames. 0 runs until q/Esc.")
@@ -57,6 +58,12 @@ def parse_args():
     parser.add_argument("--list-formats", action="store_true", help="List advertised DirectShow formats and exit.")
     parser.add_argument("--startup-timeout", type=float, default=3.0, help="Seconds to wait for first frames.")
     parser.add_argument("--fast", action="store_true", help="Use a lower-bandwidth 320x240 display/capture preset.")
+    parser.add_argument(
+        "--allow-format-fallback",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Use the best available same-format mode when a camera lacks the requested width/height.",
+    )
     return parser.parse_args()
 
 
@@ -106,18 +113,34 @@ def get_formats(device_index):
         graph.remove_filters()
 
 
-def find_format_index(device_index, subtype, width, height):
+def find_format(device_index, subtype, width, height, allow_fallback=True):
     subtype = subtype.upper()
-    matches = [
+    formats = get_formats(device_index)
+    exact_matches = [
         fmt
-        for fmt in get_formats(device_index)
+        for fmt in formats
         if fmt["media_type_str"].upper() == subtype
         and fmt["width"] == width
         and fmt["height"] == height
     ]
-    if not matches:
+    if exact_matches:
+        return exact_matches[0], False
+
+    if not allow_fallback:
         raise RuntimeError(f"Camera {device_index} has no {subtype} {width}x{height} DirectShow format.")
-    return matches[0]["index"]
+
+    same_format = [fmt for fmt in formats if fmt["media_type_str"].upper() == subtype]
+    if not same_format:
+        raise RuntimeError(f"Camera {device_index} has no {subtype} DirectShow formats.")
+
+    under_request = [fmt for fmt in same_format if fmt["width"] <= width and fmt["height"] <= height]
+    candidates = under_request or same_format
+    return max(candidates, key=lambda fmt: (fmt["width"] * fmt["height"], fmt["width"], fmt["height"])), True
+
+
+def find_format_index(device_index, subtype, width, height):
+    fmt, _used_fallback = find_format(device_index, subtype, width, height, allow_fallback=False)
+    return fmt["index"]
 
 
 class DShowCamera:
@@ -382,6 +405,7 @@ def save_configuration(args, position_by_camera):
         "rotation": args.rotation,
         "cols": args.cols,
         "display_height": args.display_height,
+        "allow_format_fallback": args.allow_format_fallback,
     }
     CONFIG_PATH.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
     print(f"Saved configuration: {CONFIG_PATH}", flush=True)
@@ -393,6 +417,11 @@ def main():
         args.width = 320
         args.height = 240
         args.display_height = min(args.display_height, 240)
+    if args.all_cameras:
+        devices = list_devices()
+        args.cameras = [index for index, _device in enumerate(devices) if index != 0]
+        if len(args.cameras) > 4:
+            args.display_height = min(args.display_height, 260)
     if args.left is not None or args.right is not None:
         if args.left is None or args.right is None:
             raise RuntimeError("Use both --left and --right together, or use --cameras.")
@@ -413,6 +442,7 @@ def main():
     cameras = []
     position_by_camera = initial_position_by_camera(args)
     cols = max(1, args.cols or math.ceil(math.sqrt(len(args.cameras))))
+    args.cols = cols
     selected_camera = {"index": args.cameras[0] if args.cameras else None}
     button_rects = []
 
@@ -441,9 +471,20 @@ def main():
 
     try:
         for device_index in args.cameras:
-            format_index = find_format_index(device_index, args.format, args.width, args.height)
-            print(f"Camera {device_index}: using {args.format.upper()} {args.width}x{args.height}, format index {format_index}", flush=True)
-            camera = DShowCamera(device_index, format_index)
+            fmt, used_fallback = find_format(
+                device_index,
+                args.format,
+                args.width,
+                args.height,
+                allow_fallback=args.allow_format_fallback,
+            )
+            fallback_note = " fallback" if used_fallback else ""
+            print(
+                f"Camera {device_index}: using {fmt['media_type_str'].upper()} "
+                f"{fmt['width']}x{fmt['height']}, format index {fmt['index']}{fallback_note}",
+                flush=True,
+            )
+            camera = DShowCamera(device_index, fmt["index"])
             camera.start()
             cameras.append(camera)
 
