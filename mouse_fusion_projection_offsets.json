@@ -1,0 +1,27 @@
+{
+  "source": "mouse_fusion_datalog.csv",
+  "point_transform": "flip_xy",
+  "note": "Per-camera display-pixel correction from full four-camera manual mouse ground-contact clicks. This corrects the projected spatial-prior target; it is not a full physical extrinsics solve.",
+  "corrections_px": {
+    "0": {
+      "dx": -80.98603881835936,
+      "dy": 44.318106689453145,
+      "samples": 4
+    },
+    "1": {
+      "dx": -25.653129882812436,
+      "dy": -17.796263427734402,
+      "samples": 4
+    },
+    "2": {
+      "dx": -132.29518798828127,
+      "dy": -8.208879394531209,
+      "samples": 4
+    },
+    "3": {
+      "dx": -57.25805541992189,
+      "dy": 56.01653320312499,
+      "samples": 4
+    }
+  }
+}

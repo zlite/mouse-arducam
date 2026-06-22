@@ -4,12 +4,24 @@ from pathlib import Path
 
 import cv2
 
-from dshow_arducam_viewer import DShowCamera, find_format_index
+from dshow_arducam_viewer import DShowCamera, find_format_index, list_devices
 
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Capture synchronized-ish frames from DirectShow cameras.")
-    parser.add_argument("--cameras", type=int, nargs="+", default=[1, 2, 3, 4])
+    parser.add_argument(
+        "--cameras",
+        type=int,
+        nargs="+",
+        default=None,
+        help="DirectShow camera indices. Defaults to devices whose name contains --device-name.",
+    )
+    parser.add_argument(
+        "--device-name",
+        default="Arducam",
+        help="Device name substring used when --cameras is omitted.",
+    )
+    parser.add_argument("--scan", action="store_true", help="List DirectShow devices and exit.")
     parser.add_argument("--format", default="MJPG")
     parser.add_argument("--width", type=int, default=1280)
     parser.add_argument("--height", type=int, default=800)
@@ -20,8 +32,24 @@ def parse_args():
     return parser.parse_args()
 
 
+def default_camera_indices(device_name):
+    devices = list_devices()
+    matches = [index for index, name in enumerate(devices) if device_name.lower() in name.lower()]
+    if not matches:
+        raise RuntimeError(f"No DirectShow devices matched --device-name {device_name!r}.")
+    return matches
+
+
 def main():
     args = parse_args()
+    if args.scan:
+        for index, device in enumerate(list_devices()):
+            print(f"{index}: {device}")
+        return
+    if args.cameras is None:
+        args.cameras = default_camera_indices(args.device_name)
+        print(f"Using {args.device_name!r} devices: {' '.join(str(index) for index in args.cameras)}")
+
     args.out_dir.mkdir(parents=True, exist_ok=True)
     cameras = []
     try:

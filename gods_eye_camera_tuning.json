@@ -1,0 +1,29 @@
+{
+  "note": "Initial per-camera god's-eye floor-warp tuning from interactive slider tests. Camera 1 mirrors camera 0, and camera 3 mirrors camera 2 until directly tuned.",
+  "cameras": {
+    "0": {
+      "pitch_deg": -16.0,
+      "min_depth_m": 0.071,
+      "max_view_angle_deg": 58.0,
+      "point_transform": "flip_xy"
+    },
+    "1": {
+      "pitch_deg": -16.0,
+      "min_depth_m": 0.071,
+      "max_view_angle_deg": 58.0,
+      "point_transform": "flip_xy"
+    },
+    "2": {
+      "pitch_deg": 1.0,
+      "min_depth_m": 0.0,
+      "max_view_angle_deg": 60.0,
+      "point_transform": "flip_xy"
+    },
+    "3": {
+      "pitch_deg": 1.0,
+      "min_depth_m": 0.0,
+      "max_view_angle_deg": 60.0,
+      "point_transform": "flip_xy"
+    }
+  }
+}

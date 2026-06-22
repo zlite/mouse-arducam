@@ -1,0 +1,73 @@
+{
+  "units": "meters",
+  "coordinate_frame": {
+    "origin": "arena center on floor",
+    "x": "from left wall to right wall",
+    "y": "along arena length, away from the end facing you",
+    "z": "up"
+  },
+  "measurements": {
+    "arena_width_m": 0.29,
+    "arena_length_m": 0.38,
+    "note": "Camera lens edges protrude about 10 mm into enclosure; centers use approximate sensor position flush with wall."
+  },
+  "up_world": [
+    0.0,
+    0.0,
+    1.0
+  ],
+  "cameras": {
+    "left_1": {
+      "camera_index": 0,
+      "center_m": [
+        -0.145,
+        -0.09,
+        0.05
+      ],
+      "look_at_m": [
+        0.145,
+        -0.09,
+        0.05
+      ]
+    },
+    "left_2": {
+      "camera_index": 1,
+      "center_m": [
+        -0.145,
+        0.09,
+        0.05
+      ],
+      "look_at_m": [
+        0.145,
+        0.09,
+        0.05
+      ]
+    },
+    "right_1": {
+      "camera_index": 2,
+      "center_m": [
+        0.145,
+        -0.09,
+        0.05
+      ],
+      "look_at_m": [
+        -0.145,
+        -0.09,
+        0.05
+      ]
+    },
+    "right_2": {
+      "camera_index": 3,
+      "center_m": [
+        0.145,
+        0.09,
+        0.05
+      ],
+      "look_at_m": [
+        -0.145,
+        0.09,
+        0.05
+      ]
+    }
+  }
+}
