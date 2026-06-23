@@ -1,0 +1,7613 @@
+{
+  "created_at": "2026-06-23 17:55:39",
+  "cameras": [
+    {
+      "camera_id": 0,
+      "rms_px": 1.3897768259048462,
+      "points": 60,
+      "inliers": 32,
+      "max_residual_px": 146.806884765625,
+      "mean_residual_px": 16.092405319213867,
+      "tags": [
+        {
+          "marker_id": 1,
+          "corners": 4,
+          "mean_residual_px": 16.778915405273438,
+          "max_residual_px": 41.43293380737305
+        },
+        {
+          "marker_id": 2,
+          "corners": 4,
+          "mean_residual_px": 9.180538177490234,
+          "max_residual_px": 20.816905975341797
+        },
+        {
+          "marker_id": 3,
+          "corners": 4,
+          "mean_residual_px": 6.43347692489624,
+          "max_residual_px": 12.923006057739258
+        },
+        {
+          "marker_id": 4,
+          "corners": 4,
+          "mean_residual_px": 4.848372459411621,
+          "max_residual_px": 9.671162605285645
+        },
+        {
+          "marker_id": 6,
+          "corners": 4,
+          "mean_residual_px": 2.2090303897857666,
+          "max_residual_px": 5.606550216674805
+        },
+        {
+          "marker_id": 7,
+          "corners": 4,
+          "mean_residual_px": 0.9310958385467529,
+          "max_residual_px": 1.886734962463379
+        },
+        {
+          "marker_id": 8,
+          "corners": 4,
+          "mean_residual_px": 1.0196101665496826,
+          "max_residual_px": 2.077141046524048
+        },
+        {
+          "marker_id": 9,
+          "corners": 4,
+          "mean_residual_px": 1.4910008907318115,
+          "max_residual_px": 2.3071136474609375
+        },
+        {
+          "marker_id": 11,
+          "corners": 4,
+          "mean_residual_px": 11.342667579650879,
+          "max_residual_px": 26.14125633239746
+        },
+        {
+          "marker_id": 12,
+          "corners": 4,
+          "mean_residual_px": 3.374887466430664,
+          "max_residual_px": 7.853662014007568
+        },
+        {
+          "marker_id": 13,
+          "corners": 4,
+          "mean_residual_px": 1.24188232421875,
+          "max_residual_px": 2.3049237728118896
+        },
+        {
+          "marker_id": 16,
+          "corners": 4,
+          "mean_residual_px": 39.225467681884766,
+          "max_residual_px": 76.77609252929688
+        },
+        {
+          "marker_id": 17,
+          "corners": 4,
+          "mean_residual_px": 13.370224952697754,
+          "max_residual_px": 30.443912506103516
+        },
+        {
+          "marker_id": 21,
+          "corners": 4,
+          "mean_residual_px": 89.28304290771484,
+          "max_residual_px": 146.806884765625
+        },
+        {
+          "marker_id": 22,
+          "corners": 4,
+          "mean_residual_px": 40.65586471557617,
+          "max_residual_px": 70.0781478881836
+        }
+      ],
+      "corners": [
+        {
+          "marker_id": 1,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            437.0,
+            771.0
+          ],
+          "mean_px": [
+            436.70001220703125,
+            770.6666870117188
+          ],
+          "jitter_px": 0.706320583820343,
+          "camera_id": 0,
+          "world_m": [
+            -0.11550000309944153,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            436.70001220703125,
+            770.6666870117188
+          ],
+          "projected_px": [
+            406.901611328125,
+            799.45458984375
+          ],
+          "residual_px": 41.43293380737305,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 1,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            469.0,
+            710.0
+          ],
+          "mean_px": [
+            468.70001220703125,
+            710.0
+          ],
+          "jitter_px": 0.4582575559616089,
+          "camera_id": 0,
+          "world_m": [
+            -0.11550000309944153,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            468.70001220703125,
+            710.0
+          ],
+          "projected_px": [
+            449.9836120605469,
+            722.927734375
+          ],
+          "residual_px": 22.747085571289062,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 1,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            620.0,
+            703.0
+          ],
+          "mean_px": [
+            620.0999755859375,
+            703.4666748046875
+          ],
+          "jitter_px": 0.6368324160575867,
+          "camera_id": 0,
+          "world_m": [
+            -0.0885000005364418,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            620.0999755859375,
+            703.4666748046875
+          ],
+          "projected_px": [
+            618.552001953125,
+            701.8343505859375
+          ],
+          "residual_px": 2.249601125717163,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 1,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            625.0,
+            767.0
+          ],
+          "mean_px": [
+            624.7000122070312,
+            767.0333251953125
+          ],
+          "jitter_px": 0.664997935295105,
+          "camera_id": 0,
+          "world_m": [
+            -0.0885000005364418,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            624.7000122070312,
+            767.0333251953125
+          ],
+          "projected_px": [
+            624.3071899414062,
+            767.5957641601562
+          ],
+          "residual_px": 0.6860371232032776,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 2,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            475.0,
+            696.0
+          ],
+          "mean_px": [
+            475.0,
+            696.2000122070312
+          ],
+          "jitter_px": 0.3999999761581421,
+          "camera_id": 0,
+          "world_m": [
+            -0.11550000309944153,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            475.0,
+            696.2000122070312
+          ],
+          "projected_px": [
+            458.14935302734375,
+            708.4229125976562
+          ],
+          "residual_px": 20.816905975341797,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 2,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            495.5,
+            660.0
+          ],
+          "mean_px": [
+            495.5,
+            659.6333618164062
+          ],
+          "jitter_px": 0.69442218542099,
+          "camera_id": 0,
+          "world_m": [
+            -0.11550000309944153,
+            0.013500000350177288
+          ],
+          "image_px": [
+            495.5,
+            659.6333618164062
+          ],
+          "projected_px": [
+            482.6662292480469,
+            664.8733520507812
+          ],
+          "residual_px": 13.862293243408203,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 2,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            615.0,
+            651.5
+          ],
+          "mean_px": [
+            615.1333618164062,
+            651.7000122070312
+          ],
+          "jitter_px": 0.9267626404762268,
+          "camera_id": 0,
+          "world_m": [
+            -0.0885000005364418,
+            0.013500000350177288
+          ],
+          "image_px": [
+            615.1333618164062,
+            651.7000122070312
+          ],
+          "projected_px": [
+            614.0693969726562,
+            650.6144409179688
+          ],
+          "residual_px": 1.5200283527374268,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 2,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            617.0,
+            689.0
+          ],
+          "mean_px": [
+            617.0,
+            688.8666381835938
+          ],
+          "jitter_px": 0.7180219888687134,
+          "camera_id": 0,
+          "world_m": [
+            -0.0885000005364418,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            617.0,
+            688.8666381835938
+          ],
+          "projected_px": [
+            617.4415893554688,
+            689.146728515625
+          ],
+          "residual_px": 0.5229261517524719,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 3,
+          "corner_index": 0,
+          "observations": 24,
+          "used_observations": 24,
+          "median_px": [
+            499.0,
+            650.0
+          ],
+          "mean_px": [
+            499.0,
+            649.75
+          ],
+          "jitter_px": 0.4330126941204071,
+          "camera_id": 0,
+          "world_m": [
+            -0.11550000309944153,
+            0.020500000566244125
+          ],
+          "image_px": [
+            499.0,
+            649.75
+          ],
+          "projected_px": [
+            487.6753845214844,
+            655.9755249023438
+          ],
+          "residual_px": 12.923006057739258,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 3,
+          "corner_index": 1,
+          "observations": 24,
+          "used_observations": 24,
+          "median_px": [
+            514.0,
+            626.0
+          ],
+          "mean_px": [
+            513.2916870117188,
+            626.2916870117188
+          ],
+          "jitter_px": 1.1531959772109985,
+          "camera_id": 0,
+          "world_m": [
+            -0.11550000309944153,
+            0.04749999940395355
+          ],
+          "image_px": [
+            513.2916870117188,
+            626.2916870117188
+          ],
+          "projected_px": [
+            503.49163818359375,
+            627.8810424804688
+          ],
+          "residual_px": 9.928092002868652,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 3,
+          "corner_index": 2,
+          "observations": 24,
+          "used_observations": 24,
+          "median_px": [
+            612.0,
+            619.0
+          ],
+          "mean_px": [
+            612.125,
+            619.2083129882812
+          ],
+          "jitter_px": 0.6640573740005493,
+          "camera_id": 0,
+          "world_m": [
+            -0.0885000005364418,
+            0.04749999940395355
+          ],
+          "image_px": [
+            612.125,
+            619.2083129882812
+          ],
+          "projected_px": [
+            611.1588134765625,
+            617.3568725585938
+          ],
+          "residual_px": 2.0883841514587402,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 3,
+          "corner_index": 3,
+          "observations": 24,
+          "used_observations": 24,
+          "median_px": [
+            613.0,
+            642.0
+          ],
+          "mean_px": [
+            613.0,
+            641.9583129882812
+          ],
+          "jitter_px": 0.35108959674835205,
+          "camera_id": 0,
+          "world_m": [
+            -0.0885000005364418,
+            0.020500000566244125
+          ],
+          "image_px": [
+            613.0,
+            641.9583129882812
+          ],
+          "projected_px": [
+            613.3732299804688,
+            642.6596069335938
+          ],
+          "residual_px": 0.794426679611206,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 4,
+          "corner_index": 0,
+          "observations": 3,
+          "used_observations": 3,
+          "median_px": [
+            516.0,
+            619.0
+          ],
+          "mean_px": [
+            516.0,
+            618.6666870117188
+          ],
+          "jitter_px": 0.471404492855072,
+          "camera_id": 0,
+          "world_m": [
+            -0.11550000309944153,
+            0.054499998688697815
+          ],
+          "image_px": [
+            516.0,
+            618.6666870117188
+          ],
+          "projected_px": [
+            506.8750915527344,
+            621.8709716796875
+          ],
+          "residual_px": 9.671162605285645,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 4,
+          "corner_index": 1,
+          "observations": 3,
+          "used_observations": 3,
+          "median_px": [
+            526.0,
+            602.0
+          ],
+          "mean_px": [
+            526.3333129882812,
+            602.0
+          ],
+          "jitter_px": 0.471404492855072,
+          "camera_id": 0,
+          "world_m": [
+            -0.11550000309944153,
+            0.08150000125169754
+          ],
+          "image_px": [
+            526.3333129882812,
+            602.0
+          ],
+          "projected_px": [
+            517.9216918945312,
+            602.248779296875
+          ],
+          "residual_px": 8.415299415588379,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 4,
+          "corner_index": 2,
+          "observations": 3,
+          "used_observations": 3,
+          "median_px": [
+            610.0,
+            594.0
+          ],
+          "mean_px": [
+            610.0,
+            594.0
+          ],
+          "jitter_px": 0.0,
+          "camera_id": 0,
+          "world_m": [
+            -0.0885000005364418,
+            0.08150000125169754
+          ],
+          "image_px": [
+            610.0,
+            594.0
+          ],
+          "projected_px": [
+            609.11669921875,
+            594.0224609375
+          ],
+          "residual_px": 0.8835862874984741,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 4,
+          "corner_index": 3,
+          "observations": 3,
+          "used_observations": 3,
+          "median_px": [
+            610.0,
+            612.0
+          ],
+          "mean_px": [
+            610.3333129882812,
+            611.6666870117188
+          ],
+          "jitter_px": 0.6666666865348816,
+          "camera_id": 0,
+          "world_m": [
+            -0.0885000005364418,
+            0.054499998688697815
+          ],
+          "image_px": [
+            610.3333129882812,
+            611.6666870117188
+          ],
+          "projected_px": [
+            610.681884765625,
+            611.9071044921875
+          ],
+          "residual_px": 0.42344164848327637,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 6,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            675.0,
+            761.0
+          ],
+          "mean_px": [
+            675.0333251953125,
+            761.0
+          ],
+          "jitter_px": 0.40688517689704895,
+          "camera_id": 0,
+          "world_m": [
+            -0.08150000125169754,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            675.0333251953125,
+            761.0
+          ],
+          "projected_px": [
+            676.1051025390625,
+            760.0052490234375
+          ],
+          "residual_px": 1.4622708559036255,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 6,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            659.0,
+            698.0
+          ],
+          "mean_px": [
+            659.0,
+            698.2000122070312
+          ],
+          "jitter_px": 0.3999999761581421,
+          "camera_id": 0,
+          "world_m": [
+            -0.08150000125169754,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            659.0,
+            698.2000122070312
+          ],
+          "projected_px": [
+            659.4635620117188,
+            696.7149658203125
+          ],
+          "residual_px": 1.5557160377502441,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 6,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            808.0,
+            678.0
+          ],
+          "mean_px": [
+            807.7999877929688,
+            678.0
+          ],
+          "jitter_px": 0.3999999761581421,
+          "camera_id": 0,
+          "world_m": [
+            -0.054499998688697815,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            807.7999877929688,
+            678.0
+          ],
+          "projected_px": [
+            807.6728515625,
+            678.1691284179688
+          ],
+          "residual_px": 0.21158459782600403,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 6,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            858.0,
+            728.0
+          ],
+          "mean_px": [
+            858.2666625976562,
+            727.9000244140625
+          ],
+          "jitter_px": 0.5343739986419678,
+          "camera_id": 0,
+          "world_m": [
+            -0.054499998688697815,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            858.2666625976562,
+            727.9000244140625
+          ],
+          "projected_px": [
+            860.689208984375,
+            732.9561767578125
+          ],
+          "residual_px": 5.606550216674805,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 7,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            656.0,
+            684.0
+          ],
+          "mean_px": [
+            656.0,
+            683.9666748046875
+          ],
+          "jitter_px": 0.31446602940559387,
+          "camera_id": 0,
+          "world_m": [
+            -0.08150000125169754,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            656.0,
+            683.9666748046875
+          ],
+          "projected_px": [
+            656.2390747070312,
+            684.4517822265625
+          ],
+          "residual_px": 0.5408197045326233,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 7,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            646.0,
+            647.5
+          ],
+          "mean_px": [
+            646.1666870117188,
+            647.5
+          ],
+          "jitter_px": 0.6236095428466797,
+          "camera_id": 0,
+          "world_m": [
+            -0.08150000125169754,
+            0.013500000350177288
+          ],
+          "image_px": [
+            646.1666870117188,
+            647.5
+          ],
+          "projected_px": [
+            646.4188232421875,
+            647.1040649414062
+          ],
+          "residual_px": 0.46940094232559204,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 7,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            765.0,
+            635.0
+          ],
+          "mean_px": [
+            764.8666381835938,
+            635.0
+          ],
+          "jitter_px": 0.3399346172809601,
+          "camera_id": 0,
+          "world_m": [
+            -0.054499998688697815,
+            0.013500000350177288
+          ],
+          "image_px": [
+            764.8666381835938,
+            635.0
+          ],
+          "projected_px": [
+            765.1448974609375,
+            634.2207641601562
+          ],
+          "residual_px": 0.8274277448654175,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 7,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            797.0,
+            666.0
+          ],
+          "mean_px": [
+            796.9000244140625,
+            665.5333251953125
+          ],
+          "jitter_px": 0.7340905070304871,
+          "camera_id": 0,
+          "world_m": [
+            -0.054499998688697815,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            796.9000244140625,
+            665.5333251953125
+          ],
+          "projected_px": [
+            797.2410888671875,
+            667.3889770507812
+          ],
+          "residual_px": 1.886734962463379,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 8,
+          "corner_index": 0,
+          "observations": 6,
+          "used_observations": 6,
+          "median_px": [
+            644.0,
+            637.0
+          ],
+          "mean_px": [
+            644.0,
+            637.3333129882812
+          ],
+          "jitter_px": 0.4714045226573944,
+          "camera_id": 0,
+          "world_m": [
+            -0.08150000125169754,
+            0.020500000566244125
+          ],
+          "image_px": [
+            644.0,
+            637.3333129882812
+          ],
+          "projected_px": [
+            644.3863525390625,
+            639.3742065429688
+          ],
+          "residual_px": 2.077141046524048,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 8,
+          "corner_index": 1,
+          "observations": 6,
+          "used_observations": 6,
+          "median_px": [
+            638.0,
+            615.0
+          ],
+          "mean_px": [
+            638.0,
+            615.1666870117188
+          ],
+          "jitter_px": 0.3726780116558075,
+          "camera_id": 0,
+          "world_m": [
+            -0.08150000125169754,
+            0.04749999940395355
+          ],
+          "image_px": [
+            638.0,
+            615.1666870117188
+          ],
+          "projected_px": [
+            637.9095458984375,
+            614.7420654296875
+          ],
+          "residual_px": 0.4341490864753723,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 8,
+          "corner_index": 2,
+          "observations": 6,
+          "used_observations": 6,
+          "median_px": [
+            736.0,
+            605.0
+          ],
+          "mean_px": [
+            736.0,
+            605.0
+          ],
+          "jitter_px": 0.0,
+          "camera_id": 0,
+          "world_m": [
+            -0.054499998688697815,
+            0.04749999940395355
+          ],
+          "image_px": [
+            736.0,
+            605.0
+          ],
+          "projected_px": [
+            736.9296264648438,
+            605.0631103515625
+          ],
+          "residual_px": 0.9317662119865417,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 8,
+          "corner_index": 3,
+          "observations": 6,
+          "used_observations": 6,
+          "median_px": [
+            758.0,
+            627.0
+          ],
+          "mean_px": [
+            758.0,
+            626.8333129882812
+          ],
+          "jitter_px": 0.3726780116558075,
+          "camera_id": 0,
+          "world_m": [
+            -0.054499998688697815,
+            0.020500000566244125
+          ],
+          "image_px": [
+            758.0,
+            626.8333129882812
+          ],
+          "projected_px": [
+            758.4398803710938,
+            627.2918090820312
+          ],
+          "residual_px": 0.6353844404220581,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 9,
+          "corner_index": 0,
+          "observations": 27,
+          "used_observations": 27,
+          "median_px": [
+            636.0,
+            608.0
+          ],
+          "mean_px": [
+            636.25927734375,
+            608.25927734375
+          ],
+          "jitter_px": 0.6197481751441956,
+          "camera_id": 0,
+          "world_m": [
+            -0.08150000125169754,
+            0.054499998688697815
+          ],
+          "image_px": [
+            636.25927734375,
+            608.25927734375
+          ],
+          "projected_px": [
+            636.51220703125,
+            609.4277954101562
+          ],
+          "residual_px": 1.1955784559249878,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 9,
+          "corner_index": 1,
+          "observations": 27,
+          "used_observations": 27,
+          "median_px": [
+            632.0,
+            591.0
+          ],
+          "mean_px": [
+            632.0,
+            591.2222290039062
+          ],
+          "jitter_px": 0.4157397150993347,
+          "camera_id": 0,
+          "world_m": [
+            -0.08150000125169754,
+            0.08150000125169754
+          ],
+          "image_px": [
+            632.0,
+            591.2222290039062
+          ],
+          "projected_px": [
+            631.920654296875,
+            591.9654541015625
+          ],
+          "residual_px": 0.7474485039710999,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 9,
+          "corner_index": 2,
+          "observations": 27,
+          "used_observations": 27,
+          "median_px": [
+            714.0,
+            584.0
+          ],
+          "mean_px": [
+            714.5555419921875,
+            584.0
+          ],
+          "jitter_px": 1.0304019451141357,
+          "camera_id": 0,
+          "world_m": [
+            -0.054499998688697815,
+            0.08150000125169754
+          ],
+          "image_px": [
+            714.5555419921875,
+            584.0
+          ],
+          "projected_px": [
+            716.8424072265625,
+            584.3049926757812
+          ],
+          "residual_px": 2.3071136474609375,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 9,
+          "corner_index": 3,
+          "observations": 27,
+          "used_observations": 27,
+          "median_px": [
+            731.0,
+            599.0
+          ],
+          "mean_px": [
+            731.0740966796875,
+            599.0
+          ],
+          "jitter_px": 0.2618913948535919,
+          "camera_id": 0,
+          "world_m": [
+            -0.054499998688697815,
+            0.054499998688697815
+          ],
+          "image_px": [
+            731.0740966796875,
+            599.0
+          ],
+          "projected_px": [
+            732.2598876953125,
+            600.2374267578125
+          ],
+          "residual_px": 1.713862657546997,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 11,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 22,
+          "median_px": [
+            899.0,
+            719.0
+          ],
+          "mean_px": [
+            899.4091186523438,
+            719.1363525390625
+          ],
+          "jitter_px": 0.7951298356056213,
+          "camera_id": 0,
+          "world_m": [
+            -0.04749999940395355,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            899.4091186523438,
+            719.1363525390625
+          ],
+          "projected_px": [
+            904.9578247070312,
+            726.468994140625
+          ],
+          "residual_px": 9.19542121887207,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 11,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            844.0,
+            672.0
+          ],
+          "mean_px": [
+            844.0333251953125,
+            672.0
+          ],
+          "jitter_px": 0.546707272529602,
+          "camera_id": 0,
+          "world_m": [
+            -0.04749999940395355,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            844.0333251953125,
+            672.0
+          ],
+          "projected_px": [
+            843.7906494140625,
+            673.649658203125
+          ],
+          "residual_px": 1.667412281036377,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 11,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 27,
+          "median_px": [
+            971.0,
+            650.0
+          ],
+          "mean_px": [
+            971.1481323242188,
+            649.8518676757812
+          ],
+          "jitter_px": 0.919235110282898,
+          "camera_id": 0,
+          "world_m": [
+            -0.020500000566244125,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            971.1481323242188,
+            649.8518676757812
+          ],
+          "projected_px": [
+            975.1188354492188,
+            657.2161865234375
+          ],
+          "residual_px": 8.366580963134766,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 11,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1043.0,
+            687.0
+          ],
+          "mean_px": [
+            1043.2332763671875,
+            686.8666381835938
+          ],
+          "jitter_px": 0.6009252667427063,
+          "camera_id": 0,
+          "world_m": [
+            -0.020500000566244125,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            1043.2332763671875,
+            686.8666381835938
+          ],
+          "projected_px": [
+            1063.630126953125,
+            703.2169799804688
+          ],
+          "residual_px": 26.14125633239746,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 12,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            832.0,
+            661.0
+          ],
+          "mean_px": [
+            831.566650390625,
+            660.9666748046875
+          ],
+          "jitter_px": 0.6411795020103455,
+          "camera_id": 0,
+          "world_m": [
+            -0.04749999940395355,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            831.566650390625,
+            660.9666748046875
+          ],
+          "projected_px": [
+            831.7100830078125,
+            663.2178344726562
+          ],
+          "residual_px": 2.2557244300842285,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 12,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            796.0,
+            632.0
+          ],
+          "mean_px": [
+            795.8666381835938,
+            632.0333251953125
+          ],
+          "jitter_px": 0.8252946138381958,
+          "camera_id": 0,
+          "world_m": [
+            -0.04749999940395355,
+            0.013500000350177288
+          ],
+          "image_px": [
+            795.8666381835938,
+            632.0333251953125
+          ],
+          "projected_px": [
+            794.4479370117188,
+            631.041015625
+          ],
+          "residual_px": 1.7312976121902466,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 12,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 28,
+          "median_px": [
+            903.0,
+            621.0
+          ],
+          "mean_px": [
+            903.0,
+            620.8214111328125
+          ],
+          "jitter_px": 1.103681206703186,
+          "camera_id": 0,
+          "world_m": [
+            -0.020500000566244125,
+            0.013500000350177288
+          ],
+          "image_px": [
+            903.0,
+            620.8214111328125
+          ],
+          "projected_px": [
+            902.246826171875,
+            619.3433837890625
+          ],
+          "residual_px": 1.6588658094406128,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 12,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            953.0,
+            642.0
+          ],
+          "mean_px": [
+            952.6333618164062,
+            641.7666625976562
+          ],
+          "jitter_px": 0.8232725858688354,
+          "camera_id": 0,
+          "world_m": [
+            -0.020500000566244125,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            952.6333618164062,
+            641.7666625976562
+          ],
+          "projected_px": [
+            957.4007568359375,
+            648.0078125
+          ],
+          "residual_px": 7.853662014007568,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            787.0,
+            625.0
+          ],
+          "mean_px": [
+            786.7666625976562,
+            624.7333374023438
+          ],
+          "jitter_px": 0.8006941080093384,
+          "camera_id": 0,
+          "world_m": [
+            -0.04749999940395355,
+            0.020500000566244125
+          ],
+          "image_px": [
+            786.7666625976562,
+            624.7333374023438
+          ],
+          "projected_px": [
+            786.6459350585938,
+            624.3037719726562
+          ],
+          "residual_px": 0.44620802998542786,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            763.0,
+            603.0
+          ],
+          "mean_px": [
+            762.7333374023438,
+            603.0333251953125
+          ],
+          "jitter_px": 0.5426273345947266,
+          "camera_id": 0,
+          "world_m": [
+            -0.04749999940395355,
+            0.04749999940395355
+          ],
+          "image_px": [
+            762.7333374023438,
+            603.0333251953125
+          ],
+          "projected_px": [
+            761.5746459960938,
+            602.6541137695312
+          ],
+          "residual_px": 1.2191665172576904,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 26,
+          "median_px": [
+            855.0,
+            595.0
+          ],
+          "mean_px": [
+            854.9615478515625,
+            594.8461303710938
+          ],
+          "jitter_px": 1.0066348314285278,
+          "camera_id": 0,
+          "world_m": [
+            -0.020500000566244125,
+            0.04749999940395355
+          ],
+          "image_px": [
+            854.9615478515625,
+            594.8461303710938
+          ],
+          "projected_px": [
+            852.9490356445312,
+            593.7225341796875
+          ],
+          "residual_px": 2.3049237728118896,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            890.0,
+            614.0
+          ],
+          "mean_px": [
+            889.9000244140625,
+            614.0
+          ],
+          "jitter_px": 0.30000004172325134,
+          "camera_id": 0,
+          "world_m": [
+            -0.020500000566244125,
+            0.020500000566244125
+          ],
+          "image_px": [
+            889.9000244140625,
+            614.0
+          ],
+          "projected_px": [
+            890.6014404296875,
+            613.2911376953125
+          ],
+          "residual_px": 0.9972312450408936,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 16,
+          "corner_index": 0,
+          "observations": 28,
+          "used_observations": 17,
+          "median_px": [
+            1076.0,
+            677.0
+          ],
+          "mean_px": [
+            1076.11767578125,
+            677.0
+          ],
+          "jitter_px": 0.831890344619751,
+          "camera_id": 0,
+          "world_m": [
+            -0.013500000350177288,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            1076.11767578125,
+            677.0
+          ],
+          "projected_px": [
+            1101.8994140625,
+            697.6090087890625
+          ],
+          "residual_px": 33.00650405883789,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 16,
+          "corner_index": 1,
+          "observations": 28,
+          "used_observations": 28,
+          "median_px": [
+            999.0,
+            644.0
+          ],
+          "mean_px": [
+            999.1785888671875,
+            644.0714111328125
+          ],
+          "jitter_px": 1.1644172668457031,
+          "camera_id": 0,
+          "world_m": [
+            -0.013500000350177288,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            999.1785888671875,
+            644.0714111328125
+          ],
+          "projected_px": [
+            1007.2385864257812,
+            653.1969604492188
+          ],
+          "residual_px": 12.175353050231934,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 16,
+          "corner_index": 2,
+          "observations": 28,
+          "used_observations": 27,
+          "median_px": [
+            1093.0,
+            622.0
+          ],
+          "mean_px": [
+            1093.629638671875,
+            622.0
+          ],
+          "jitter_px": 1.364853858947754,
+          "camera_id": 0,
+          "world_m": [
+            0.013500000350177288,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            1093.629638671875,
+            622.0
+          ],
+          "projected_px": [
+            1124.4141845703125,
+            638.5344848632812
+          ],
+          "residual_px": 34.94392013549805,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 16,
+          "corner_index": 3,
+          "observations": 28,
+          "used_observations": 28,
+          "median_px": [
+            1171.0,
+            643.0
+          ],
+          "mean_px": [
+            1170.857177734375,
+            643.5357055664062
+          ],
+          "jitter_px": 0.8534144759178162,
+          "camera_id": 0,
+          "world_m": [
+            0.013500000350177288,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            1170.857177734375,
+            643.5357055664062
+          ],
+          "projected_px": [
+            1239.7578125,
+            677.4071044921875
+          ],
+          "residual_px": 76.77609252929688,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 0,
+          "observations": 28,
+          "used_observations": 24,
+          "median_px": [
+            986.0,
+            635.0
+          ],
+          "mean_px": [
+            986.4166870117188,
+            635.0
+          ],
+          "jitter_px": 0.5713045597076416,
+          "camera_id": 0,
+          "world_m": [
+            -0.013500000350177288,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            986.4166870117188,
+            635.0
+          ],
+          "projected_px": [
+            988.227294921875,
+            644.2774658203125
+          ],
+          "residual_px": 9.452495574951172,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 1,
+          "observations": 28,
+          "used_observations": 26,
+          "median_px": [
+            928.0,
+            617.0
+          ],
+          "mean_px": [
+            928.1923217773438,
+            616.923095703125
+          ],
+          "jitter_px": 0.6760921478271484,
+          "camera_id": 0,
+          "world_m": [
+            -0.013500000350177288,
+            0.013500000350177288
+          ],
+          "image_px": [
+            928.1923217773438,
+            616.923095703125
+          ],
+          "projected_px": [
+            928.9144287109375,
+            616.4496459960938
+          ],
+          "residual_px": 0.8634772896766663,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 2,
+          "observations": 28,
+          "used_observations": 25,
+          "median_px": [
+            1016.0,
+            601.0
+          ],
+          "mean_px": [
+            1015.4400024414062,
+            601.0
+          ],
+          "jitter_px": 0.8522909879684448,
+          "camera_id": 0,
+          "world_m": [
+            0.013500000350177288,
+            0.013500000350177288
+          ],
+          "image_px": [
+            1015.4400024414062,
+            601.0
+          ],
+          "projected_px": [
+            1027.228271484375,
+            605.7813110351562
+          ],
+          "residual_px": 12.721014976501465,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 3,
+          "observations": 28,
+          "used_observations": 28,
+          "median_px": [
+            1075.0,
+            615.0
+          ],
+          "mean_px": [
+            1074.5357666015625,
+            615.5357055664062
+          ],
+          "jitter_px": 0.8849650621414185,
+          "camera_id": 0,
+          "world_m": [
+            0.013500000350177288,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            1074.5357666015625,
+            615.5357055664062
+          ],
+          "projected_px": [
+            1100.971923828125,
+            630.6340942382812
+          ],
+          "residual_px": 30.443912506103516,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 24,
+          "median_px": [
+            1195.0,
+            633.0
+          ],
+          "mean_px": [
+            1194.9583740234375,
+            633.0
+          ],
+          "jitter_px": 0.19982631504535675,
+          "camera_id": 0,
+          "world_m": [
+            0.020500000566244125,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            1194.9583740234375,
+            633.0
+          ],
+          "projected_px": [
+            1273.1693115234375,
+            672.5109252929688
+          ],
+          "residual_px": 87.62456512451172,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1116.0,
+            615.0
+          ],
+          "mean_px": [
+            1116.0,
+            614.7999877929688
+          ],
+          "jitter_px": 0.3999999761581421,
+          "camera_id": 0,
+          "world_m": [
+            0.020500000566244125,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            1116.0,
+            614.7999877929688
+          ],
+          "projected_px": [
+            1153.1646728515625,
+            634.9368896484375
+          ],
+          "residual_px": 42.269466400146484,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1184.0,
+            591.0
+          ],
+          "mean_px": [
+            1184.0333251953125,
+            591.0333251953125
+          ],
+          "jitter_px": 0.5754225254058838,
+          "camera_id": 0,
+          "world_m": [
+            0.04749999940395355,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            1184.0333251953125,
+            591.0333251953125
+          ],
+          "projected_px": [
+            1258.3583984375,
+            621.773681640625
+          ],
+          "residual_px": 80.4312515258789,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1257.0,
+            602.0
+          ],
+          "mean_px": [
+            1257.0333251953125,
+            602.0999755859375
+          ],
+          "jitter_px": 0.34960296750068665,
+          "camera_id": 0,
+          "world_m": [
+            0.04749999940395355,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            1257.0333251953125,
+            602.0999755859375
+          ],
+          "projected_px": [
+            1394.056640625,
+            654.7960205078125
+          ],
+          "residual_px": 146.806884765625,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 20,
+          "median_px": [
+            1097.0,
+            609.0
+          ],
+          "mean_px": [
+            1096.9000244140625,
+            608.9500122070312
+          ],
+          "jitter_px": 0.9151502251625061,
+          "camera_id": 0,
+          "world_m": [
+            0.020500000566244125,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            1096.9000244140625,
+            608.9500122070312
+          ],
+          "projected_px": [
+            1128.7042236328125,
+            627.2781372070312
+          ],
+          "residual_px": 36.70731735229492,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1038.0,
+            597.0
+          ],
+          "mean_px": [
+            1038.066650390625,
+            596.9666748046875
+          ],
+          "jitter_px": 0.40138646960258484,
+          "camera_id": 0,
+          "world_m": [
+            0.020500000566244125,
+            0.013500000350177288
+          ],
+          "image_px": [
+            1038.066650390625,
+            596.9666748046875
+          ],
+          "projected_px": [
+            1051.6005859375,
+            603.1365966796875
+          ],
+          "residual_px": 14.873981475830078,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1103.0,
+            579.0
+          ],
+          "mean_px": [
+            1103.2667236328125,
+            579.0
+          ],
+          "jitter_px": 0.628931999206543,
+          "camera_id": 0,
+          "world_m": [
+            0.04749999940395355,
+            0.013500000350177288
+          ],
+          "image_px": [
+            1103.2667236328125,
+            579.0
+          ],
+          "projected_px": [
+            1141.6285400390625,
+            593.3673706054688
+          ],
+          "residual_px": 40.964012145996094,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1166.0,
+            588.0
+          ],
+          "mean_px": [
+            1165.7667236328125,
+            587.9000244140625
+          ],
+          "jitter_px": 0.8178562521934509,
+          "camera_id": 0,
+          "world_m": [
+            0.04749999940395355,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            1165.7667236328125,
+            587.9000244140625
+          ],
+          "projected_px": [
+            1230.4049072265625,
+            614.9712524414062
+          ],
+          "residual_px": 70.0781478881836,
+          "ransac_inlier": false
+        }
+      ]
+    },
+    {
+      "camera_id": 1,
+      "rms_px": 1.479709506034851,
+      "points": 64,
+      "inliers": 31,
+      "max_residual_px": 84.05965423583984,
+      "mean_residual_px": 11.37137222290039,
+      "tags": [
+        {
+          "marker_id": 0,
+          "corners": 4,
+          "mean_residual_px": 5.296472549438477,
+          "max_residual_px": 11.103878021240234
+        },
+        {
+          "marker_id": 1,
+          "corners": 4,
+          "mean_residual_px": 6.767733097076416,
+          "max_residual_px": 13.966983795166016
+        },
+        {
+          "marker_id": 2,
+          "corners": 4,
+          "mean_residual_px": 8.998382568359375,
+          "max_residual_px": 20.266387939453125
+        },
+        {
+          "marker_id": 3,
+          "corners": 4,
+          "mean_residual_px": 15.399627685546875,
+          "max_residual_px": 36.771514892578125
+        },
+        {
+          "marker_id": 6,
+          "corners": 4,
+          "mean_residual_px": 1.3413147926330566,
+          "max_residual_px": 1.9094442129135132
+        },
+        {
+          "marker_id": 7,
+          "corners": 4,
+          "mean_residual_px": 1.0150983333587646,
+          "max_residual_px": 1.5282796621322632
+        },
+        {
+          "marker_id": 8,
+          "corners": 4,
+          "mean_residual_px": 1.355061411857605,
+          "max_residual_px": 2.7485127449035645
+        },
+        {
+          "marker_id": 11,
+          "corners": 4,
+          "mean_residual_px": 1.0517263412475586,
+          "max_residual_px": 2.198336362838745
+        },
+        {
+          "marker_id": 12,
+          "corners": 4,
+          "mean_residual_px": 2.285536766052246,
+          "max_residual_px": 4.790050506591797
+        },
+        {
+          "marker_id": 13,
+          "corners": 4,
+          "mean_residual_px": 7.786635875701904,
+          "max_residual_px": 21.181978225708008
+        },
+        {
+          "marker_id": 16,
+          "corners": 4,
+          "mean_residual_px": 5.8209147453308105,
+          "max_residual_px": 13.046065330505371
+        },
+        {
+          "marker_id": 17,
+          "corners": 4,
+          "mean_residual_px": 12.865815162658691,
+          "max_residual_px": 29.41676902770996
+        },
+        {
+          "marker_id": 18,
+          "corners": 4,
+          "mean_residual_px": 38.051239013671875,
+          "max_residual_px": 84.05965423583984
+        },
+        {
+          "marker_id": 20,
+          "corners": 4,
+          "mean_residual_px": 13.261618614196777,
+          "max_residual_px": 23.73607635498047
+        },
+        {
+          "marker_id": 21,
+          "corners": 4,
+          "mean_residual_px": 21.366430282592773,
+          "max_residual_px": 37.12468338012695
+        },
+        {
+          "marker_id": 22,
+          "corners": 4,
+          "mean_residual_px": 39.27833938598633,
+          "max_residual_px": 75.80280303955078
+        }
+      ],
+      "corners": [
+        {
+          "marker_id": 0,
+          "corner_index": 0,
+          "observations": 4,
+          "used_observations": 4,
+          "median_px": [
+            634.5,
+            567.5
+          ],
+          "mean_px": [
+            634.5,
+            567.5
+          ],
+          "jitter_px": 1.5811388492584229,
+          "camera_id": 1,
+          "world_m": [
+            -0.11550000309944153,
+            -0.08150000125169754
+          ],
+          "image_px": [
+            634.5,
+            567.5
+          ],
+          "projected_px": [
+            642.4861450195312,
+            571.0197143554688
+          ],
+          "residual_px": 8.727365493774414,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 0,
+          "corner_index": 1,
+          "observations": 4,
+          "used_observations": 4,
+          "median_px": [
+            645.0,
+            583.0
+          ],
+          "mean_px": [
+            645.0,
+            583.0
+          ],
+          "jitter_px": 0.0,
+          "camera_id": 1,
+          "world_m": [
+            -0.11550000309944153,
+            -0.054499998688697815
+          ],
+          "image_px": [
+            645.0,
+            583.0
+          ],
+          "projected_px": [
+            654.0101318359375,
+            589.489501953125
+          ],
+          "residual_px": 11.103878021240234,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 0,
+          "corner_index": 2,
+          "observations": 4,
+          "used_observations": 4,
+          "median_px": [
+            548.0,
+            584.0
+          ],
+          "mean_px": [
+            548.0,
+            583.5
+          ],
+          "jitter_px": 1.1180340051651,
+          "camera_id": 1,
+          "world_m": [
+            -0.0885000005364418,
+            -0.054499998688697815
+          ],
+          "image_px": [
+            548.0,
+            583.5
+          ],
+          "projected_px": [
+            547.6884155273438,
+            583.9813842773438
+          ],
+          "residual_px": 0.5734245181083679,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 0,
+          "corner_index": 3,
+          "observations": 4,
+          "used_observations": 4,
+          "median_px": [
+            548.5,
+            567.0
+          ],
+          "mean_px": [
+            548.5,
+            567.25
+          ],
+          "jitter_px": 0.6614378094673157,
+          "camera_id": 1,
+          "world_m": [
+            -0.0885000005364418,
+            -0.08150000125169754
+          ],
+          "image_px": [
+            548.5,
+            567.25
+          ],
+          "projected_px": [
+            549.107666015625,
+            566.759033203125
+          ],
+          "residual_px": 0.7812210917472839,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 1,
+          "corner_index": 0,
+          "observations": 25,
+          "used_observations": 25,
+          "median_px": [
+            649.0,
+            590.0
+          ],
+          "mean_px": [
+            648.9600219726562,
+            590.0
+          ],
+          "jitter_px": 0.1959591805934906,
+          "camera_id": 1,
+          "world_m": [
+            -0.11550000309944153,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            648.9600219726562,
+            590.0
+          ],
+          "projected_px": [
+            657.5410766601562,
+            595.148681640625
+          ],
+          "residual_px": 10.007168769836426,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 1,
+          "corner_index": 1,
+          "observations": 25,
+          "used_observations": 25,
+          "median_px": [
+            663.0,
+            613.0
+          ],
+          "mean_px": [
+            663.0,
+            613.0800170898438
+          ],
+          "jitter_px": 0.3919183611869812,
+          "camera_id": 1,
+          "world_m": [
+            -0.11550000309944153,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            663.0,
+            613.0800170898438
+          ],
+          "projected_px": [
+            674.0550537109375,
+            621.615966796875
+          ],
+          "residual_px": 13.966983795166016,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 1,
+          "corner_index": 2,
+          "observations": 25,
+          "used_observations": 25,
+          "median_px": [
+            545.0,
+            612.0
+          ],
+          "mean_px": [
+            545.0,
+            612.0800170898438
+          ],
+          "jitter_px": 1.3833292722702026,
+          "camera_id": 1,
+          "world_m": [
+            -0.0885000005364418,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            545.0,
+            612.0800170898438
+          ],
+          "projected_px": [
+            545.249755859375,
+            613.5738525390625
+          ],
+          "residual_px": 1.5145699977874756,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 1,
+          "corner_index": 3,
+          "observations": 25,
+          "used_observations": 25,
+          "median_px": [
+            547.0,
+            591.0
+          ],
+          "mean_px": [
+            547.0800170898438,
+            590.7999877929688
+          ],
+          "jitter_px": 1.1634432077407837,
+          "camera_id": 1,
+          "world_m": [
+            -0.0885000005364418,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            547.0800170898438,
+            590.7999877929688
+          ],
+          "projected_px": [
+            547.2560424804688,
+            589.2276000976562
+          ],
+          "residual_px": 1.582209825515747,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 2,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            668.0,
+            622.0
+          ],
+          "mean_px": [
+            668.0999755859375,
+            622.0
+          ],
+          "jitter_px": 0.29999998211860657,
+          "camera_id": 1,
+          "world_m": [
+            -0.11550000309944153,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            668.0999755859375,
+            622.0
+          ],
+          "projected_px": [
+            679.2879638671875,
+            630.0028686523438
+          ],
+          "residual_px": 13.755616188049316,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 2,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            690.0,
+            657.0
+          ],
+          "mean_px": [
+            690.0,
+            657.3666381835938
+          ],
+          "jitter_px": 0.48189443349838257,
+          "camera_id": 1,
+          "world_m": [
+            -0.11550000309944153,
+            0.013500000350177288
+          ],
+          "image_px": [
+            690.0,
+            657.3666381835938
+          ],
+          "projected_px": [
+            704.9193725585938,
+            671.0830078125
+          ],
+          "residual_px": 20.266387939453125,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 2,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            542.0,
+            657.0
+          ],
+          "mean_px": [
+            541.9000244140625,
+            657.0
+          ],
+          "jitter_px": 0.30000004172325134,
+          "camera_id": 1,
+          "world_m": [
+            -0.0885000005364418,
+            0.013500000350177288
+          ],
+          "image_px": [
+            541.9000244140625,
+            657.0
+          ],
+          "projected_px": [
+            541.5675659179688,
+            658.2562866210938
+          ],
+          "residual_px": 1.2995325326919556,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 2,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 29,
+          "median_px": [
+            544.0,
+            621.0
+          ],
+          "mean_px": [
+            543.9655151367188,
+            621.0689697265625
+          ],
+          "jitter_px": 0.4080055058002472,
+          "camera_id": 1,
+          "world_m": [
+            -0.0885000005364418,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            543.9655151367188,
+            621.0689697265625
+          ],
+          "projected_px": [
+            544.6193237304688,
+            621.2242431640625
+          ],
+          "residual_px": 0.6719936728477478,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 3,
+          "corner_index": 0,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            697.0,
+            670.0
+          ],
+          "mean_px": [
+            696.7586059570312,
+            670.0
+          ],
+          "jitter_px": 0.42791974544525146,
+          "camera_id": 1,
+          "world_m": [
+            -0.11550000309944153,
+            0.020500000566244125
+          ],
+          "image_px": [
+            696.7586059570312,
+            670.0
+          ],
+          "projected_px": [
+            713.4635009765625,
+            684.77685546875
+          ],
+          "residual_px": 22.30266761779785,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 3,
+          "corner_index": 1,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            733.0,
+            731.0
+          ],
+          "mean_px": [
+            733.0,
+            730.72412109375
+          ],
+          "jitter_px": 0.4469476044178009,
+          "camera_id": 1,
+          "world_m": [
+            -0.11550000309944153,
+            0.04749999940395355
+          ],
+          "image_px": [
+            733.0,
+            730.72412109375
+          ],
+          "projected_px": [
+            758.6010131835938,
+            757.1198120117188
+          ],
+          "residual_px": 36.771514892578125,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 3,
+          "corner_index": 2,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            536.0,
+            733.0
+          ],
+          "mean_px": [
+            536.1724243164062,
+            732.6551513671875
+          ],
+          "jitter_px": 0.6614940762519836,
+          "camera_id": 1,
+          "world_m": [
+            -0.0885000005364418,
+            0.04749999940395355
+          ],
+          "image_px": [
+            536.1724243164062,
+            732.6551513671875
+          ],
+          "projected_px": [
+            535.365234375,
+            733.5206298828125
+          ],
+          "residual_px": 1.1834731101989746,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 3,
+          "corner_index": 3,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            539.0,
+            671.0
+          ],
+          "mean_px": [
+            539.3448486328125,
+            671.0
+          ],
+          "jitter_px": 1.0264053344726562,
+          "camera_id": 1,
+          "world_m": [
+            -0.0885000005364418,
+            0.020500000566244125
+          ],
+          "image_px": [
+            539.3448486328125,
+            671.0
+          ],
+          "projected_px": [
+            540.5634765625,
+            670.440673828125
+          ],
+          "residual_px": 1.3408578634262085,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 6,
+          "corner_index": 0,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            521.0,
+            590.0
+          ],
+          "mean_px": [
+            520.6896362304688,
+            589.5516967773438
+          ],
+          "jitter_px": 0.679231584072113,
+          "camera_id": 1,
+          "world_m": [
+            -0.08150000125169754,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            520.6896362304688,
+            589.5516967773438
+          ],
+          "projected_px": [
+            520.015869140625,
+            587.7650756835938
+          ],
+          "residual_px": 1.9094442129135132,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 6,
+          "corner_index": 1,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            514.0,
+            611.0
+          ],
+          "mean_px": [
+            514.2069091796875,
+            610.5516967773438
+          ],
+          "jitter_px": 0.9084097146987915,
+          "camera_id": 1,
+          "world_m": [
+            -0.08150000125169754,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            514.2069091796875,
+            610.5516967773438
+          ],
+          "projected_px": [
+            513.68701171875,
+            611.6032104492188
+          ],
+          "residual_px": 1.173019289970398,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 6,
+          "corner_index": 2,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            399.0,
+            604.0
+          ],
+          "mean_px": [
+            399.137939453125,
+            603.862060546875
+          ],
+          "jitter_px": 0.5538750886917114,
+          "camera_id": 1,
+          "world_m": [
+            -0.054499998688697815,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            399.137939453125,
+            603.862060546875
+          ],
+          "projected_px": [
+            398.34222412109375,
+            604.4015502929688
+          ],
+          "residual_px": 0.9613595008850098,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 6,
+          "corner_index": 3,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            421.0,
+            582.0
+          ],
+          "mean_px": [
+            421.03448486328125,
+            582.137939453125
+          ],
+          "jitter_px": 1.0572214126586914,
+          "camera_id": 1,
+          "world_m": [
+            -0.054499998688697815,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            421.03448486328125,
+            582.137939453125
+          ],
+          "projected_px": [
+            419.7356262207031,
+            582.3811645507812
+          ],
+          "residual_px": 1.3214356899261475,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 7,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            512.0,
+            619.0
+          ],
+          "mean_px": [
+            512.0,
+            619.0333251953125
+          ],
+          "jitter_px": 0.31446602940559387,
+          "camera_id": 1,
+          "world_m": [
+            -0.08150000125169754,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            512.0,
+            619.0333251953125
+          ],
+          "projected_px": [
+            511.7023620605469,
+            619.0784301757812
+          ],
+          "residual_px": 0.30103620886802673,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 7,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            502.0,
+            654.0
+          ],
+          "mean_px": [
+            502.0333251953125,
+            653.6333618164062
+          ],
+          "jitter_px": 0.9649410247802734,
+          "camera_id": 1,
+          "world_m": [
+            -0.08150000125169754,
+            0.013500000350177288
+          ],
+          "image_px": [
+            502.0333251953125,
+            653.6333618164062
+          ],
+          "projected_px": [
+            502.1231994628906,
+            655.1589965820312
+          ],
+          "residual_px": 1.5282796621322632,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 7,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            359.0,
+            645.0
+          ],
+          "mean_px": [
+            359.0666809082031,
+            644.8666381835938
+          ],
+          "jitter_px": 0.6666667461395264,
+          "camera_id": 1,
+          "world_m": [
+            -0.054499998688697815,
+            0.013500000350177288
+          ],
+          "image_px": [
+            359.0666809082031,
+            644.8666381835938
+          ],
+          "projected_px": [
+            359.881103515625,
+            643.9898681640625
+          ],
+          "residual_px": 1.1966661214828491,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 7,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            391.0,
+            612.0
+          ],
+          "mean_px": [
+            390.9666748046875,
+            612.0
+          ],
+          "jitter_px": 0.31446602940559387,
+          "camera_id": 1,
+          "world_m": [
+            -0.054499998688697815,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            390.9666748046875,
+            612.0
+          ],
+          "projected_px": [
+            391.6841125488281,
+            611.2548217773438
+          ],
+          "residual_px": 1.0344116687774658,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 8,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            500.0,
+            667.0
+          ],
+          "mean_px": [
+            499.73333740234375,
+            666.8333129882812
+          ],
+          "jitter_px": 0.7753136157989502,
+          "camera_id": 1,
+          "world_m": [
+            -0.08150000125169754,
+            0.020500000566244125
+          ],
+          "image_px": [
+            499.73333740234375,
+            666.8333129882812
+          ],
+          "projected_px": [
+            498.9814147949219,
+            666.9928588867188
+          ],
+          "residual_px": 0.7686628103256226,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 8,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            483.0,
+            729.0
+          ],
+          "mean_px": [
+            483.1333312988281,
+            728.7333374023438
+          ],
+          "jitter_px": 0.7601169943809509,
+          "camera_id": 1,
+          "world_m": [
+            -0.08150000125169754,
+            0.04749999940395355
+          ],
+          "image_px": [
+            483.1333312988281,
+            728.7333374023438
+          ],
+          "projected_px": [
+            482.794189453125,
+            727.963134765625
+          ],
+          "residual_px": 0.8415635824203491,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 8,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            297.0,
+            707.0
+          ],
+          "mean_px": [
+            297.26666259765625,
+            707.2999877929688
+          ],
+          "jitter_px": 0.8595864772796631,
+          "camera_id": 1,
+          "world_m": [
+            -0.054499998688697815,
+            0.04749999940395355
+          ],
+          "image_px": [
+            297.26666259765625,
+            707.2999877929688
+          ],
+          "projected_px": [
+            297.3452453613281,
+            708.3585815429688
+          ],
+          "residual_px": 1.0615065097808838,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 8,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            349.0,
+            657.0
+          ],
+          "mean_px": [
+            349.0333251953125,
+            657.2999877929688
+          ],
+          "jitter_px": 1.3572847843170166,
+          "camera_id": 1,
+          "world_m": [
+            -0.054499998688697815,
+            0.020500000566244125
+          ],
+          "image_px": [
+            349.0333251953125,
+            657.2999877929688
+          ],
+          "projected_px": [
+            349.56903076171875,
+            654.6041870117188
+          ],
+          "residual_px": 2.7485127449035645,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 11,
+          "corner_index": 0,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            395.0,
+            581.0
+          ],
+          "mean_px": [
+            394.96551513671875,
+            581.0
+          ],
+          "jitter_px": 0.18246561288833618,
+          "camera_id": 1,
+          "world_m": [
+            -0.04749999940395355,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            394.96551513671875,
+            581.0
+          ],
+          "projected_px": [
+            394.9110412597656,
+            581.04833984375
+          ],
+          "residual_px": 0.07282955199480057,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 11,
+          "corner_index": 1,
+          "observations": 29,
+          "used_observations": 25,
+          "median_px": [
+            371.0,
+            601.0
+          ],
+          "mean_px": [
+            370.4800109863281,
+            601.239990234375
+          ],
+          "jitter_px": 0.9549868702888489,
+          "camera_id": 1,
+          "world_m": [
+            -0.04749999940395355,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            370.4800109863281,
+            601.239990234375
+          ],
+          "projected_px": [
+            369.99261474609375,
+            602.6315307617188
+          ],
+          "residual_px": 1.4744287729263306,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 11,
+          "corner_index": 2,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            267.0,
+            594.0
+          ],
+          "mean_px": [
+            267.0,
+            594.137939453125
+          ],
+          "jitter_px": 0.3448275923728943,
+          "camera_id": 1,
+          "world_m": [
+            -0.020500000566244125,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            267.0,
+            594.137939453125
+          ],
+          "projected_px": [
+            266.1033020019531,
+            596.1450805664062
+          ],
+          "residual_px": 2.198336362838745,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 11,
+          "corner_index": 3,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            304.0,
+            576.0
+          ],
+          "mean_px": [
+            303.75860595703125,
+            576.3103637695312
+          ],
+          "jitter_px": 1.1673318147659302,
+          "camera_id": 1,
+          "world_m": [
+            -0.020500000566244125,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            303.75860595703125,
+            576.3103637695312
+          ],
+          "projected_px": [
+            303.3333435058594,
+            576.131591796875
+          ],
+          "residual_px": 0.4613107144832611,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 12,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            361.0,
+            610.0
+          ],
+          "mean_px": [
+            361.0333251953125,
+            609.9666748046875
+          ],
+          "jitter_px": 0.25385910272598267,
+          "camera_id": 1,
+          "world_m": [
+            -0.04749999940395355,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            361.0333251953125,
+            609.9666748046875
+          ],
+          "projected_px": [
+            362.2518310546875,
+            609.336181640625
+          ],
+          "residual_px": 1.3719613552093506,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 12,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            324.0,
+            643.0
+          ],
+          "mean_px": [
+            323.8666687011719,
+            643.0
+          ],
+          "jitter_px": 0.5617433786392212,
+          "camera_id": 1,
+          "world_m": [
+            -0.04749999940395355,
+            0.013500000350177288
+          ],
+          "image_px": [
+            323.8666687011719,
+            643.0
+          ],
+          "projected_px": [
+            325.37158203125,
+            641.2800903320312
+          ],
+          "residual_px": 2.285356283187866,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 12,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            205.0,
+            633.0
+          ],
+          "mean_px": [
+            204.96665954589844,
+            632.9000244140625
+          ],
+          "jitter_px": 0.34960296750068665,
+          "camera_id": 1,
+          "world_m": [
+            -0.020500000566244125,
+            0.013500000350177288
+          ],
+          "image_px": [
+            204.96665954589844,
+            632.9000244140625
+          ],
+          "projected_px": [
+            200.3960723876953,
+            631.4667358398438
+          ],
+          "residual_px": 4.790050506591797,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 12,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            254.0,
+            602.0
+          ],
+          "mean_px": [
+            254.0,
+            602.0
+          ],
+          "jitter_px": 0.0,
+          "camera_id": 1,
+          "world_m": [
+            -0.020500000566244125,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            254.0,
+            602.0
+          ],
+          "projected_px": [
+            254.6168212890625,
+            602.3197631835938
+          ],
+          "residual_px": 0.6947783827781677,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            311.0,
+            654.0
+          ],
+          "mean_px": [
+            311.29998779296875,
+            654.4666748046875
+          ],
+          "jitter_px": 0.7249521613121033,
+          "camera_id": 1,
+          "world_m": [
+            -0.04749999940395355,
+            0.020500000566244125
+          ],
+          "image_px": [
+            311.29998779296875,
+            654.4666748046875
+          ],
+          "projected_px": [
+            313.4465026855469,
+            651.6090087890625
+          ],
+          "residual_px": 3.574042558670044,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            255.0,
+            703.0
+          ],
+          "mean_px": [
+            254.93333435058594,
+            703.0
+          ],
+          "jitter_px": 0.3590109944343567,
+          "camera_id": 1,
+          "world_m": [
+            -0.04749999940395355,
+            0.04749999940395355
+          ],
+          "image_px": [
+            254.93333435058594,
+            703.0
+          ],
+          "projected_px": [
+            253.3028106689453,
+            703.70263671875
+          ],
+          "residual_px": 1.7754733562469482,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            116.0,
+            679.0
+          ],
+          "mean_px": [
+            116.4000015258789,
+            679.1333618164062
+          ],
+          "jitter_px": 0.9428089261054993,
+          "camera_id": 1,
+          "world_m": [
+            -0.020500000566244125,
+            0.04749999940395355
+          ],
+          "image_px": [
+            116.4000015258789,
+            679.1333618164062
+          ],
+          "projected_px": [
+            96.79681396484375,
+            687.1577758789062
+          ],
+          "residual_px": 21.181978225708008,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 28,
+          "median_px": [
+            187.0,
+            643.0
+          ],
+          "mean_px": [
+            187.2857208251953,
+            642.6071166992188
+          ],
+          "jitter_px": 1.1709710359573364,
+          "camera_id": 1,
+          "world_m": [
+            -0.020500000566244125,
+            0.020500000566244125
+          ],
+          "image_px": [
+            187.2857208251953,
+            642.6071166992188
+          ],
+          "projected_px": [
+            183.04075622558594,
+            640.7963256835938
+          ],
+          "residual_px": 4.615049839019775,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 16,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            281.0,
+            575.0
+          ],
+          "mean_px": [
+            280.73333740234375,
+            575.0
+          ],
+          "jitter_px": 1.030641794204712,
+          "camera_id": 1,
+          "world_m": [
+            -0.013500000350177288,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            280.73333740234375,
+            575.0
+          ],
+          "projected_px": [
+            280.6167907714844,
+            574.9119873046875
+          ],
+          "residual_px": 0.1460457146167755,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 16,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 28,
+          "median_px": [
+            244.0,
+            592.0
+          ],
+          "mean_px": [
+            243.64285278320312,
+            592.0714111328125
+          ],
+          "jitter_px": 0.6624013185501099,
+          "camera_id": 1,
+          "world_m": [
+            -0.013500000350177288,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            243.64285278320312,
+            592.0714111328125
+          ],
+          "projected_px": [
+            240.50003051757812,
+            594.5465087890625
+          ],
+          "residual_px": 4.000430107116699,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 16,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            158.0,
+            584.0
+          ],
+          "mean_px": [
+            158.63333129882812,
+            584.0333251953125
+          ],
+          "jitter_px": 1.0317193269729614,
+          "camera_id": 1,
+          "world_m": [
+            0.013500000350177288,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            158.63333129882812,
+            584.0333251953125
+          ],
+          "projected_px": [
+            146.44046020507812,
+            588.6737670898438
+          ],
+          "residual_px": 13.046065330505371,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 16,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            202.0,
+            568.0
+          ],
+          "mean_px": [
+            202.26666259765625,
+            568.0333251953125
+          ],
+          "jitter_px": 0.7490735650062561,
+          "camera_id": 1,
+          "world_m": [
+            0.013500000350177288,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            202.26666259765625,
+            568.0333251953125
+          ],
+          "projected_px": [
+            196.65591430664062,
+            570.4042358398438
+          ],
+          "residual_px": 6.0911173820495605,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            229.0,
+            599.0
+          ],
+          "mean_px": [
+            229.03334045410156,
+            598.9666748046875
+          ],
+          "jitter_px": 0.25385910272598267,
+          "camera_id": 1,
+          "world_m": [
+            -0.013500000350177288,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            229.03334045410156,
+            598.9666748046875
+          ],
+          "projected_px": [
+            228.14381408691406,
+            600.5940551757812
+          ],
+          "residual_px": 1.8546223640441895,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 27,
+          "median_px": [
+            179.0,
+            628.0
+          ],
+          "mean_px": [
+            178.9629669189453,
+            628.0
+          ],
+          "jitter_px": 0.3312693238258362,
+          "camera_id": 1,
+          "world_m": [
+            -0.013500000350177288,
+            0.013500000350177288
+          ],
+          "image_px": [
+            178.9629669189453,
+            628.0
+          ],
+          "projected_px": [
+            169.95005798339844,
+            629.0760498046875
+          ],
+          "residual_px": 9.076916694641113,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            88.0,
+            614.0
+          ],
+          "mean_px": [
+            88.0,
+            614.0333251953125
+          ],
+          "jitter_px": 0.17950548231601715,
+          "camera_id": 1,
+          "world_m": [
+            0.013500000350177288,
+            0.013500000350177288
+          ],
+          "image_px": [
+            88.0,
+            614.0333251953125
+          ],
+          "projected_px": [
+            59.277320861816406,
+            620.3858032226562
+          ],
+          "residual_px": 29.41676902770996,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            141.0,
+            590.0
+          ],
+          "mean_px": [
+            141.3333282470703,
+            590.0
+          ],
+          "jitter_px": 0.4714045524597168,
+          "camera_id": 1,
+          "world_m": [
+            0.013500000350177288,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            141.3333282470703,
+            590.0
+          ],
+          "projected_px": [
+            131.0696563720703,
+            594.2660522460938
+          ],
+          "residual_px": 11.114952087402344,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 18,
+          "corner_index": 0,
+          "observations": 17,
+          "used_observations": 17,
+          "median_px": [
+            144.0,
+            639.0
+          ],
+          "mean_px": [
+            144.2941131591797,
+            638.88232421875
+          ],
+          "jitter_px": 1.0086133480072021,
+          "camera_id": 1,
+          "world_m": [
+            -0.013500000350177288,
+            0.020500000566244125
+          ],
+          "image_px": [
+            144.2941131591797,
+            638.88232421875
+          ],
+          "projected_px": [
+            151.36911010742188,
+            638.1702270507812
+          ],
+          "residual_px": 7.110743045806885,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 18,
+          "corner_index": 1,
+          "observations": 17,
+          "used_observations": 15,
+          "median_px": [
+            86.0,
+            669.0
+          ],
+          "mean_px": [
+            86.4000015258789,
+            669.0
+          ],
+          "jitter_px": 1.451436161994934,
+          "camera_id": 1,
+          "world_m": [
+            -0.013500000350177288,
+            0.04749999940395355
+          ],
+          "image_px": [
+            86.4000015258789,
+            669.0
+          ],
+          "projected_px": [
+            59.364166259765625,
+            683.2006225585938
+          ],
+          "residual_px": 30.53840446472168,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 18,
+          "corner_index": 2,
+          "observations": 17,
+          "used_observations": 17,
+          "median_px": [
+            7.0,
+            650.0
+          ],
+          "mean_px": [
+            7.470588207244873,
+            650.3529663085938
+          ],
+          "jitter_px": 0.844276487827301,
+          "camera_id": 1,
+          "world_m": [
+            0.013500000350177288,
+            0.04749999940395355
+          ],
+          "image_px": [
+            7.470588207244873,
+            650.3529663085938
+          ],
+          "projected_px": [
+            -74.48310852050781,
+            669.051025390625
+          ],
+          "residual_px": 84.05965423583984,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 18,
+          "corner_index": 3,
+          "observations": 17,
+          "used_observations": 17,
+          "median_px": [
+            67.0,
+            626.0
+          ],
+          "mean_px": [
+            66.94117736816406,
+            626.0
+          ],
+          "jitter_px": 0.4159451723098755,
+          "camera_id": 1,
+          "world_m": [
+            0.013500000350177288,
+            0.020500000566244125
+          ],
+          "image_px": [
+            66.94117736816406,
+            626.0
+          ],
+          "projected_px": [
+            36.56045150756836,
+            628.6507568359375
+          ],
+          "residual_px": 30.49614715576172,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 20,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            229.0,
+            547.0
+          ],
+          "mean_px": [
+            229.3000030517578,
+            546.9000244140625
+          ],
+          "jitter_px": 0.875594973564148,
+          "camera_id": 1,
+          "world_m": [
+            0.020500000566244125,
+            -0.08150000125169754
+          ],
+          "image_px": [
+            229.3000030517578,
+            546.9000244140625
+          ],
+          "projected_px": [
+            226.3601531982422,
+            552.0328369140625
+          ],
+          "residual_px": 5.915105819702148,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 20,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            197.0,
+            560.0
+          ],
+          "mean_px": [
+            196.6999969482422,
+            560.0
+          ],
+          "jitter_px": 0.45825761556625366,
+          "camera_id": 1,
+          "world_m": [
+            0.020500000566244125,
+            -0.054499998688697815
+          ],
+          "image_px": [
+            196.6999969482422,
+            560.0
+          ],
+          "projected_px": [
+            187.41770935058594,
+            565.3173217773438
+          ],
+          "residual_px": 10.697419166564941,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 20,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            134.0,
+            551.0
+          ],
+          "mean_px": [
+            133.36666870117188,
+            550.933349609375
+          ],
+          "jitter_px": 1.0137935876846313,
+          "camera_id": 1,
+          "world_m": [
+            0.04749999940395355,
+            -0.054499998688697815
+          ],
+          "image_px": [
+            133.36666870117188,
+            550.933349609375
+          ],
+          "projected_px": [
+            112.06969451904297,
+            561.413818359375
+          ],
+          "residual_px": 23.73607635498047,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 20,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 26,
+          "median_px": [
+            166.0,
+            540.0
+          ],
+          "mean_px": [
+            166.42308044433594,
+            539.7692260742188
+          ],
+          "jitter_px": 1.192307710647583,
+          "camera_id": 1,
+          "world_m": [
+            0.04749999940395355,
+            -0.08150000125169754
+          ],
+          "image_px": [
+            166.42308044433594,
+            539.7692260742188
+          ],
+          "projected_px": [
+            157.59400939941406,
+            548.8952026367188
+          ],
+          "residual_px": 12.697871208190918,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            183.0,
+            565.0
+          ],
+          "mean_px": [
+            182.93333435058594,
+            564.7666625976562
+          ],
+          "jitter_px": 0.4910306930541992,
+          "camera_id": 1,
+          "world_m": [
+            0.020500000566244125,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            182.93333435058594,
+            564.7666625976562
+          ],
+          "projected_px": [
+            175.78982543945312,
+            569.283935546875
+          ],
+          "residual_px": 8.451951026916504,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            139.0,
+            580.0
+          ],
+          "mean_px": [
+            139.39999389648438,
+            580.0
+          ],
+          "jitter_px": 0.4898979365825653,
+          "camera_id": 1,
+          "world_m": [
+            0.020500000566244125,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            139.39999389648438,
+            580.0
+          ],
+          "projected_px": [
+            123.20297241210938,
+            587.2229614257812
+          ],
+          "residual_px": 17.734561920166016,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            72.0,
+            568.0
+          ],
+          "mean_px": [
+            72.0999984741211,
+            568.066650390625
+          ],
+          "jitter_px": 0.39015665650367737,
+          "camera_id": 1,
+          "world_m": [
+            0.04749999940395355,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            72.0999984741211,
+            568.066650390625
+          ],
+          "projected_px": [
+            37.64116287231445,
+            581.8807983398438
+          ],
+          "residual_px": 37.12468338012695,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            118.0,
+            555.0
+          ],
+          "mean_px": [
+            118.23332977294922,
+            555.0
+          ],
+          "jitter_px": 0.6674994230270386,
+          "camera_id": 1,
+          "world_m": [
+            0.04749999940395355,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            118.23332977294922,
+            555.0
+          ],
+          "projected_px": [
+            98.53352355957031,
+            565.1361083984375
+          ],
+          "residual_px": 22.15452766418457,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 0,
+          "observations": 5,
+          "used_observations": 4,
+          "median_px": [
+            113.0,
+            586.0
+          ],
+          "mean_px": [
+            113.25,
+            586.0
+          ],
+          "jitter_px": 0.4330126941204071,
+          "camera_id": 1,
+          "world_m": [
+            0.020500000566244125,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            113.25,
+            586.0
+          ],
+          "projected_px": [
+            107.13104248046875,
+            592.70556640625
+          ],
+          "residual_px": 9.077789306640625,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 1,
+          "observations": 5,
+          "used_observations": 5,
+          "median_px": [
+            64.0,
+            607.0
+          ],
+          "mean_px": [
+            63.79999923706055,
+            607.2000122070312
+          ],
+          "jitter_px": 1.2328827381134033,
+          "camera_id": 1,
+          "world_m": [
+            0.020500000566244125,
+            0.013500000350177288
+          ],
+          "image_px": [
+            63.79999923706055,
+            607.2000122070312
+          ],
+          "projected_px": [
+            32.2171745300293,
+            618.260986328125
+          ],
+          "residual_px": 33.46371078491211,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 2,
+          "observations": 5,
+          "used_observations": 4,
+          "median_px": [
+            6.0,
+            590.0
+          ],
+          "mean_px": [
+            6.5,
+            590.0
+          ],
+          "jitter_px": 0.8660253882408142,
+          "camera_id": 1,
+          "world_m": [
+            0.04749999940395355,
+            0.013500000350177288
+          ],
+          "image_px": [
+            6.5,
+            590.0
+          ],
+          "projected_px": [
+            -66.47496032714844,
+            610.511474609375
+          ],
+          "residual_px": 75.80280303955078,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 3,
+          "observations": 5,
+          "used_observations": 5,
+          "median_px": [
+            56.0,
+            574.0
+          ],
+          "mean_px": [
+            55.599998474121094,
+            573.7999877929688
+          ],
+          "jitter_px": 0.6324555277824402,
+          "camera_id": 1,
+          "world_m": [
+            0.04749999940395355,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            55.599998474121094,
+            573.7999877929688
+          ],
+          "projected_px": [
+            19.136232376098633,
+            586.9694213867188
+          ],
+          "residual_px": 38.76906204223633,
+          "ransac_inlier": false
+        }
+      ]
+    },
+    {
+      "camera_id": 2,
+      "rms_px": 1.9261928796768188,
+      "points": 52,
+      "inliers": 29,
+      "max_residual_px": 80.07650756835938,
+      "mean_residual_px": 11.330453872680664,
+      "tags": [
+        {
+          "marker_id": 13,
+          "corners": 4,
+          "mean_residual_px": 47.11653137207031,
+          "max_residual_px": 80.07650756835938
+        },
+        {
+          "marker_id": 17,
+          "corners": 4,
+          "mean_residual_px": 34.42755126953125,
+          "max_residual_px": 67.21052551269531
+        },
+        {
+          "marker_id": 18,
+          "corners": 4,
+          "mean_residual_px": 15.584747314453125,
+          "max_residual_px": 32.104347229003906
+        },
+        {
+          "marker_id": 21,
+          "corners": 4,
+          "mean_residual_px": 22.951908111572266,
+          "max_residual_px": 53.064170837402344
+        },
+        {
+          "marker_id": 22,
+          "corners": 4,
+          "mean_residual_px": 7.789586544036865,
+          "max_residual_px": 18.80665397644043
+        },
+        {
+          "marker_id": 23,
+          "corners": 4,
+          "mean_residual_px": 3.487400531768799,
+          "max_residual_px": 6.552951335906982
+        },
+        {
+          "marker_id": 26,
+          "corners": 4,
+          "mean_residual_px": 2.873385429382324,
+          "max_residual_px": 7.254261493682861
+        },
+        {
+          "marker_id": 27,
+          "corners": 4,
+          "mean_residual_px": 1.4703580141067505,
+          "max_residual_px": 3.0233240127563477
+        },
+        {
+          "marker_id": 28,
+          "corners": 4,
+          "mean_residual_px": 1.7683964967727661,
+          "max_residual_px": 2.9392805099487305
+        },
+        {
+          "marker_id": 31,
+          "corners": 4,
+          "mean_residual_px": 4.918569087982178,
+          "max_residual_px": 12.386029243469238
+        },
+        {
+          "marker_id": 32,
+          "corners": 4,
+          "mean_residual_px": 1.974912166595459,
+          "max_residual_px": 4.2080230712890625
+        },
+        {
+          "marker_id": 33,
+          "corners": 4,
+          "mean_residual_px": 1.1051616668701172,
+          "max_residual_px": 1.5009174346923828
+        },
+        {
+          "marker_id": 34,
+          "corners": 4,
+          "mean_residual_px": 1.8274062871932983,
+          "max_residual_px": 2.6267313957214355
+        }
+      ],
+      "corners": [
+        {
+          "marker_id": 13,
+          "corner_index": 0,
+          "observations": 26,
+          "used_observations": 26,
+          "median_px": [
+            68.0,
+            609.0
+          ],
+          "mean_px": [
+            67.73076629638672,
+            609.076904296875
+          ],
+          "jitter_px": 0.649305522441864,
+          "camera_id": 2,
+          "world_m": [
+            -0.04749999940395355,
+            0.020500000566244125
+          ],
+          "image_px": [
+            67.73076629638672,
+            609.076904296875
+          ],
+          "projected_px": [
+            -10.208577156066895,
+            627.4536743164062
+          ],
+          "residual_px": 80.07650756835938,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 1,
+          "observations": 26,
+          "used_observations": 26,
+          "median_px": [
+            108.0,
+            594.0
+          ],
+          "mean_px": [
+            108.03845977783203,
+            594.0
+          ],
+          "jitter_px": 0.19230768084526062,
+          "camera_id": 2,
+          "world_m": [
+            -0.04749999940395355,
+            0.04749999940395355
+          ],
+          "image_px": [
+            108.03845977783203,
+            594.0
+          ],
+          "projected_px": [
+            63.90489196777344,
+            607.2971801757812
+          ],
+          "residual_px": 46.09324264526367,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 2,
+          "observations": 26,
+          "used_observations": 26,
+          "median_px": [
+            175.0,
+            598.0
+          ],
+          "mean_px": [
+            175.15383911132812,
+            598.1923217773438
+          ],
+          "jitter_px": 0.6628341674804688,
+          "camera_id": 2,
+          "world_m": [
+            -0.020500000566244125,
+            0.04749999940395355
+          ],
+          "image_px": [
+            175.15383911132812,
+            598.1923217773438
+          ],
+          "projected_px": [
+            156.31239318847656,
+            606.8389282226562
+          ],
+          "residual_px": 20.73074722290039,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 3,
+          "observations": 26,
+          "used_observations": 26,
+          "median_px": [
+            137.0,
+            616.0
+          ],
+          "mean_px": [
+            136.53846740722656,
+            616.076904296875
+          ],
+          "jitter_px": 0.6880208849906921,
+          "camera_id": 2,
+          "world_m": [
+            -0.020500000566244125,
+            0.020500000566244125
+          ],
+          "image_px": [
+            136.53846740722656,
+            616.076904296875
+          ],
+          "projected_px": [
+            96.45327758789062,
+            627.0714111328125
+          ],
+          "residual_px": 41.56562805175781,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            86.0,
+            645.0
+          ],
+          "mean_px": [
+            86.06666564941406,
+            645.0
+          ],
+          "jitter_px": 0.24944384396076202,
+          "camera_id": 2,
+          "world_m": [
+            -0.013500000350177288,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            86.06666564941406,
+            645.0
+          ],
+          "projected_px": [
+            21.6168212890625,
+            664.06494140625
+          ],
+          "residual_px": 67.21052551269531,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 28,
+          "median_px": [
+            140.0,
+            625.0
+          ],
+          "mean_px": [
+            139.9642791748047,
+            625.0
+          ],
+          "jitter_px": 0.18557685613632202,
+          "camera_id": 2,
+          "world_m": [
+            -0.013500000350177288,
+            0.013500000350177288
+          ],
+          "image_px": [
+            139.9642791748047,
+            625.0
+          ],
+          "projected_px": [
+            106.75373840332031,
+            633.3292846679688
+          ],
+          "residual_px": 34.23911666870117,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            231.0,
+            631.0
+          ],
+          "mean_px": [
+            230.56666564941406,
+            631.0333251953125
+          ],
+          "jitter_px": 0.5868939757347107,
+          "camera_id": 2,
+          "world_m": [
+            0.013500000350177288,
+            0.013500000350177288
+          ],
+          "image_px": [
+            230.56666564941406,
+            631.0333251953125
+          ],
+          "projected_px": [
+            220.04519653320312,
+            632.972412109375
+          ],
+          "residual_px": 10.698661804199219,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            181.0,
+            655.0
+          ],
+          "mean_px": [
+            181.06666564941406,
+            655.0
+          ],
+          "jitter_px": 0.24944384396076202,
+          "camera_id": 2,
+          "world_m": [
+            0.013500000350177288,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            181.06666564941406,
+            655.0
+          ],
+          "projected_px": [
+            157.11325073242188,
+            663.9243774414062
+          ],
+          "residual_px": 25.561899185180664,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 18,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            155.0,
+            618.0
+          ],
+          "mean_px": [
+            155.1999969482422,
+            618.0333251953125
+          ],
+          "jitter_px": 0.43843159079551697,
+          "camera_id": 2,
+          "world_m": [
+            -0.013500000350177288,
+            0.020500000566244125
+          ],
+          "image_px": [
+            155.1999969482422,
+            618.0333251953125
+          ],
+          "projected_px": [
+            124.36494445800781,
+            626.9713745117188
+          ],
+          "residual_px": 32.104347229003906,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 18,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            197.0,
+            600.0
+          ],
+          "mean_px": [
+            196.86666870117188,
+            600.0
+          ],
+          "jitter_px": 0.4268749952316284,
+          "camera_id": 2,
+          "world_m": [
+            -0.013500000350177288,
+            0.04749999940395355
+          ],
+          "image_px": [
+            196.86666870117188,
+            600.0
+          ],
+          "projected_px": [
+            180.46295166015625,
+            606.7191772460938
+          ],
+          "residual_px": 17.726512908935547,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 18,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            278.0,
+            606.0
+          ],
+          "mean_px": [
+            277.8333435058594,
+            606.0333251953125
+          ],
+          "jitter_px": 0.8393118977546692,
+          "camera_id": 2,
+          "world_m": [
+            0.013500000350177288,
+            0.04749999940395355
+          ],
+          "image_px": [
+            277.8333435058594,
+            606.0333251953125
+          ],
+          "projected_px": [
+            274.3704833984375,
+            606.2534790039062
+          ],
+          "residual_px": 3.46985125541687,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 18,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 29,
+          "median_px": [
+            242.0,
+            625.0
+          ],
+          "mean_px": [
+            241.9310302734375,
+            624.9655151367188
+          ],
+          "jitter_px": 1.2975785732269287,
+          "camera_id": 2,
+          "world_m": [
+            0.013500000350177288,
+            0.020500000566244125
+          ],
+          "image_px": [
+            241.9310302734375,
+            624.9655151367188
+          ],
+          "projected_px": [
+            233.03846740722656,
+            626.5819091796875
+          ],
+          "residual_px": 9.038274765014648,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            126.0,
+            708.0
+          ],
+          "mean_px": [
+            126.0,
+            708.2333374023438
+          ],
+          "jitter_px": 0.4229525327682495,
+          "camera_id": 2,
+          "world_m": [
+            0.020500000566244125,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            126.0,
+            708.2333374023438
+          ],
+          "projected_px": [
+            76.3962631225586,
+            727.0820922851562
+          ],
+          "residual_px": 53.064170837402344,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 26,
+          "median_px": [
+            195.0,
+            666.0
+          ],
+          "mean_px": [
+            195.11538696289062,
+            666.1538696289062
+          ],
+          "jitter_px": 1.074860692024231,
+          "camera_id": 2,
+          "world_m": [
+            0.020500000566244125,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            195.11538696289062,
+            666.1538696289062
+          ],
+          "projected_px": [
+            173.86599731445312,
+            674.1022338867188
+          ],
+          "residual_px": 22.687288284301758,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            322.0,
+            671.0
+          ],
+          "mean_px": [
+            322.0,
+            671.0
+          ],
+          "jitter_px": 0.0,
+          "camera_id": 2,
+          "world_m": [
+            0.04749999940395355,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            322.0,
+            671.0
+          ],
+          "projected_px": [
+            320.2294616699219,
+            674.0527954101562
+          ],
+          "residual_px": 3.5290744304656982,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            271.0,
+            719.0
+          ],
+          "mean_px": [
+            271.1000061035156,
+            719.0
+          ],
+          "jitter_px": 0.39581140875816345,
+          "camera_id": 2,
+          "world_m": [
+            0.04749999940395355,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            271.1000061035156,
+            719.0
+          ],
+          "projected_px": [
+            262.08526611328125,
+            727.6984252929688
+          ],
+          "residual_px": 12.527095794677734,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            210.0,
+            656.0
+          ],
+          "mean_px": [
+            209.86666870117188,
+            656.2999877929688
+          ],
+          "jitter_px": 0.5705748200416565,
+          "camera_id": 2,
+          "world_m": [
+            0.020500000566244125,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            209.86666870117188,
+            656.2999877929688
+          ],
+          "projected_px": [
+            192.65853881835938,
+            663.8875122070312
+          ],
+          "residual_px": 18.80665397644043,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            256.0,
+            632.0
+          ],
+          "mean_px": [
+            256.0333251953125,
+            632.0
+          ],
+          "jitter_px": 0.31446602940559387,
+          "camera_id": 2,
+          "world_m": [
+            0.020500000566244125,
+            0.013500000350177288
+          ],
+          "image_px": [
+            256.0333251953125,
+            632.0
+          ],
+          "projected_px": [
+            249.7064666748047,
+            632.8789672851562
+          ],
+          "residual_px": 6.387622833251953,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            364.0,
+            631.0
+          ],
+          "mean_px": [
+            363.6000061035156,
+            631.066650390625
+          ],
+          "jitter_px": 0.5497474074363708,
+          "camera_id": 2,
+          "world_m": [
+            0.04749999940395355,
+            0.013500000350177288
+          ],
+          "image_px": [
+            363.6000061035156,
+            631.066650390625
+          ],
+          "projected_px": [
+            365.2503967285156,
+            632.5150756835938
+          ],
+          "residual_px": 2.195842742919922,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            332.0,
+            660.0
+          ],
+          "mean_px": [
+            331.8333435058594,
+            660.0
+          ],
+          "jitter_px": 0.3726779818534851,
+          "camera_id": 2,
+          "world_m": [
+            0.04749999940395355,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            331.8333435058594,
+            660.0
+          ],
+          "projected_px": [
+            331.4031677246094,
+            663.7435913085938
+          ],
+          "residual_px": 3.768225908279419,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 23,
+          "corner_index": 0,
+          "observations": 18,
+          "used_observations": 18,
+          "median_px": [
+            268.0,
+            626.0
+          ],
+          "mean_px": [
+            268.0,
+            625.8333129882812
+          ],
+          "jitter_px": 0.3726780116558075,
+          "camera_id": 2,
+          "world_m": [
+            0.020500000566244125,
+            0.020500000566244125
+          ],
+          "image_px": [
+            268.0,
+            625.8333129882812
+          ],
+          "projected_px": [
+            261.4790344238281,
+            626.47998046875
+          ],
+          "residual_px": 6.552951335906982,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 23,
+          "corner_index": 1,
+          "observations": 18,
+          "used_observations": 11,
+          "median_px": [
+            299.0,
+            608.0
+          ],
+          "mean_px": [
+            298.9090881347656,
+            608.0
+          ],
+          "jitter_px": 0.28747978806495667,
+          "camera_id": 2,
+          "world_m": [
+            0.020500000566244125,
+            0.04749999940395355
+          ],
+          "image_px": [
+            298.9090881347656,
+            608.0
+          ],
+          "projected_px": [
+            298.9146728515625,
+            606.1317749023438
+          ],
+          "residual_px": 1.8682334423065186,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 23,
+          "corner_index": 2,
+          "observations": 18,
+          "used_observations": 18,
+          "median_px": [
+            392.0,
+            608.0
+          ],
+          "mean_px": [
+            391.8333435058594,
+            607.9444580078125
+          ],
+          "jitter_px": 0.6431020498275757,
+          "camera_id": 2,
+          "world_m": [
+            0.04749999940395355,
+            0.04749999940395355
+          ],
+          "image_px": [
+            391.8333435058594,
+            607.9444580078125
+          ],
+          "projected_px": [
+            394.3590393066406,
+            605.6585083007812
+          ],
+          "residual_px": 3.4065680503845215,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 23,
+          "corner_index": 3,
+          "observations": 18,
+          "used_observations": 11,
+          "median_px": [
+            371.5,
+            624.0
+          ],
+          "mean_px": [
+            371.81817626953125,
+            624.0
+          ],
+          "jitter_px": 0.38569462299346924,
+          "camera_id": 2,
+          "world_m": [
+            0.04749999940395355,
+            0.020500000566244125
+          ],
+          "image_px": [
+            371.81817626953125,
+            624.0
+          ],
+          "projected_px": [
+            372.2216796875,
+            626.0831298828125
+          ],
+          "residual_px": 2.121849536895752,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 26,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            314.0,
+            722.0
+          ],
+          "mean_px": [
+            314.4333190917969,
+            721.4666748046875
+          ],
+          "jitter_px": 0.7923241853713989,
+          "camera_id": 2,
+          "world_m": [
+            0.054499998688697815,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            314.4333190917969,
+            721.4666748046875
+          ],
+          "projected_px": [
+            311.0069885253906,
+            727.8607788085938
+          ],
+          "residual_px": 7.254261493682861,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 26,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            359.0,
+            672.0
+          ],
+          "mean_px": [
+            358.6333312988281,
+            672.3333129882812
+          ],
+          "jitter_px": 1.2862521409988403,
+          "camera_id": 2,
+          "world_m": [
+            0.054499998688697815,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            358.6333312988281,
+            672.3333129882812
+          ],
+          "projected_px": [
+            358.6566467285156,
+            674.039794921875
+          ],
+          "residual_px": 1.7066411972045898,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 26,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            509.0,
+            676.0
+          ],
+          "mean_px": [
+            509.0,
+            676.0
+          ],
+          "jitter_px": 0.0,
+          "camera_id": 2,
+          "world_m": [
+            0.08150000125169754,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            509.0,
+            676.0
+          ],
+          "projected_px": [
+            508.7740783691406,
+            673.9890747070312
+          ],
+          "residual_px": 2.023576259613037,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 26,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            503.0,
+            729.0
+          ],
+          "mean_px": [
+            503.0,
+            728.9666748046875
+          ],
+          "jitter_px": 0.40688520669937134,
+          "camera_id": 2,
+          "world_m": [
+            0.08150000125169754,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            503.0,
+            728.9666748046875
+          ],
+          "projected_px": [
+            502.8027648925781,
+            728.4973754882812
+          ],
+          "residual_px": 0.5090613961219788,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 27,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            367.0,
+            661.0
+          ],
+          "mean_px": [
+            366.76666259765625,
+            660.8666381835938
+          ],
+          "jitter_px": 0.5426272749900818,
+          "camera_id": 2,
+          "world_m": [
+            0.054499998688697815,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            366.76666259765625,
+            660.8666381835938
+          ],
+          "projected_px": [
+            367.8056945800781,
+            663.705810546875
+          ],
+          "residual_px": 3.0233240127563477,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 27,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 29,
+          "median_px": [
+            394.0,
+            631.0
+          ],
+          "mean_px": [
+            394.4137878417969,
+            631.0689697265625
+          ],
+          "jitter_px": 0.7167107462882996,
+          "camera_id": 2,
+          "world_m": [
+            0.054499998688697815,
+            0.013500000350177288
+          ],
+          "image_px": [
+            394.4137878417969,
+            631.0689697265625
+          ],
+          "projected_px": [
+            395.50433349609375,
+            632.4197387695312
+          ],
+          "residual_px": 1.7360491752624512,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 27,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            513.0,
+            632.0
+          ],
+          "mean_px": [
+            513.1666870117188,
+            632.2000122070312
+          ],
+          "jitter_px": 0.6574360728263855,
+          "camera_id": 2,
+          "world_m": [
+            0.08150000125169754,
+            0.013500000350177288
+          ],
+          "image_px": [
+            513.1666870117188,
+            632.2000122070312
+          ],
+          "projected_px": [
+            513.3685913085938,
+            632.0485229492188
+          ],
+          "residual_px": 0.2524169981479645,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 27,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 29,
+          "median_px": [
+            511.0,
+            664.0
+          ],
+          "mean_px": [
+            510.6206970214844,
+            664.0689697265625
+          ],
+          "jitter_px": 0.6614940166473389,
+          "camera_id": 2,
+          "world_m": [
+            0.08150000125169754,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            510.6206970214844,
+            664.0689697265625
+          ],
+          "projected_px": [
+            509.916748046875,
+            663.558349609375
+          ],
+          "residual_px": 0.869641900062561,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 28,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            399.0,
+            624.0
+          ],
+          "mean_px": [
+            399.0333251953125,
+            624.0
+          ],
+          "jitter_px": 0.7520341873168945,
+          "camera_id": 2,
+          "world_m": [
+            0.054499998688697815,
+            0.020500000566244125
+          ],
+          "image_px": [
+            399.0333251953125,
+            624.0
+          ],
+          "projected_px": [
+            401.2063293457031,
+            625.979248046875
+          ],
+          "residual_px": 2.9392805099487305,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 28,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 28,
+          "median_px": [
+            418.0,
+            607.0
+          ],
+          "mean_px": [
+            418.25,
+            607.0
+          ],
+          "jitter_px": 0.6879057288169861,
+          "camera_id": 2,
+          "world_m": [
+            0.054499998688697815,
+            0.04749999940395355
+          ],
+          "image_px": [
+            418.25,
+            607.0
+          ],
+          "projected_px": [
+            419.3065490722656,
+            605.5347900390625
+          ],
+          "residual_px": 1.806415319442749,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 28,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            516.0,
+            606.0
+          ],
+          "mean_px": [
+            516.0999755859375,
+            605.7999877929688
+          ],
+          "jitter_px": 0.5000000596046448,
+          "camera_id": 2,
+          "world_m": [
+            0.08150000125169754,
+            0.04749999940395355
+          ],
+          "image_px": [
+            516.0999755859375,
+            605.7999877929688
+          ],
+          "projected_px": [
+            516.3258056640625,
+            605.0537109375
+          ],
+          "residual_px": 0.7796976566314697,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 28,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            514.0,
+            624.0
+          ],
+          "mean_px": [
+            513.933349609375,
+            624.0333251953125
+          ],
+          "jitter_px": 0.40138646960258484,
+          "camera_id": 2,
+          "world_m": [
+            0.08150000125169754,
+            0.020500000566244125
+          ],
+          "image_px": [
+            513.933349609375,
+            624.0333251953125
+          ],
+          "projected_px": [
+            514.0777587890625,
+            625.5747680664062
+          ],
+          "residual_px": 1.5481925010681152,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 31,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            555.0,
+            729.0
+          ],
+          "mean_px": [
+            554.6333618164062,
+            728.9666748046875
+          ],
+          "jitter_px": 0.5754225850105286,
+          "camera_id": 2,
+          "world_m": [
+            0.0885000005364418,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            554.6333618164062,
+            728.9666748046875
+          ],
+          "projected_px": [
+            553.3466796875,
+            728.6651611328125
+          ],
+          "residual_px": 1.3215374946594238,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 31,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            549.0,
+            676.0
+          ],
+          "mean_px": [
+            548.933349609375,
+            676.1333618164062
+          ],
+          "jitter_px": 0.42163705825805664,
+          "camera_id": 2,
+          "world_m": [
+            0.0885000005364418,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            548.933349609375,
+            676.1333618164062
+          ],
+          "projected_px": [
+            548.1931762695312,
+            673.9757080078125
+          ],
+          "residual_px": 2.2810800075531006,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 31,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            700.0,
+            671.0
+          ],
+          "mean_px": [
+            699.9666748046875,
+            671.0
+          ],
+          "jitter_px": 0.17950548231601715,
+          "camera_id": 2,
+          "world_m": [
+            0.11550000309944153,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            699.9666748046875,
+            671.0
+          ],
+          "projected_px": [
+            702.2108154296875,
+            673.9236450195312
+          ],
+          "residual_px": 3.6856298446655273,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 31,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            743.0,
+            720.0
+          ],
+          "mean_px": [
+            743.0,
+            720.3666381835938
+          ],
+          "jitter_px": 0.48189446330070496,
+          "camera_id": 2,
+          "world_m": [
+            0.11550000309944153,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            743.0,
+            720.3666381835938
+          ],
+          "projected_px": [
+            751.5554809570312,
+            729.3230590820312
+          ],
+          "residual_px": 12.386029243469238,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 32,
+          "corner_index": 0,
+          "observations": 28,
+          "used_observations": 28,
+          "median_px": [
+            548.0,
+            664.0
+          ],
+          "mean_px": [
+            547.8571166992188,
+            664.0
+          ],
+          "jitter_px": 0.3499270975589752,
+          "camera_id": 2,
+          "world_m": [
+            0.0885000005364418,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            547.8571166992188,
+            664.0
+          ],
+          "projected_px": [
+            547.2078857421875,
+            663.5196533203125
+          ],
+          "residual_px": 0.8076099157333374,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 32,
+          "corner_index": 1,
+          "observations": 28,
+          "used_observations": 28,
+          "median_px": [
+            545.0,
+            633.0
+          ],
+          "mean_px": [
+            544.8571166992188,
+            632.7142944335938
+          ],
+          "jitter_px": 0.7354021668434143,
+          "camera_id": 2,
+          "world_m": [
+            0.0885000005364418,
+            0.013500000350177288
+          ],
+          "image_px": [
+            544.8571166992188,
+            632.7142944335938
+          ],
+          "projected_px": [
+            544.233154296875,
+            631.9512939453125
+          ],
+          "residual_px": 0.9856464266777039,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 32,
+          "corner_index": 2,
+          "observations": 28,
+          "used_observations": 28,
+          "median_px": [
+            664.0,
+            633.0
+          ],
+          "mean_px": [
+            663.75,
+            633.3214111328125
+          ],
+          "jitter_px": 1.1550687551498413,
+          "camera_id": 2,
+          "world_m": [
+            0.11550000309944153,
+            0.013500000350177288
+          ],
+          "image_px": [
+            663.75,
+            633.3214111328125
+          ],
+          "projected_px": [
+            664.4883422851562,
+            631.572509765625
+          ],
+          "residual_px": 1.8983690738677979,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 32,
+          "corner_index": 3,
+          "observations": 28,
+          "used_observations": 28,
+          "median_px": [
+            690.0,
+            660.0
+          ],
+          "mean_px": [
+            690.1071166992188,
+            660.1428833007812
+          ],
+          "jitter_px": 0.46702486276626587,
+          "camera_id": 2,
+          "world_m": [
+            0.11550000309944153,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            690.1071166992188,
+            660.1428833007812
+          ],
+          "projected_px": [
+            692.8093872070312,
+            663.3685913085938
+          ],
+          "residual_px": 4.2080230712890625,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 33,
+          "corner_index": 0,
+          "observations": 26,
+          "used_observations": 26,
+          "median_px": [
+            544.0,
+            624.0
+          ],
+          "mean_px": [
+            544.076904296875,
+            624.0384521484375
+          ],
+          "jitter_px": 0.43001309037208557,
+          "camera_id": 2,
+          "world_m": [
+            0.0885000005364418,
+            0.020500000566244125
+          ],
+          "image_px": [
+            544.076904296875,
+            624.0384521484375
+          ],
+          "projected_px": [
+            543.622314453125,
+            625.4688720703125
+          ],
+          "residual_px": 1.5009174346923828,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 33,
+          "corner_index": 1,
+          "observations": 26,
+          "used_observations": 26,
+          "median_px": [
+            542.0,
+            606.0
+          ],
+          "mean_px": [
+            542.0,
+            606.0
+          ],
+          "jitter_px": 0.0,
+          "camera_id": 2,
+          "world_m": [
+            0.0885000005364418,
+            0.04749999940395355
+          ],
+          "image_px": [
+            542.0,
+            606.0
+          ],
+          "projected_px": [
+            541.6867065429688,
+            604.9279174804688
+          ],
+          "residual_px": 1.1169215440750122,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 33,
+          "corner_index": 2,
+          "observations": 26,
+          "used_observations": 26,
+          "median_px": [
+            641.0,
+            605.0
+          ],
+          "mean_px": [
+            641.1153564453125,
+            605.0
+          ],
+          "jitter_px": 0.31948551535606384,
+          "camera_id": 2,
+          "world_m": [
+            0.11550000309944153,
+            0.04749999940395355
+          ],
+          "image_px": [
+            641.1153564453125,
+            605.0
+          ],
+          "projected_px": [
+            640.3201904296875,
+            604.4388427734375
+          ],
+          "residual_px": 0.973235011100769,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 33,
+          "corner_index": 3,
+          "observations": 26,
+          "used_observations": 26,
+          "median_px": [
+            658.0,
+            626.0
+          ],
+          "mean_px": [
+            658.0384521484375,
+            625.576904296875
+          ],
+          "jitter_px": 0.5301556587219238,
+          "camera_id": 2,
+          "world_m": [
+            0.11550000309944153,
+            0.020500000566244125
+          ],
+          "image_px": [
+            658.0384521484375,
+            625.576904296875
+          ],
+          "projected_px": [
+            658.6845092773438,
+            625.0565185546875
+          ],
+          "residual_px": 0.829572856426239,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 34,
+          "corner_index": 0,
+          "observations": 13,
+          "used_observations": 13,
+          "median_px": [
+            544.0,
+            600.0
+          ],
+          "mean_px": [
+            543.8461303710938,
+            600.0
+          ],
+          "jitter_px": 1.1665962934494019,
+          "camera_id": 2,
+          "world_m": [
+            0.0885000005364418,
+            0.054499998688697815
+          ],
+          "image_px": [
+            543.8461303710938,
+            600.0
+          ],
+          "projected_px": [
+            541.271240234375,
+            600.519287109375
+          ],
+          "residual_px": 2.6267313957214355,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 34,
+          "corner_index": 1,
+          "observations": 13,
+          "used_observations": 13,
+          "median_px": [
+            541.0,
+            587.0
+          ],
+          "mean_px": [
+            540.5384521484375,
+            587.3846435546875
+          ],
+          "jitter_px": 0.6965680718421936,
+          "camera_id": 2,
+          "world_m": [
+            0.0885000005364418,
+            0.08150000125169754
+          ],
+          "image_px": [
+            540.5384521484375,
+            587.3846435546875
+          ],
+          "projected_px": [
+            539.9115600585938,
+            586.0899658203125
+          ],
+          "residual_px": 1.4384658336639404,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 34,
+          "corner_index": 2,
+          "observations": 13,
+          "used_observations": 12,
+          "median_px": [
+            624.0,
+            584.0
+          ],
+          "mean_px": [
+            623.8333129882812,
+            584.0
+          ],
+          "jitter_px": 0.3726780116558075,
+          "camera_id": 2,
+          "world_m": [
+            0.11550000309944153,
+            0.08150000125169754
+          ],
+          "image_px": [
+            623.8333129882812,
+            584.0
+          ],
+          "projected_px": [
+            623.5134887695312,
+            585.5699462890625
+          ],
+          "residual_px": 1.6021919250488281,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 34,
+          "corner_index": 3,
+          "observations": 13,
+          "used_observations": 13,
+          "median_px": [
+            637.0,
+            599.0
+          ],
+          "mean_px": [
+            636.5384521484375,
+            598.3846435546875
+          ],
+          "jitter_px": 0.8904489874839783,
+          "camera_id": 2,
+          "world_m": [
+            0.11550000309944153,
+            0.054499998688697815
+          ],
+          "image_px": [
+            636.5384521484375,
+            598.3846435546875
+          ],
+          "projected_px": [
+            636.3839111328125,
+            600.0195922851562
+          ],
+          "residual_px": 1.642236351966858,
+          "ransac_inlier": true
+        }
+      ]
+    },
+    {
+      "camera_id": 3,
+      "rms_px": 1.7155848741531372,
+      "points": 64,
+      "inliers": 38,
+      "max_residual_px": 211.15379333496094,
+      "mean_residual_px": 21.14093780517578,
+      "tags": [
+        {
+          "marker_id": 12,
+          "corners": 4,
+          "mean_residual_px": 39.50874710083008,
+          "max_residual_px": 69.29710388183594
+        },
+        {
+          "marker_id": 13,
+          "corners": 4,
+          "mean_residual_px": 88.08441925048828,
+          "max_residual_px": 148.75982666015625
+        },
+        {
+          "marker_id": 17,
+          "corners": 4,
+          "mean_residual_px": 11.546661376953125,
+          "max_residual_px": 27.12244987487793
+        },
+        {
+          "marker_id": 18,
+          "corners": 4,
+          "mean_residual_px": 35.30423355102539,
+          "max_residual_px": 74.3195571899414
+        },
+        {
+          "marker_id": 19,
+          "corners": 4,
+          "mean_residual_px": 112.9474868774414,
+          "max_residual_px": 211.15379333496094
+        },
+        {
+          "marker_id": 20,
+          "corners": 4,
+          "mean_residual_px": 1.5181589126586914,
+          "max_residual_px": 2.251657724380493
+        },
+        {
+          "marker_id": 21,
+          "corners": 4,
+          "mean_residual_px": 1.2471795082092285,
+          "max_residual_px": 1.9587706327438354
+        },
+        {
+          "marker_id": 22,
+          "corners": 4,
+          "mean_residual_px": 1.8899463415145874,
+          "max_residual_px": 2.6334874629974365
+        },
+        {
+          "marker_id": 23,
+          "corners": 4,
+          "mean_residual_px": 6.653585433959961,
+          "max_residual_px": 17.92059326171875
+        },
+        {
+          "marker_id": 25,
+          "corners": 4,
+          "mean_residual_px": 1.1740089654922485,
+          "max_residual_px": 1.7717424631118774
+        },
+        {
+          "marker_id": 26,
+          "corners": 4,
+          "mean_residual_px": 1.0029137134552002,
+          "max_residual_px": 1.880501389503479
+        },
+        {
+          "marker_id": 27,
+          "corners": 4,
+          "mean_residual_px": 1.267939567565918,
+          "max_residual_px": 2.281802177429199
+        },
+        {
+          "marker_id": 28,
+          "corners": 4,
+          "mean_residual_px": 1.8145031929016113,
+          "max_residual_px": 2.4020962715148926
+        },
+        {
+          "marker_id": 31,
+          "corners": 4,
+          "mean_residual_px": 6.538928031921387,
+          "max_residual_px": 13.99935245513916
+        },
+        {
+          "marker_id": 32,
+          "corners": 4,
+          "mean_residual_px": 9.488150596618652,
+          "max_residual_px": 21.059741973876953
+        },
+        {
+          "marker_id": 33,
+          "corners": 4,
+          "mean_residual_px": 18.268150329589844,
+          "max_residual_px": 45.61628723144531
+        }
+      ],
+      "corners": [
+        {
+          "marker_id": 12,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1037.0,
+            550.0
+          ],
+          "mean_px": [
+            1037.433349609375,
+            550.0
+          ],
+          "jitter_px": 1.0546194314956665,
+          "camera_id": 3,
+          "world_m": [
+            -0.04749999940395355,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            1037.433349609375,
+            550.0
+          ],
+          "projected_px": [
+            1069.81396484375,
+            567.5609130859375
+          ],
+          "residual_px": 36.83598709106445,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 12,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1095.0,
+            568.0
+          ],
+          "mean_px": [
+            1095.2667236328125,
+            568.066650390625
+          ],
+          "jitter_px": 0.6253887414932251,
+          "camera_id": 3,
+          "world_m": [
+            -0.04749999940395355,
+            0.013500000350177288
+          ],
+          "image_px": [
+            1095.2667236328125,
+            568.066650390625
+          ],
+          "projected_px": [
+            1157.7626953125,
+            598.005615234375
+          ],
+          "residual_px": 69.29710388183594,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 12,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1022.0,
+            584.0
+          ],
+          "mean_px": [
+            1021.9666748046875,
+            584.0
+          ],
+          "jitter_px": 0.4818944036960602,
+          "camera_id": 3,
+          "world_m": [
+            -0.020500000566244125,
+            0.013500000350177288
+          ],
+          "image_px": [
+            1021.9666748046875,
+            584.0
+          ],
+          "projected_px": [
+            1052.2626953125,
+            602.1365966796875
+          ],
+          "residual_px": 35.309844970703125,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 12,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            964.0,
+            559.0
+          ],
+          "mean_px": [
+            964.3666381835938,
+            559.1333618164062
+          ],
+          "jitter_px": 0.7401201725006104,
+          "camera_id": 3,
+          "world_m": [
+            -0.020500000566244125,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            964.3666381835938,
+            559.1333618164062
+          ],
+          "projected_px": [
+            976.88330078125,
+            570.0250854492188
+          ],
+          "residual_px": 16.592060089111328,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 21,
+          "median_px": [
+            1119.0,
+            574.0
+          ],
+          "mean_px": [
+            1118.7142333984375,
+            574.0
+          ],
+          "jitter_px": 0.6281383633613586,
+          "camera_id": 3,
+          "world_m": [
+            -0.04749999940395355,
+            0.020500000566244125
+          ],
+          "image_px": [
+            1118.7142333984375,
+            574.0
+          ],
+          "projected_px": [
+            1185.5751953125,
+            607.6333618164062
+          ],
+          "residual_px": 74.84378051757812,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1186.0,
+            592.0
+          ],
+          "mean_px": [
+            1186.36669921875,
+            592.2666625976562
+          ],
+          "jitter_px": 0.6540471911430359,
+          "camera_id": 3,
+          "world_m": [
+            -0.04749999940395355,
+            0.04749999940395355
+          ],
+          "image_px": [
+            1186.36669921875,
+            592.2666625976562
+          ],
+          "projected_px": [
+            1321.4117431640625,
+            654.6551513671875
+          ],
+          "residual_px": 148.75982666015625,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1119.0,
+            616.0
+          ],
+          "mean_px": [
+            1118.9000244140625,
+            616.2999877929688
+          ],
+          "jitter_px": 1.1401753425598145,
+          "camera_id": 3,
+          "world_m": [
+            -0.020500000566244125,
+            0.04749999940395355
+          ],
+          "image_px": [
+            1118.9000244140625,
+            616.2999877929688
+          ],
+          "projected_px": [
+            1194.885009765625,
+            662.8934936523438
+          ],
+          "residual_px": 89.13289642333984,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 13,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1043.0,
+            591.0
+          ],
+          "mean_px": [
+            1042.9000244140625,
+            591.066650390625
+          ],
+          "jitter_px": 0.4678555428981781,
+          "camera_id": 3,
+          "world_m": [
+            -0.020500000566244125,
+            0.020500000566244125
+          ],
+          "image_px": [
+            1042.9000244140625,
+            591.066650390625
+          ],
+          "projected_px": [
+            1076.2833251953125,
+            612.369384765625
+          ],
+          "residual_px": 39.60115432739258,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            943.0,
+            563.0
+          ],
+          "mean_px": [
+            943.3333129882812,
+            563.0
+          ],
+          "jitter_px": 0.47140446305274963,
+          "camera_id": 3,
+          "world_m": [
+            -0.013500000350177288,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            943.3333129882812,
+            563.0
+          ],
+          "projected_px": [
+            951.72900390625,
+            570.6920776367188
+          ],
+          "residual_px": 11.386645317077637,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1001.0,
+            589.0
+          ],
+          "mean_px": [
+            1000.4666748046875,
+            588.933349609375
+          ],
+          "jitter_px": 0.843273937702179,
+          "camera_id": 3,
+          "world_m": [
+            -0.013500000350177288,
+            0.013500000350177288
+          ],
+          "image_px": [
+            1000.4666748046875,
+            588.933349609375
+          ],
+          "projected_px": [
+            1023.49462890625,
+            603.2630615234375
+          ],
+          "residual_px": 27.12244987487793,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            902.0,
+            604.0
+          ],
+          "mean_px": [
+            901.7999877929688,
+            604.0
+          ],
+          "jitter_px": 0.6531972289085388,
+          "camera_id": 3,
+          "world_m": [
+            0.013500000350177288,
+            0.013500000350177288
+          ],
+          "image_px": [
+            901.7999877929688,
+            604.0
+          ],
+          "projected_px": [
+            906.5401000976562,
+            607.842529296875
+          ],
+          "residual_px": 6.10194206237793,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 17,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            851.0,
+            572.0
+          ],
+          "mean_px": [
+            851.0333251953125,
+            572.0
+          ],
+          "jitter_px": 0.5467073321342468,
+          "camera_id": 3,
+          "world_m": [
+            0.013500000350177288,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            851.0333251953125,
+            572.0
+          ],
+          "projected_px": [
+            850.2769775390625,
+            573.3822021484375
+          ],
+          "residual_px": 1.5756092071533203,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 18,
+          "corner_index": 0,
+          "observations": 22,
+          "used_observations": 17,
+          "median_px": [
+            1020.0,
+            596.0
+          ],
+          "mean_px": [
+            1019.8235473632812,
+            596.0
+          ],
+          "jitter_px": 0.5128116607666016,
+          "camera_id": 3,
+          "world_m": [
+            -0.013500000350177288,
+            0.020500000566244125
+          ],
+          "image_px": [
+            1019.8235473632812,
+            596.0
+          ],
+          "projected_px": [
+            1046.4112548828125,
+            613.663818359375
+          ],
+          "residual_px": 31.920473098754883,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 18,
+          "corner_index": 1,
+          "observations": 22,
+          "used_observations": 19,
+          "median_px": [
+            1097.0,
+            626.0
+          ],
+          "mean_px": [
+            1097.105224609375,
+            625.4210815429688
+          ],
+          "jitter_px": 0.8712077140808105,
+          "camera_id": 3,
+          "world_m": [
+            -0.013500000350177288,
+            0.04749999940395355
+          ],
+          "image_px": [
+            1097.105224609375,
+            625.4210815429688
+          ],
+          "projected_px": [
+            1159.9010009765625,
+            665.17138671875
+          ],
+          "residual_px": 74.3195571899414,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 18,
+          "corner_index": 2,
+          "observations": 22,
+          "used_observations": 19,
+          "median_px": [
+            992.0,
+            658.0
+          ],
+          "mean_px": [
+            993.0,
+            657.8421020507812
+          ],
+          "jitter_px": 1.1815760135650635,
+          "camera_id": 3,
+          "world_m": [
+            0.013500000350177288,
+            0.04749999940395355
+          ],
+          "image_px": [
+            993.0,
+            657.8421020507812
+          ],
+          "projected_px": [
+            1015.4920654296875,
+            674.5740356445312
+          ],
+          "residual_px": 28.03302764892578,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 18,
+          "corner_index": 3,
+          "observations": 22,
+          "used_observations": 19,
+          "median_px": [
+            919.0,
+            615.0
+          ],
+          "mean_px": [
+            919.0526123046875,
+            614.8421020507812
+          ],
+          "jitter_px": 0.8421052098274231,
+          "camera_id": 3,
+          "world_m": [
+            0.013500000350177288,
+            0.020500000566244125
+          ],
+          "image_px": [
+            919.0526123046875,
+            614.8421020507812
+          ],
+          "projected_px": [
+            924.6585083007812,
+            618.9398193359375
+          ],
+          "residual_px": 6.94387149810791,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 19,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1123.0,
+            635.0
+          ],
+          "mean_px": [
+            1123.300048828125,
+            635.0
+          ],
+          "jitter_px": 0.5859466195106506,
+          "camera_id": 3,
+          "world_m": [
+            -0.013500000350177288,
+            0.054499998688697815
+          ],
+          "image_px": [
+            1123.300048828125,
+            635.0
+          ],
+          "projected_px": [
+            1198.1968994140625,
+            682.5520629882812
+          ],
+          "residual_px": 88.71717071533203,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 19,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1218.0,
+            677.0
+          ],
+          "mean_px": [
+            1217.8333740234375,
+            677.433349609375
+          ],
+          "jitter_px": 0.7644895911216736,
+          "camera_id": 3,
+          "world_m": [
+            -0.013500000350177288,
+            0.08150000125169754
+          ],
+          "image_px": [
+            1217.8333740234375,
+            677.433349609375
+          ],
+          "projected_px": [
+            1404.4783935546875,
+            776.1732177734375
+          ],
+          "residual_px": 211.15379333496094,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 19,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1122.0,
+            733.0
+          ],
+          "mean_px": [
+            1122.0333251953125,
+            733.0
+          ],
+          "jitter_px": 0.6574361324310303,
+          "camera_id": 3,
+          "world_m": [
+            0.013500000350177288,
+            0.08150000125169754
+          ],
+          "image_px": [
+            1122.0333251953125,
+            733.0
+          ],
+          "projected_px": [
+            1217.7203369140625,
+            798.4359130859375
+          ],
+          "residual_px": 115.92179870605469,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 19,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            1018.0,
+            672.0
+          ],
+          "mean_px": [
+            1018.0,
+            671.7000122070312
+          ],
+          "jitter_px": 0.4582575559616089,
+          "camera_id": 3,
+          "world_m": [
+            0.013500000350177288,
+            0.054499998688697815
+          ],
+          "image_px": [
+            1018.0,
+            671.7000122070312
+          ],
+          "projected_px": [
+            1046.564697265625,
+            693.6055908203125
+          ],
+          "residual_px": 35.99717330932617,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 20,
+          "corner_index": 0,
+          "observations": 15,
+          "used_observations": 15,
+          "median_px": [
+            744.0,
+            523.0
+          ],
+          "mean_px": [
+            744.066650390625,
+            523.0
+          ],
+          "jitter_px": 0.4422166049480438,
+          "camera_id": 3,
+          "world_m": [
+            0.020500000566244125,
+            -0.08150000125169754
+          ],
+          "image_px": [
+            744.066650390625,
+            523.0
+          ],
+          "projected_px": [
+            743.7743530273438,
+            520.7673950195312
+          ],
+          "residual_px": 2.251657724380493,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 20,
+          "corner_index": 1,
+          "observations": 15,
+          "used_observations": 15,
+          "median_px": [
+            768.0,
+            539.0
+          ],
+          "mean_px": [
+            768.1333618164062,
+            539.0
+          ],
+          "jitter_px": 0.4988876283168793,
+          "camera_id": 3,
+          "world_m": [
+            0.020500000566244125,
+            -0.054499998688697815
+          ],
+          "image_px": [
+            768.1333618164062,
+            539.0
+          ],
+          "projected_px": [
+            769.1226806640625,
+            537.88623046875
+          ],
+          "residual_px": 1.489709496498108,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 20,
+          "corner_index": 2,
+          "observations": 15,
+          "used_observations": 15,
+          "median_px": [
+            677.0,
+            538.0
+          ],
+          "mean_px": [
+            677.5333251953125,
+            538.066650390625
+          ],
+          "jitter_px": 0.6666666865348816,
+          "camera_id": 3,
+          "world_m": [
+            0.04749999940395355,
+            -0.054499998688697815
+          ],
+          "image_px": [
+            677.5333251953125,
+            538.066650390625
+          ],
+          "projected_px": [
+            678.262451171875,
+            539.1483154296875
+          ],
+          "residual_px": 1.3044630289077759,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 20,
+          "corner_index": 3,
+          "observations": 15,
+          "used_observations": 15,
+          "median_px": [
+            663.0,
+            520.0
+          ],
+          "mean_px": [
+            662.5999755859375,
+            520.4000244140625
+          ],
+          "jitter_px": 0.7831559777259827,
+          "camera_id": 3,
+          "world_m": [
+            0.04749999940395355,
+            -0.08150000125169754
+          ],
+          "image_px": [
+            662.5999755859375,
+            520.4000244140625
+          ],
+          "projected_px": [
+            662.6936645507812,
+            521.4225463867188
+          ],
+          "residual_px": 1.0268051624298096,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            777.0,
+            545.0
+          ],
+          "mean_px": [
+            777.0,
+            545.0
+          ],
+          "jitter_px": 0.5163977742195129,
+          "camera_id": 3,
+          "world_m": [
+            0.020500000566244125,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            777.0,
+            545.0
+          ],
+          "projected_px": [
+            776.7749633789062,
+            543.05419921875
+          ],
+          "residual_px": 1.9587706327438354,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            811.0,
+            566.0
+          ],
+          "mean_px": [
+            811.3666381835938,
+            566.0
+          ],
+          "jitter_px": 0.48189443349838257,
+          "camera_id": 3,
+          "world_m": [
+            0.020500000566244125,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            811.3666381835938,
+            566.0
+          ],
+          "projected_px": [
+            811.872802734375,
+            566.75732421875
+          ],
+          "residual_px": 0.9109020829200745,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 27,
+          "median_px": [
+            704.0,
+            568.0
+          ],
+          "mean_px": [
+            704.2963256835938,
+            568.0370483398438
+          ],
+          "jitter_px": 0.6263532042503357,
+          "camera_id": 3,
+          "world_m": [
+            0.04749999940395355,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            704.2963256835938,
+            568.0370483398438
+          ],
+          "projected_px": [
+            704.76171875,
+            569.3189086914062
+          ],
+          "residual_px": 1.3637290000915527,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 21,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            684.0,
+            544.0
+          ],
+          "mean_px": [
+            683.7333374023438,
+            544.433349609375
+          ],
+          "jitter_px": 0.7125852704048157,
+          "camera_id": 3,
+          "world_m": [
+            0.04749999940395355,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            683.7333374023438,
+            544.433349609375
+          ],
+          "projected_px": [
+            682.9833984375,
+            544.5233154296875
+          ],
+          "residual_px": 0.7553160190582275,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            825.0,
+            574.0
+          ],
+          "mean_px": [
+            825.0333251953125,
+            573.7999877929688
+          ],
+          "jitter_px": 1.0609219074249268,
+          "camera_id": 3,
+          "world_m": [
+            0.020500000566244125,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            825.0333251953125,
+            573.7999877929688
+          ],
+          "projected_px": [
+            822.7627563476562,
+            574.11181640625
+          ],
+          "residual_px": 2.2918813228607178,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            873.0,
+            607.0
+          ],
+          "mean_px": [
+            872.9666748046875,
+            607.0
+          ],
+          "jitter_px": 0.31446602940559387,
+          "camera_id": 3,
+          "world_m": [
+            0.020500000566244125,
+            0.013500000350177288
+          ],
+          "image_px": [
+            872.9666748046875,
+            607.0
+          ],
+          "projected_px": [
+            874.5628051757812,
+            609.0946655273438
+          ],
+          "residual_px": 2.6334874629974365,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            746.0,
+            614.0
+          ],
+          "mean_px": [
+            745.6666870117188,
+            613.7333374023438
+          ],
+          "jitter_px": 1.1623729467391968,
+          "camera_id": 3,
+          "world_m": [
+            0.04749999940395355,
+            0.013500000350177288
+          ],
+          "image_px": [
+            745.6666870117188,
+            613.7333374023438
+          ],
+          "projected_px": [
+            744.1812744140625,
+            614.1998901367188
+          ],
+          "residual_px": 1.5569592714309692,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 22,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            713.0,
+            577.0
+          ],
+          "mean_px": [
+            712.6333618164062,
+            577.1666870117188
+          ],
+          "jitter_px": 0.609188973903656,
+          "camera_id": 3,
+          "world_m": [
+            0.04749999940395355,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            712.6333618164062,
+            577.1666870117188
+          ],
+          "projected_px": [
+            711.5611572265625,
+            577.0604248046875
+          ],
+          "residual_px": 1.077457308769226,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 23,
+          "corner_index": 0,
+          "observations": 7,
+          "used_observations": 6,
+          "median_px": [
+            889.0,
+            619.0
+          ],
+          "mean_px": [
+            889.0,
+            618.5
+          ],
+          "jitter_px": 1.1180340051651,
+          "camera_id": 3,
+          "world_m": [
+            0.020500000566244125,
+            0.020500000566244125
+          ],
+          "image_px": [
+            889.0,
+            618.5
+          ],
+          "projected_px": [
+            891.2823486328125,
+            620.3861694335938
+          ],
+          "residual_px": 2.960869789123535,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 23,
+          "corner_index": 1,
+          "observations": 7,
+          "used_observations": 6,
+          "median_px": [
+            961.0,
+            666.0
+          ],
+          "mean_px": [
+            961.0,
+            666.5
+          ],
+          "jitter_px": 0.5,
+          "camera_id": 3,
+          "world_m": [
+            0.020500000566244125,
+            0.04749999940395355
+          ],
+          "image_px": [
+            961.0,
+            666.5
+          ],
+          "projected_px": [
+            975.386474609375,
+            677.1853637695312
+          ],
+          "residual_px": 17.92059326171875,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 23,
+          "corner_index": 2,
+          "observations": 7,
+          "used_observations": 6,
+          "median_px": [
+            808.0,
+            691.0
+          ],
+          "mean_px": [
+            808.0,
+            691.0
+          ],
+          "jitter_px": 0.0,
+          "camera_id": 3,
+          "world_m": [
+            0.04749999940395355,
+            0.04749999940395355
+          ],
+          "image_px": [
+            808.0,
+            691.0
+          ],
+          "projected_px": [
+            809.0167236328125,
+            688.0179443359375
+          ],
+          "residual_px": 3.150616407394409,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 23,
+          "corner_index": 3,
+          "observations": 7,
+          "used_observations": 6,
+          "median_px": [
+            757.0,
+            628.0
+          ],
+          "mean_px": [
+            757.0,
+            627.6666870117188
+          ],
+          "jitter_px": 0.4714045226573944,
+          "camera_id": 3,
+          "world_m": [
+            0.04749999940395355,
+            0.020500000566244125
+          ],
+          "image_px": [
+            757.0,
+            627.6666870117188
+          ],
+          "projected_px": [
+            754.8090209960938,
+            626.300048828125
+          ],
+          "residual_px": 2.5822641849517822,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 25,
+          "corner_index": 0,
+          "observations": 21,
+          "used_observations": 21,
+          "median_px": [
+            640.0,
+            521.0
+          ],
+          "mean_px": [
+            639.7619018554688,
+            520.952392578125
+          ],
+          "jitter_px": 0.4761904776096344,
+          "camera_id": 3,
+          "world_m": [
+            0.054499998688697815,
+            -0.08150000125169754
+          ],
+          "image_px": [
+            639.7619018554688,
+            520.952392578125
+          ],
+          "projected_px": [
+            640.9539794921875,
+            521.5982055664062
+          ],
+          "residual_px": 1.355774164199829,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 25,
+          "corner_index": 1,
+          "observations": 21,
+          "used_observations": 21,
+          "median_px": [
+            653.0,
+            538.0
+          ],
+          "mean_px": [
+            653.0,
+            537.90478515625
+          ],
+          "jitter_px": 0.42591771483421326,
+          "camera_id": 3,
+          "world_m": [
+            0.054499998688697815,
+            -0.054499998688697815
+          ],
+          "image_px": [
+            653.0,
+            537.90478515625
+          ],
+          "projected_px": [
+            653.7949829101562,
+            539.4881591796875
+          ],
+          "residual_px": 1.7717424631118774,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 25,
+          "corner_index": 2,
+          "observations": 21,
+          "used_observations": 21,
+          "median_px": [
+            556.0,
+            540.0
+          ],
+          "mean_px": [
+            555.6666870117188,
+            540.0
+          ],
+          "jitter_px": 0.471404492855072,
+          "camera_id": 3,
+          "world_m": [
+            0.08150000125169754,
+            -0.054499998688697815
+          ],
+          "image_px": [
+            555.6666870117188,
+            540.0
+          ],
+          "projected_px": [
+            555.6546020507812,
+            540.851318359375
+          ],
+          "residual_px": 0.8514041304588318,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 25,
+          "corner_index": 3,
+          "observations": 21,
+          "used_observations": 21,
+          "median_px": [
+            554.0,
+            523.0
+          ],
+          "mean_px": [
+            554.0,
+            523.0
+          ],
+          "jitter_px": 0.0,
+          "camera_id": 3,
+          "world_m": [
+            0.08150000125169754,
+            -0.08150000125169754
+          ],
+          "image_px": [
+            554.0,
+            523.0
+          ],
+          "projected_px": [
+            554.1537475585938,
+            522.299560546875
+          ],
+          "residual_px": 0.7171148657798767,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 26,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 25,
+          "median_px": [
+            658.0,
+            546.0
+          ],
+          "mean_px": [
+            657.6400146484375,
+            545.7999877929688
+          ],
+          "jitter_px": 0.8428523540496826,
+          "camera_id": 3,
+          "world_m": [
+            0.054499998688697815,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            657.6400146484375,
+            545.7999877929688
+          ],
+          "projected_px": [
+            657.6934204101562,
+            544.91943359375
+          ],
+          "residual_px": 0.8821722865104675,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 26,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            676.0,
+            568.0
+          ],
+          "mean_px": [
+            675.7000122070312,
+            568.1333618164062
+          ],
+          "jitter_px": 0.5705747008323669,
+          "camera_id": 3,
+          "world_m": [
+            0.054499998688697815,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            675.7000122070312,
+            568.1333618164062
+          ],
+          "projected_px": [
+            675.70556640625,
+            570.0138549804688
+          ],
+          "residual_px": 1.880501389503479,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 26,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            558.0,
+            573.0
+          ],
+          "mean_px": [
+            557.6333618164062,
+            573.0
+          ],
+          "jitter_px": 0.48189443349838257,
+          "camera_id": 3,
+          "world_m": [
+            0.08150000125169754,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            557.6333618164062,
+            573.0
+          ],
+          "projected_px": [
+            558.2410888671875,
+            572.8230590820312
+          ],
+          "residual_px": 0.6329615116119385,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 26,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            556.0,
+            547.0
+          ],
+          "mean_px": [
+            555.933349609375,
+            547.0999755859375
+          ],
+          "jitter_px": 0.390156626701355,
+          "camera_id": 3,
+          "world_m": [
+            0.08150000125169754,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            555.933349609375,
+            547.0999755859375
+          ],
+          "projected_px": [
+            556.1124267578125,
+            546.5105590820312
+          ],
+          "residual_px": 0.6160198450088501,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 27,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            682.0,
+            578.0
+          ],
+          "mean_px": [
+            681.6333618164062,
+            578.4666748046875
+          ],
+          "jitter_px": 1.2170090675354004,
+          "camera_id": 3,
+          "world_m": [
+            0.054499998688697815,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            681.6333618164062,
+            578.4666748046875
+          ],
+          "projected_px": [
+            681.3386840820312,
+            577.86181640625
+          ],
+          "residual_px": 0.6728214025497437,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 27,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            709.0,
+            614.0
+          ],
+          "mean_px": [
+            709.1333618164062,
+            614.3333129882812
+          ],
+          "jitter_px": 0.7774602770805359,
+          "camera_id": 3,
+          "world_m": [
+            0.054499998688697815,
+            0.013500000350177288
+          ],
+          "image_px": [
+            709.1333618164062,
+            614.3333129882812
+          ],
+          "projected_px": [
+            708.4262084960938,
+            615.5999145507812
+          ],
+          "residual_px": 1.4506361484527588,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 27,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            562.0,
+            621.0
+          ],
+          "mean_px": [
+            561.566650390625,
+            621.0333251953125
+          ],
+          "jitter_px": 0.527046263217926,
+          "camera_id": 3,
+          "world_m": [
+            0.08150000125169754,
+            0.013500000350177288
+          ],
+          "image_px": [
+            561.566650390625,
+            621.0333251953125
+          ],
+          "projected_px": [
+            562.1649780273438,
+            621.3269653320312
+          ],
+          "residual_px": 0.6664986610412598,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 27,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            558.0,
+            583.0
+          ],
+          "mean_px": [
+            558.0,
+            583.2000122070312
+          ],
+          "jitter_px": 0.3999999761581421,
+          "camera_id": 3,
+          "world_m": [
+            0.08150000125169754,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            558.0,
+            583.2000122070312
+          ],
+          "projected_px": [
+            558.9113159179688,
+            581.1080932617188
+          ],
+          "residual_px": 2.281802177429199,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 28,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            719.0,
+            629.0
+          ],
+          "mean_px": [
+            718.4666748046875,
+            629.3333129882812
+          ],
+          "jitter_px": 1.0349448919296265,
+          "camera_id": 3,
+          "world_m": [
+            0.054499998688697815,
+            0.020500000566244125
+          ],
+          "image_px": [
+            718.4666748046875,
+            629.3333129882812
+          ],
+          "projected_px": [
+            717.2739868164062,
+            627.9265747070312
+          ],
+          "residual_px": 1.8442931175231934,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 28,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            763.0,
+            693.0
+          ],
+          "mean_px": [
+            763.0333251953125,
+            693.4000244140625
+          ],
+          "jitter_px": 0.7781745195388794,
+          "camera_id": 3,
+          "world_m": [
+            0.054499998688697815,
+            0.04749999940395355
+          ],
+          "image_px": [
+            763.0333251953125,
+            693.4000244140625
+          ],
+          "projected_px": [
+            762.5765991210938,
+            691.041748046875
+          ],
+          "residual_px": 2.4020962715148926,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 28,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            568.0,
+            703.0
+          ],
+          "mean_px": [
+            567.6666870117188,
+            703.2666625976562
+          ],
+          "jitter_px": 0.785988450050354,
+          "camera_id": 3,
+          "world_m": [
+            0.08150000125169754,
+            0.04749999940395355
+          ],
+          "image_px": [
+            567.6666870117188,
+            703.2666625976562
+          ],
+          "projected_px": [
+            568.8255004882812,
+            703.6571655273438
+          ],
+          "residual_px": 1.2228413820266724,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 28,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            562.0,
+            636.0
+          ],
+          "mean_px": [
+            562.1666870117188,
+            636.0333251953125
+          ],
+          "jitter_px": 0.7986097931861877,
+          "camera_id": 3,
+          "world_m": [
+            0.08150000125169754,
+            0.020500000566244125
+          ],
+          "image_px": [
+            562.1666870117188,
+            636.0333251953125
+          ],
+          "projected_px": [
+            563.2388916015625,
+            634.6015014648438
+          ],
+          "residual_px": 1.7887822389602661,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 31,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            529.0,
+            548.0
+          ],
+          "mean_px": [
+            529.0,
+            547.933349609375
+          ],
+          "jitter_px": 0.24944381415843964,
+          "camera_id": 3,
+          "world_m": [
+            0.0885000005364418,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            529.0,
+            547.933349609375
+          ],
+          "projected_px": [
+            528.6781005859375,
+            546.9402465820312
+          ],
+          "residual_px": 1.043969750404358,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 31,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            527.0,
+            573.0
+          ],
+          "mean_px": [
+            527.0,
+            573.0
+          ],
+          "jitter_px": 0.0,
+          "camera_id": 3,
+          "world_m": [
+            0.0885000005364418,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            527.0,
+            573.0
+          ],
+          "projected_px": [
+            526.3078002929688,
+            573.5867919921875
+          ],
+          "residual_px": 0.9074498414993286,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 31,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            410.0,
+            572.0
+          ],
+          "mean_px": [
+            410.0333251953125,
+            571.7999877929688
+          ],
+          "jitter_px": 0.4384315013885498,
+          "camera_id": 3,
+          "world_m": [
+            0.11550000309944153,
+            -0.020500000566244125
+          ],
+          "image_px": [
+            410.0333251953125,
+            571.7999877929688
+          ],
+          "projected_px": [
+            396.9125671386719,
+            576.6813354492188
+          ],
+          "residual_px": 13.99935245513916,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 31,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 28,
+          "median_px": [
+            428.0,
+            549.0
+          ],
+          "mean_px": [
+            428.5,
+            548.75
+          ],
+          "jitter_px": 0.807332456111908,
+          "camera_id": 3,
+          "world_m": [
+            0.11550000309944153,
+            -0.04749999940395355
+          ],
+          "image_px": [
+            428.5,
+            548.75
+          ],
+          "projected_px": [
+            418.2953796386719,
+            548.6692504882812
+          ],
+          "residual_px": 10.204939842224121,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 32,
+          "corner_index": 0,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            526.0,
+            584.0
+          ],
+          "mean_px": [
+            526.1034545898438,
+            583.6551513671875
+          ],
+          "jitter_px": 0.8145525455474854,
+          "camera_id": 3,
+          "world_m": [
+            0.0885000005364418,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            526.1034545898438,
+            583.6551513671875
+          ],
+          "projected_px": [
+            525.56005859375,
+            581.9924926757812
+          ],
+          "residual_px": 1.7492035627365112,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 32,
+          "corner_index": 1,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            522.0,
+            621.0
+          ],
+          "mean_px": [
+            522.0689697265625,
+            621.27587890625
+          ],
+          "jitter_px": 1.1088231801986694,
+          "camera_id": 3,
+          "world_m": [
+            0.0885000005364418,
+            0.013500000350177288
+          ],
+          "image_px": [
+            522.0689697265625,
+            621.27587890625
+          ],
+          "projected_px": [
+            521.9208984375,
+            622.9027709960938
+          ],
+          "residual_px": 1.63361656665802,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 32,
+          "corner_index": 2,
+          "observations": 29,
+          "used_observations": 29,
+          "median_px": [
+            376.0,
+            622.0
+          ],
+          "mean_px": [
+            376.3793029785156,
+            621.8965454101562
+          ],
+          "jitter_px": 0.6827237606048584,
+          "camera_id": 3,
+          "world_m": [
+            0.11550000309944153,
+            0.013500000350177288
+          ],
+          "image_px": [
+            376.3793029785156,
+            621.8965454101562
+          ],
+          "projected_px": [
+            356.691162109375,
+            629.3724975585938
+          ],
+          "residual_px": 21.059741973876953,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 32,
+          "corner_index": 3,
+          "observations": 29,
+          "used_observations": 28,
+          "median_px": [
+            403.0,
+            582.0
+          ],
+          "mean_px": [
+            403.1428527832031,
+            582.0
+          ],
+          "jitter_px": 0.3499271273612976,
+          "camera_id": 3,
+          "world_m": [
+            0.11550000309944153,
+            -0.013500000350177288
+          ],
+          "image_px": [
+            403.1428527832031,
+            582.0
+          ],
+          "projected_px": [
+            390.1168518066406,
+            585.5839233398438
+          ],
+          "residual_px": 13.510041236877441,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 33,
+          "corner_index": 0,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            522.0,
+            637.0
+          ],
+          "mean_px": [
+            521.6333618164062,
+            636.3333129882812
+          ],
+          "jitter_px": 1.026861548423767,
+          "camera_id": 3,
+          "world_m": [
+            0.0885000005364418,
+            0.020500000566244125
+          ],
+          "image_px": [
+            521.6333618164062,
+            636.3333129882812
+          ],
+          "projected_px": [
+            520.7163696289062,
+            636.4441528320312
+          ],
+          "residual_px": 0.9236666560173035,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 33,
+          "corner_index": 1,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            515.0,
+            704.0
+          ],
+          "mean_px": [
+            514.5,
+            704.1666870117188
+          ],
+          "jitter_px": 0.9944288730621338,
+          "camera_id": 3,
+          "world_m": [
+            0.0885000005364418,
+            0.04749999940395355
+          ],
+          "image_px": [
+            514.5,
+            704.1666870117188
+          ],
+          "projected_px": [
+            514.42236328125,
+            707.199462890625
+          ],
+          "residual_px": 3.033769369125366,
+          "ransac_inlier": true
+        },
+        {
+          "marker_id": 33,
+          "corner_index": 2,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            323.0,
+            695.5
+          ],
+          "mean_px": [
+            323.0,
+            695.5
+          ],
+          "jitter_px": 0.5627314448356628,
+          "camera_id": 3,
+          "world_m": [
+            0.11550000309944153,
+            0.04749999940395355
+          ],
+          "image_px": [
+            323.0,
+            695.5
+          ],
+          "projected_px": [
+            285.92578125,
+            722.0772094726562
+          ],
+          "residual_px": 45.61628723144531,
+          "ransac_inlier": false
+        },
+        {
+          "marker_id": 33,
+          "corner_index": 3,
+          "observations": 30,
+          "used_observations": 30,
+          "median_px": [
+            368.0,
+            636.0
+          ],
+          "mean_px": [
+            367.5666809082031,
+            635.9666748046875
+          ],
+          "jitter_px": 0.527046263217926,
+          "camera_id": 3,
+          "world_m": [
+            0.11550000309944153,
+            0.020500000566244125
+          ],
+          "image_px": [
+            367.5666809082031,
+            635.9666748046875
+          ],
+          "projected_px": [
+            345.4971008300781,
+            644.0370483398438
+          ],
+          "residual_px": 23.498878479003906,
+          "ransac_inlier": false
+        }
+      ]
+    }
+  ]
+}

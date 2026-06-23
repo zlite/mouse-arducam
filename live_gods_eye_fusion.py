@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import time
+import warnings
 from pathlib import Path
 
 os.environ["OPENCV_OPENCL_RUNTIME"] = "disabled"
@@ -14,6 +15,12 @@ from dshow_arducam_viewer import DShowCamera, find_format_index, fit_to_tile, re
 
 
 cv2.ocl.setUseOpenCL(False)
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore")
+    try:
+        from scipy.interpolate import LinearNDInterpolator
+    except Exception:
+        LinearNDInterpolator = None
 
 
 POINT_TRANSFORMS = ("normal", "flip_x", "flip_y", "flip_xy")
@@ -61,9 +68,15 @@ def parse_args():
     parser.add_argument("--floor-z", type=float, default=0.0)
     parser.add_argument(
         "--blend",
-        choices=("average", "nearest"),
-        default="average",
-        help="Average all valid camera warps, or pick the physically nearest side camera per output pixel.",
+        choices=("average", "nearest", "strongest"),
+        default="strongest",
+        help="Average valid camera warps, pick physically nearest, or pick the strongest manual confidence per pixel.",
+    )
+    parser.add_argument(
+        "--owner-overlay",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Tint the fused view by the camera contributing most strongly to each top-down region.",
     )
     parser.add_argument(
         "--debug-camera",
@@ -237,22 +250,39 @@ def load_camera_tuning(path, disabled):
 
 def load_floor_warps(path, disabled):
     if disabled or path is None or not path.exists():
-        return {}
+        return {}, None
     data = json.loads(path.read_text(encoding="utf-8"))
+    floor_frame = None
+    if data.get("type") == "aruco_floor_homography":
+        geometry = data.get("geometry", {})
+        floor_frame = {
+            "x_span_m": float(geometry.get("arena_length_m", 0.38)),
+            "y_span_m": float(geometry.get("arena_width_m", 0.29)),
+            "camera_center_transform": "old_xy_to_xlong_yshort",
+            "label": "X long / Y short",
+        }
     warps = {}
     for camera_id, spec in data.get("cameras", {}).items():
         homography = np.asarray(spec.get("homography_world_to_image"), dtype=np.float64)
         if homography.shape != (3, 3):
             continue
+        manual_pairs = spec.get("manual_pairs", [])
+        manual_world_points = np.asarray([pair["world_m"] for pair in manual_pairs], dtype=np.float32)
+        manual_image_points = np.asarray([pair["image_px"] for pair in manual_pairs], dtype=np.float32)
+        interpolator_x = None
+        interpolator_y = None
+        if LinearNDInterpolator is not None and len(manual_world_points) >= 4:
+            interpolator_x = LinearNDInterpolator(manual_world_points, manual_image_points[:, 0], fill_value=np.nan)
+            interpolator_y = LinearNDInterpolator(manual_world_points, manual_image_points[:, 1], fill_value=np.nan)
         warps[int(camera_id)] = {
             "homography_world_to_image": homography,
             "rms_px": float(spec.get("rms_px", float("nan"))),
             "points": int(spec.get("points", 0)),
             "inliers": int(spec.get("inliers", 0)),
-            "manual_world_points": np.asarray(
-                [pair["world_m"] for pair in spec.get("manual_pairs", [])],
-                dtype=np.float32,
-            ),
+            "manual_world_points": manual_world_points,
+            "manual_image_points": manual_image_points,
+            "interpolator_x": interpolator_x,
+            "interpolator_y": interpolator_y,
         }
     if warps:
         details = ", ".join(
@@ -260,7 +290,7 @@ def load_floor_warps(path, disabled):
             for camera_id in sorted(warps)
         )
         print(f"Loaded checkerboard floor warps from {path}: {details}", flush=True)
-    return warps
+    return warps, floor_frame
 
 
 def rotate_frame(frame, degrees):
@@ -305,9 +335,21 @@ def display_points_from_model(points, width, height, rotation_degrees, point_tra
     return rotate_points(base.astype(np.float32), width, height, rotation_degrees)
 
 
-def make_world_grid(geometry, output_width, pixels_per_meter, floor_z):
-    arena_width = float(geometry["measurements"]["arena_width_m"])
-    arena_length = float(geometry["measurements"]["arena_length_m"])
+def floor_spans(geometry, floor_frame=None):
+    if floor_frame is not None:
+        return float(floor_frame["x_span_m"]), float(floor_frame["y_span_m"])
+    return float(geometry["measurements"]["arena_width_m"]), float(geometry["measurements"]["arena_length_m"])
+
+
+def camera_center_for_floor_frame(center_m, floor_frame=None):
+    x, y, z = center_m
+    if floor_frame is not None and floor_frame.get("camera_center_transform") == "old_xy_to_xlong_yshort":
+        return y, x, z
+    return x, y, z
+
+
+def make_world_grid(geometry, output_width, pixels_per_meter, floor_z, floor_frame=None):
+    arena_width, arena_length = floor_spans(geometry, floor_frame)
     output_height = max(1, int(round(arena_length * pixels_per_meter)))
     output_width = max(1, int(output_width))
     xs = np.linspace(-arena_width / 2.0, arena_width / 2.0, output_width, dtype=np.float32)
@@ -384,7 +426,7 @@ def precompute_camera_maps(
 def manual_world_hull_mask(warp, world_points, output_shape, margin_m):
     manual_world = warp.get("manual_world_points")
     if manual_world is None or len(manual_world) < 3:
-        return np.ones(output_shape, dtype=bool)
+        return np.ones(output_shape, dtype=np.float32)
 
     output_height, output_width = output_shape
     x_min = float(np.min(world_points[:, 0]))
@@ -396,8 +438,10 @@ def manual_world_hull_mask(warp, world_points, output_shape, margin_m):
     hull_points = np.column_stack([px, py]).astype(np.float32)
     hull = cv2.convexHull(hull_points).reshape(-1, 2)
 
-    mask = np.zeros(output_shape, dtype=np.uint8)
-    cv2.fillConvexPoly(mask, np.round(hull).astype(np.int32), 1)
+    core_mask = np.zeros(output_shape, dtype=np.uint8)
+    cv2.fillConvexPoly(core_mask, np.round(hull).astype(np.int32), 1)
+    mask = core_mask
+    radius = 0
     if margin_m > 0:
         pixels_per_meter = 0.5 * (
             output_width / max(x_max - x_min, 1e-9)
@@ -405,8 +449,32 @@ def manual_world_hull_mask(warp, world_points, output_shape, margin_m):
         )
         radius = max(1, int(round(margin_m * pixels_per_meter)))
         kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (radius * 2 + 1, radius * 2 + 1))
-        mask = cv2.dilate(mask, kernel, iterations=1)
-    return mask.astype(bool)
+        mask = cv2.dilate(core_mask, kernel, iterations=1)
+    if radius <= 0:
+        return mask.astype(np.float32)
+    confidence = cv2.distanceTransform(mask, cv2.DIST_L2, 3) / max(float(radius), 1.0)
+    confidence = np.clip(confidence, 0.0, 1.0).astype(np.float32)
+    confidence[core_mask > 0] = 1.0
+    return confidence
+
+
+def empirical_world_to_image(warp, xy):
+    xy = np.asarray(xy, dtype=np.float32).reshape(-1, 2)
+    homography_points = cv2.perspectiveTransform(
+        xy.reshape(-1, 1, 2),
+        warp["homography_world_to_image"],
+    ).reshape(-1, 2)
+
+    interp_x = warp.get("interpolator_x")
+    interp_y = warp.get("interpolator_y")
+    if interp_x is None or interp_y is None:
+        return homography_points, "homography"
+
+    piecewise = np.column_stack([interp_x(xy), interp_y(xy)]).astype(np.float32)
+    finite = np.all(np.isfinite(piecewise), axis=1)
+    points = homography_points.astype(np.float32)
+    points[finite] = piecewise[finite]
+    return points, "piecewise"
 
 
 def precompute_empirical_floor_maps(floor_warps, camera_ids, world_points, output_shape, source_shape, hull_margin_m=0.015):
@@ -418,21 +486,22 @@ def precompute_empirical_floor_maps(floor_warps, camera_ids, world_points, outpu
         warp = floor_warps.get(camera_id)
         if warp is None:
             continue
-        image_points = cv2.perspectiveTransform(xy, warp["homography_world_to_image"]).reshape(-1, 2)
+        image_points, warp_mode = empirical_world_to_image(warp, xy.reshape(-1, 2))
         map_x = image_points[:, 0].reshape(output_height, output_width).astype(np.float32)
         map_y = image_points[:, 1].reshape(output_height, output_width).astype(np.float32)
-        hull_mask = manual_world_hull_mask(warp, world_points, output_shape, hull_margin_m)
-        valid = (
+        hull_weight = manual_world_hull_mask(warp, world_points, output_shape, hull_margin_m)
+        in_bounds = (
             (map_x >= 0)
             & (map_x <= raw_width - 1)
             & (map_y >= 0)
             & (map_y <= raw_height - 1)
-            & hull_mask
         )
-        maps[camera_id] = {"map_x": map_x, "map_y": map_y, "valid": valid.astype(np.float32)}
+        valid = in_bounds.astype(np.float32) * hull_weight
+        maps[camera_id] = {"map_x": map_x, "map_y": map_y, "valid": valid}
         print(
             f"Precomputed checkerboard floor map for cam {camera_id}: "
-            f"{100.0 * valid.mean():.1f}% trusted coverage, fit {warp['rms_px']:.2f}px",
+            f"{100.0 * np.mean(valid > 0):.1f}% trusted coverage, "
+            f"{warp_mode}, fit {warp['rms_px']:.2f}px",
             flush=True,
         )
     return maps
@@ -469,9 +538,8 @@ def project_world_points_to_display(
     return display_points, camera_points
 
 
-def floor_overlay_points(geometry, floor_z):
-    arena_width = float(geometry["measurements"]["arena_width_m"])
-    arena_length = float(geometry["measurements"]["arena_length_m"])
+def floor_overlay_points(geometry, floor_z, floor_frame=None):
+    arena_width, arena_length = floor_spans(geometry, floor_frame)
     xs = np.linspace(-arena_width / 2.0, arena_width / 2.0, 5)
     ys = np.linspace(-arena_length / 2.0, arena_length / 2.0, 5)
     lines = []
@@ -496,9 +564,10 @@ def draw_source_floor_overlay(
     floor_z,
     min_camera_depth=0.01,
     max_view_angle_deg=82.0,
+    floor_frame=None,
 ):
     frame = frame.copy()
-    for line in floor_overlay_points(geometry, floor_z):
+    for line in floor_overlay_points(geometry, floor_z, floor_frame):
         points, camera_points = project_world_points_to_display(
             camera_id,
             line,
@@ -523,15 +592,15 @@ def draw_source_floor_overlay(
     return frame
 
 
-def draw_empirical_source_floor_overlay(frame, camera_id, floor_warps, geometry, floor_z):
+def draw_empirical_source_floor_overlay(frame, camera_id, floor_warps, geometry, floor_z, floor_frame=None):
     frame = frame.copy()
     warp = floor_warps.get(camera_id)
     if warp is None:
         return frame
     height, width = frame.shape[:2]
-    for line in floor_overlay_points(geometry, floor_z):
+    for line in floor_overlay_points(geometry, floor_z, floor_frame):
         xy = line[:, :2].astype(np.float32).reshape(-1, 1, 2)
-        points = cv2.perspectiveTransform(xy, warp["homography_world_to_image"]).reshape(-1, 2)
+        points, _warp_mode = empirical_world_to_image(warp, xy.reshape(-1, 2))
         finite = np.all(np.isfinite(points), axis=1)
         in_bounds = (
             finite
@@ -578,15 +647,14 @@ def nearest_camera_masks(camera_models, camera_ids, world_points, output_shape, 
     return masks
 
 
-def draw_arena_overlay(frame, geometry, labels, fps, subtitle="floor fusion"):
+def draw_arena_overlay(frame, geometry, labels, fps, subtitle="floor fusion", floor_frame=None):
     overlay = frame.copy()
     height, width = frame.shape[:2]
     cv2.rectangle(overlay, (0, 0), (width - 1, height - 1), (255, 255, 255), 2)
     cv2.line(overlay, (width // 2, 0), (width // 2, height - 1), (90, 90, 90), 1)
     cv2.line(overlay, (0, height // 2), (width - 1, height // 2), (90, 90, 90), 1)
 
-    arena_width = float(geometry["measurements"]["arena_width_m"])
-    arena_length = float(geometry["measurements"]["arena_length_m"])
+    arena_width, arena_length = floor_spans(geometry, floor_frame)
 
     def world_to_panel(x, y):
         px = int(round((x + arena_width / 2.0) / arena_width * (width - 1)))
@@ -594,7 +662,7 @@ def draw_arena_overlay(frame, geometry, labels, fps, subtitle="floor fusion"):
         return px, py
 
     for name, spec in geometry.get("cameras", {}).items():
-        x, y, _z = spec["center_m"]
+        x, y, _z = camera_center_for_floor_frame(spec["center_m"], floor_frame)
         px, py = world_to_panel(x, y)
         cv2.circle(overlay, (px, py), 5, (0, 255, 255), -1)
         cv2.putText(overlay, name, (px + 7, py + 4), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 255, 255), 1)
@@ -613,11 +681,24 @@ def draw_arena_overlay(frame, geometry, labels, fps, subtitle="floor fusion"):
     return cv2.addWeighted(overlay, 0.78, frame, 0.22, 0)
 
 
-def fuse_top_down(display_frames, camera_maps, camera_ids, blend, nearest_masks=None, debug_camera=None):
+OWNER_COLORS = {
+    0: (40, 120, 255),
+    1: (40, 220, 120),
+    2: (255, 120, 40),
+    3: (220, 80, 220),
+}
+
+
+def fuse_top_down(display_frames, camera_maps, camera_ids, blend, nearest_masks=None, debug_camera=None, return_owner=False):
     first_map = next(iter(camera_maps.values()))
     output_shape = first_map["map_x"].shape
     accum = np.zeros((output_shape[0], output_shape[1], 3), dtype=np.float32)
     weights = np.zeros(output_shape, dtype=np.float32)
+    owner_weight = np.zeros(output_shape, dtype=np.float32)
+    owner_map = np.full(output_shape, -1, dtype=np.int16)
+    if blend == "strongest":
+        fused = np.zeros((output_shape[0], output_shape[1], 3), dtype=np.uint8)
+        best_weight = np.zeros(output_shape, dtype=np.float32)
 
     for camera_id in camera_ids:
         if debug_camera is not None and camera_id != debug_camera:
@@ -640,13 +721,57 @@ def fuse_top_down(display_frames, camera_maps, camera_ids, blend, nearest_masks=
             weight = nearest_masks[camera_id] * maps["valid"]
         else:
             weight = maps["valid"]
+        owns = weight > owner_weight
+        owner_map[owns] = camera_id
+        owner_weight[owns] = weight[owns]
+        if blend == "strongest":
+            take = weight > best_weight
+            fused[take] = warped[take]
+            best_weight[take] = weight[take]
+            continue
         accum += warped.astype(np.float32) * weight[:, :, None]
         weights += weight
+
+    if blend == "strongest":
+        return (fused, owner_map) if return_owner else fused
 
     fused = np.zeros_like(accum, dtype=np.uint8)
     valid = weights > 1e-6
     fused[valid] = np.clip(accum[valid] / weights[valid, None], 0, 255).astype(np.uint8)
-    return fused
+    return (fused, owner_map) if return_owner else fused
+
+
+def draw_owner_overlay(frame, owner_map, labels, alpha=0.22):
+    if owner_map is None:
+        return frame
+    overlay = frame.copy()
+    for camera_id, color in OWNER_COLORS.items():
+        overlay[owner_map == camera_id] = color
+    owned = owner_map >= 0
+    tinted = frame.copy()
+    tinted[owned] = cv2.addWeighted(overlay, alpha, frame, 1.0 - alpha, 0)[owned]
+
+    x = 10
+    y = frame.shape[0] - 30
+    legend_width = min(frame.shape[1] - 20, 184)
+    cv2.rectangle(tinted, (x - 4, y - 8), (x + legend_width, y + 18), (0, 0, 0), -1)
+    cv2.putText(tinted, "owner", (x, y + 9), cv2.FONT_HERSHEY_SIMPLEX, 0.34, (230, 230, 230), 1, cv2.LINE_AA)
+    cursor = x + 48
+    for camera_id in sorted(OWNER_COLORS):
+        color = OWNER_COLORS[camera_id]
+        cv2.rectangle(tinted, (cursor, y - 4), (cursor + 12, y + 8), color, -1)
+        cv2.putText(
+            tinted,
+            str(camera_id),
+            (cursor + 15, y + 8),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.34,
+            (255, 255, 255),
+            1,
+            cv2.LINE_AA,
+        )
+        cursor += 34
+    return tinted
 
 
 def make_source_grid(
@@ -667,6 +792,7 @@ def make_source_grid(
     camera_tuning=None,
     active_camera_ids=None,
     floor_warps=None,
+    floor_frame=None,
 ):
     active_camera_ids = set(active_camera_ids or [])
     tiles = []
@@ -683,6 +809,7 @@ def make_source_grid(
                     floor_warps,
                     geometry,
                     floor_z,
+                    floor_frame,
                 )
             elif draw_floor_overlay and camera_models is not None and geometry is not None and source_shape is not None:
                 tuning = (camera_tuning or {}).get(camera.device_index, {})
@@ -701,6 +828,7 @@ def make_source_grid(
                     floor_z,
                     camera_min_depth,
                     camera_max_angle,
+                    floor_frame,
                 )
             frame = resize_to_height(frame, source_height)
         label = labels.get(camera.device_index, f"cam_{camera.device_index}")
@@ -737,12 +865,13 @@ def main():
     labels = camera_position_labels(geometry)
     projection_offsets = load_projection_offsets(args.projection_offsets, args.no_projection_offsets)
     camera_tuning = load_camera_tuning(args.camera_tuning, args.no_camera_tuning)
-    floor_warps = load_floor_warps(args.floor_warp, args.no_floor_warp)
+    floor_warps, floor_frame = load_floor_warps(args.floor_warp, args.no_floor_warp)
     world_points, output_shape, _arena_width, _arena_length = make_world_grid(
         geometry,
         args.output_width,
         args.pixels_per_meter,
         args.floor_z,
+        floor_frame,
     )
 
     def rebuild_maps(pitch_offset_deg, min_camera_depth, max_view_angle_deg, point_transform):
@@ -881,13 +1010,14 @@ def main():
                 if camera.latest_frame is not None:
                     display_frames[camera.device_index] = rotate_frame(camera.latest_frame, args.rotation)
 
-            fused = fuse_top_down(
+            fused, owner_map = fuse_top_down(
                 display_frames,
                 camera_maps,
                 active_camera_ids,
                 args.blend,
                 nearest_masks,
                 None,
+                True,
             )
             frames += 1
             fps = frames / max(time.perf_counter() - started_at, 1e-9)
@@ -897,7 +1027,8 @@ def main():
                 f"{subtitle} pitch {current_pitch:+.0f} depth {current_min_depth*1000:.0f}mm "
                 f"angle {current_max_angle:.0f} {current_point_transform}"
             )
-            fused_overlay = draw_arena_overlay(fused, geometry, labels, fps, subtitle)
+            fused_display = draw_owner_overlay(fused, owner_map, labels) if args.owner_overlay else fused
+            fused_overlay = draw_arena_overlay(fused_display, geometry, labels, fps, subtitle, floor_frame)
 
             shown = fused_overlay
             if args.show_sources:
@@ -919,6 +1050,7 @@ def main():
                     camera_tuning,
                     active_camera_ids,
                     floor_warps,
+                    floor_frame,
                 )
                 shown = np.hstack([fit_to_tile(fused_overlay, fused_overlay.shape[1], source_grid.shape[0]), source_grid])
 
