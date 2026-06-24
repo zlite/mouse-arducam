@@ -1,0 +1,40 @@
+[
+  {
+    "group": "event_group_000_left_1_left_2_right_1_right_2",
+    "clips": [
+      {
+        "label": "left_1",
+        "camera_id": 0,
+        "video": "C:\\Users\\chris\\GitHub\\mouse-arducam\\mouse_events\\20260624_123431\\event_20260624_123431_554_left_1_cam_0\\left_1_cam_0.mp4",
+        "frames": 848,
+        "detected_frames": 0,
+        "processing_fps": 69.29360125399194
+      },
+      {
+        "label": "left_2",
+        "camera_id": 1,
+        "video": "C:\\Users\\chris\\GitHub\\mouse-arducam\\mouse_events\\20260624_123431\\event_20260624_123431_724_left_2_cam_1\\left_2_cam_1.mp4",
+        "frames": 843,
+        "detected_frames": 64,
+        "processing_fps": 65.68104685272947
+      },
+      {
+        "label": "right_1",
+        "camera_id": 3,
+        "video": "C:\\Users\\chris\\GitHub\\mouse-arducam\\mouse_events\\20260624_123431\\event_20260624_123432_082_right_1_cam_3\\right_1_cam_3.mp4",
+        "frames": 832,
+        "detected_frames": 107,
+        "processing_fps": 63.70093830486807
+      },
+      {
+        "label": "right_2",
+        "camera_id": 2,
+        "video": "C:\\Users\\chris\\GitHub\\mouse-arducam\\mouse_events\\20260624_123431\\event_20260624_123431_899_right_2_cam_2\\right_2_cam_2.mp4",
+        "frames": 837,
+        "detected_frames": 74,
+        "processing_fps": 65.88278588122928
+      }
+    ],
+    "keypoints_csv": "event_group_000_left_1_left_2_right_1_right_2_keypoints.csv"
+  }
+]
