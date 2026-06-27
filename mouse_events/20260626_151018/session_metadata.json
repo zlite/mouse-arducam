@@ -1,0 +1,14 @@
+{
+  "session": "20260626_151018",
+  "started_at_unix": 1782483018.1188195,
+  "started_at_local": "2026-06-26T15:10:18",
+  "recorder": "record_mouse_events.py",
+  "cameras": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "trigger_mode": "any",
+  "record_all_on_any": true
+}

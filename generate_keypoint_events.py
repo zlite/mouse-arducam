@@ -32,6 +32,14 @@ def parse_args():
     parser.add_argument("--min-tracking-confidence", type=float, default=0.25)
     parser.add_argument("--display-height", type=int, default=260)
     parser.add_argument("--group-window-sec", type=float, default=1.5)
+    parser.add_argument("--no-crop", action="store_true", help="Disable crop-around-event inference.")
+    parser.add_argument("--crop-margin", type=float, default=1.25, help="Extra bbox margin as a fraction of bbox size.")
+    parser.add_argument("--crop-min-size", type=int, default=260, help="Minimum square crop size in source pixels.")
+    parser.add_argument("--crop-inference-width", type=int, default=640, help="Inference width used for cropped regions.")
+    parser.add_argument("--no-full-frame-fallback", action="store_true", help="Disable full-frame inference when crop inference finds nothing.")
+    parser.add_argument("--contrast-enhance", action="store_true", help="Apply CLAHE contrast enhancement before inference.")
+    parser.add_argument("--no-contrast-enhance", action="store_false", dest="contrast_enhance", help=argparse.SUPPRESS)
+    parser.add_argument("--interpolate-max-gap", type=int, default=12, help="Fill missing keypoints across gaps up to this many frames.")
     return parser.parse_args()
 
 
@@ -157,15 +165,31 @@ def groups_from_summary(run_dir):
     return groups
 
 
-def resize_for_inference(frame, target_width):
-    if target_width <= 0 or frame.shape[1] <= target_width:
+def resize_for_inference(frame, target_width, allow_upscale=False):
+    if target_width <= 0 or (frame.shape[1] <= target_width and not allow_upscale):
         return frame
     scale = target_width / float(frame.shape[1])
-    return cv2.resize(frame, (target_width, max(1, int(round(frame.shape[0] * scale)))), interpolation=cv2.INTER_AREA)
+    interpolation = cv2.INTER_LINEAR if scale > 1.0 else cv2.INTER_AREA
+    return cv2.resize(frame, (target_width, max(1, int(round(frame.shape[0] * scale)))), interpolation=interpolation)
 
 
 def make_keypoint_fields():
-    fields = ["group", "camera_id", "label", "frame_index", "unix_time", "perf_time", "hand_index", "handedness", "hand_score"]
+    fields = [
+        "group",
+        "camera_id",
+        "label",
+        "frame_index",
+        "unix_time",
+        "perf_time",
+        "hand_index",
+        "handedness",
+        "hand_score",
+        "keypoint_source",
+        "crop_x",
+        "crop_y",
+        "crop_w",
+        "crop_h",
+    ]
     for name in LANDMARK_NAMES:
         fields.extend([f"{name}_x_px", f"{name}_y_px", f"{name}_z_rel", f"{name}_x_norm", f"{name}_y_norm"])
     return fields
@@ -180,15 +204,145 @@ def blank_keypoints(row):
         row[f"{name}_y_norm"] = ""
 
 
-def add_keypoints(row, landmarks, source_width, source_height, inference_width, inference_height):
-    scale_x = source_width / float(inference_width)
-    scale_y = source_height / float(inference_height)
+def add_keypoints(row, landmarks, source_width, source_height, inference_width, inference_height, crop_rect=None):
+    if crop_rect is None:
+        crop_x, crop_y, crop_w, crop_h = 0, 0, source_width, source_height
+    else:
+        crop_x, crop_y, crop_w, crop_h = crop_rect
+    scale_x = crop_w / float(inference_width)
+    scale_y = crop_h / float(inference_height)
     for name, landmark in zip(LANDMARK_NAMES, landmarks):
-        row[f"{name}_x_px"] = f"{landmark.x * inference_width * scale_x:.2f}"
-        row[f"{name}_y_px"] = f"{landmark.y * inference_height * scale_y:.2f}"
+        x_px = crop_x + landmark.x * inference_width * scale_x
+        y_px = crop_y + landmark.y * inference_height * scale_y
+        row[f"{name}_x_px"] = f"{x_px:.2f}"
+        row[f"{name}_y_px"] = f"{y_px:.2f}"
         row[f"{name}_z_rel"] = f"{landmark.z:.6f}"
-        row[f"{name}_x_norm"] = f"{landmark.x:.6f}"
-        row[f"{name}_y_norm"] = f"{landmark.y:.6f}"
+        row[f"{name}_x_norm"] = f"{x_px / float(source_width):.6f}"
+        row[f"{name}_y_norm"] = f"{y_px / float(source_height):.6f}"
+
+
+def make_base_keypoint_row(group, clip, frame_row, processed_frames, hand_index=0):
+    return {
+        "group": group["name"],
+        "camera_id": clip["camera_id"],
+        "label": clip["label"],
+        "frame_index": frame_row.get("frame_index", processed_frames),
+        "unix_time": frame_row.get("unix_time", ""),
+        "perf_time": frame_row.get("perf_time", ""),
+        "hand_index": hand_index,
+        "handedness": "",
+        "hand_score": "",
+        "keypoint_source": "",
+        "crop_x": "",
+        "crop_y": "",
+        "crop_w": "",
+        "crop_h": "",
+    }
+
+
+def parse_bbox(frame_row):
+    try:
+        x = int(float(frame_row.get("bbox_x", "")))
+        y = int(float(frame_row.get("bbox_y", "")))
+        w = int(float(frame_row.get("bbox_w", "")))
+        h = int(float(frame_row.get("bbox_h", "")))
+    except Exception:
+        return None
+    if w <= 1 or h <= 1:
+        return None
+    return x, y, w, h
+
+
+def expanded_crop_rect(bbox, source_width, source_height, args, previous_rect=None):
+    if bbox is None:
+        return previous_rect
+    x, y, w, h = bbox
+    side = max(w * (1.0 + args.crop_margin), h * (1.0 + args.crop_margin), float(args.crop_min_size))
+    cx = x + w * 0.5
+    cy = y + h * 0.5
+    left = int(round(cx - side * 0.5))
+    top = int(round(cy - side * 0.5))
+    right = int(round(cx + side * 0.5))
+    bottom = int(round(cy + side * 0.5))
+    left = max(0, min(left, source_width - 2))
+    top = max(0, min(top, source_height - 2))
+    right = max(left + 2, min(right, source_width))
+    bottom = max(top + 2, min(bottom, source_height))
+    return left, top, right - left, bottom - top
+
+
+def enhance_for_inference(frame):
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    enhanced = clahe.apply(gray)
+    enhanced = cv2.GaussianBlur(enhanced, (0, 0), 0.6)
+    return cv2.cvtColor(enhanced, cv2.COLOR_GRAY2BGR)
+
+
+def prepare_inference_frame(frame, frame_row, source_width, source_height, args, previous_crop):
+    crop_rect = None
+    if not args.no_crop:
+        crop_rect = expanded_crop_rect(parse_bbox(frame_row), source_width, source_height, args, previous_crop)
+    if crop_rect is None:
+        inference = resize_for_inference(frame, args.inference_width)
+        crop_rect = (0, 0, source_width, source_height)
+    else:
+        x, y, w, h = crop_rect
+        inference = frame[y : y + h, x : x + w]
+        inference = resize_for_inference(inference, args.crop_inference_width, allow_upscale=True)
+    if args.contrast_enhance:
+        inference = enhance_for_inference(inference)
+    return inference, crop_rect
+
+
+def row_has_points(row):
+    return row.get(f"{LANDMARK_NAMES[0]}_x_px", "") != ""
+
+
+def interpolate_keypoint_rows(rows, max_gap):
+    if max_gap <= 0:
+        return rows, 0
+    by_track = {}
+    for index, row in enumerate(rows):
+        if row_has_points(row):
+            key = (row["camera_id"], row["label"], row["hand_index"])
+            by_track.setdefault(key, []).append(index)
+
+    filled = 0
+    numeric_suffixes = ("x_px", "y_px", "z_rel", "x_norm", "y_norm")
+    for indices in by_track.values():
+        for left_index, right_index in zip(indices, indices[1:]):
+            left = rows[left_index]
+            right = rows[right_index]
+            try:
+                left_frame = int(left["frame_index"])
+                right_frame = int(right["frame_index"])
+            except Exception:
+                continue
+            gap = right_frame - left_frame - 1
+            if gap <= 0 or gap > max_gap:
+                continue
+            for row_index in range(left_index + 1, right_index):
+                row = rows[row_index]
+                if row_has_points(row):
+                    continue
+                try:
+                    frame_index = int(row["frame_index"])
+                except Exception:
+                    continue
+                alpha = (frame_index - left_frame) / float(right_frame - left_frame)
+                for name in LANDMARK_NAMES:
+                    for suffix in numeric_suffixes:
+                        field = f"{name}_{suffix}"
+                        if left.get(field, "") == "" or right.get(field, "") == "":
+                            continue
+                        value = float(left[field]) * (1.0 - alpha) + float(right[field]) * alpha
+                        row[field] = f"{value:.6f}" if suffix in ("z_rel", "x_norm", "y_norm") else f"{value:.2f}"
+                row["handedness"] = left.get("handedness") or right.get("handedness", "")
+                row["hand_score"] = ""
+                row["keypoint_source"] = "interpolated"
+                filled += 1
+    return rows, filled
 
 
 def build_landmarker(mp, args):
@@ -226,76 +380,108 @@ def generate_group(mp, group, run_dir, args):
     keypoint_path = run_dir / f"{group['name']}_keypoints.csv"
     summary = {"group": group["name"], "clips": []}
     fields = make_keypoint_fields()
+    output_rows = []
+
+    for clip in sorted(group["clips"], key=lambda item: POSITION_ORDER.index(item["label"]) if item["label"] in POSITION_ORDER else 99):
+        cap = cv2.VideoCapture(str(clip["video"]))
+        if not cap.isOpened():
+            continue
+        source_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        source_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        detected_frames = 0
+        processed_frames = 0
+        base_perf = None
+        last_ms = -1
+        last_crop = None
+        started = time.perf_counter()
+        clip_rows = []
+        with build_landmarker(mp, args) as crop_landmarker, build_landmarker(mp, args) as full_landmarker:
+            while True:
+                ok, frame = cap.read()
+                if not ok or processed_frames >= len(clip["frame_rows"]):
+                    break
+                if processed_frames and processed_frames % 120 == 0:
+                    print(f"  {group['name']} {clip['label']} cam {clip['camera_id']}: processed {processed_frames} frames...", flush=True)
+                frame_row = clip["frame_rows"][processed_frames]
+                perf = float(frame_row.get("perf_time") or processed_frames / 30.0)
+                if base_perf is None:
+                    base_perf = perf
+                timestamp_ms = int(round((perf - base_perf) * 1000.0))
+                if timestamp_ms <= last_ms:
+                    timestamp_ms = last_ms + 1
+                last_ms = timestamp_ms
+
+                inference, crop_rect = prepare_inference_frame(frame, frame_row, source_width, source_height, args, last_crop)
+                if crop_rect != (0, 0, source_width, source_height):
+                    last_crop = crop_rect
+                rgb = cv2.cvtColor(inference, cv2.COLOR_BGR2RGB)
+                result = crop_landmarker.detect_for_video(mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb), timestamp_ms)
+                hands = result.hand_landmarks or []
+                handedness = result.handedness or []
+                keypoint_source = "detected_crop" if crop_rect != (0, 0, source_width, source_height) else "detected_full"
+
+                if not hands and crop_rect != (0, 0, source_width, source_height) and not args.no_full_frame_fallback:
+                    inference = resize_for_inference(frame, args.inference_width)
+                    if args.contrast_enhance:
+                        inference = enhance_for_inference(inference)
+                    crop_rect = (0, 0, source_width, source_height)
+                    rgb = cv2.cvtColor(inference, cv2.COLOR_BGR2RGB)
+                    result = full_landmarker.detect_for_video(mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb), timestamp_ms)
+                    hands = result.hand_landmarks or []
+                    handedness = result.handedness or []
+                    keypoint_source = "detected_full_fallback"
+
+                if hands:
+                    detected_frames += 1
+
+                if not hands:
+                    row = make_base_keypoint_row(group, clip, frame_row, processed_frames, 0)
+                    blank_keypoints(row)
+                    row["crop_x"], row["crop_y"], row["crop_w"], row["crop_h"] = [str(int(value)) for value in crop_rect]
+                    clip_rows.append(row)
+
+                for hand_index, landmarks in enumerate(hands):
+                    category_name = ""
+                    category_score = ""
+                    if hand_index < len(handedness) and handedness[hand_index]:
+                        category_name = handedness[hand_index][0].category_name
+                        category_score = f"{handedness[hand_index][0].score:.6f}"
+                    row = make_base_keypoint_row(group, clip, frame_row, processed_frames, hand_index)
+                    row["handedness"] = category_name
+                    row["hand_score"] = category_score
+                    row["keypoint_source"] = keypoint_source
+                    row["crop_x"], row["crop_y"], row["crop_w"], row["crop_h"] = [str(int(value)) for value in crop_rect]
+                    blank_keypoints(row)
+                    add_keypoints(row, landmarks, source_width, source_height, inference.shape[1], inference.shape[0], crop_rect)
+                    clip_rows.append(row)
+                processed_frames += 1
+        cap.release()
+        clip_rows, interpolated_frames = interpolate_keypoint_rows(clip_rows, args.interpolate_max_gap)
+        output_rows.extend(clip_rows)
+        elapsed = max(time.perf_counter() - started, 1e-9)
+        summary["clips"].append(
+            {
+                "label": clip["label"],
+                "camera_id": clip["camera_id"],
+                "video": str(clip["video"]),
+                "frames": processed_frames,
+                "detected_frames": detected_frames,
+                "interpolated_frames": interpolated_frames,
+                "processing_fps": processed_frames / elapsed,
+                "crop_enabled": not args.no_crop,
+                "contrast_enhance": bool(args.contrast_enhance),
+            }
+        )
+        print(
+            f"{group['name']} {clip['label']} cam {clip['camera_id']}: "
+            f"{detected_frames}/{processed_frames} detected, {interpolated_frames} interpolated",
+            flush=True,
+        )
 
     with keypoint_path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields)
         writer.writeheader()
-        for clip in sorted(group["clips"], key=lambda item: POSITION_ORDER.index(item["label"]) if item["label"] in POSITION_ORDER else 99):
-            cap = cv2.VideoCapture(str(clip["video"]))
-            if not cap.isOpened():
-                continue
-            source_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-            source_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-            detected_frames = 0
-            processed_frames = 0
-            base_perf = None
-            last_ms = -1
-            started = time.perf_counter()
-            with build_landmarker(mp, args) as landmarker:
-                while True:
-                    ok, frame = cap.read()
-                    if not ok or processed_frames >= len(clip["frame_rows"]):
-                        break
-                    frame_row = clip["frame_rows"][processed_frames]
-                    perf = float(frame_row.get("perf_time") or processed_frames / 30.0)
-                    if base_perf is None:
-                        base_perf = perf
-                    timestamp_ms = int(round((perf - base_perf) * 1000.0))
-                    if timestamp_ms <= last_ms:
-                        timestamp_ms = last_ms + 1
-                    last_ms = timestamp_ms
-
-                    inference = resize_for_inference(frame, args.inference_width)
-                    rgb = cv2.cvtColor(inference, cv2.COLOR_BGR2RGB)
-                    result = landmarker.detect_for_video(mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb), timestamp_ms)
-                    hands = result.hand_landmarks or []
-                    handedness = result.handedness or []
-                    if hands:
-                        detected_frames += 1
-                    for hand_index, landmarks in enumerate(hands):
-                        category_name = ""
-                        category_score = ""
-                        if hand_index < len(handedness) and handedness[hand_index]:
-                            category_name = handedness[hand_index][0].category_name
-                            category_score = f"{handedness[hand_index][0].score:.6f}"
-                        row = {
-                            "group": group["name"],
-                            "camera_id": clip["camera_id"],
-                            "label": clip["label"],
-                            "frame_index": frame_row.get("frame_index", processed_frames),
-                            "unix_time": frame_row.get("unix_time", ""),
-                            "perf_time": frame_row.get("perf_time", ""),
-                            "hand_index": hand_index,
-                            "handedness": category_name,
-                            "hand_score": category_score,
-                        }
-                        blank_keypoints(row)
-                        add_keypoints(row, landmarks, source_width, source_height, inference.shape[1], inference.shape[0])
-                        writer.writerow(row)
-                    processed_frames += 1
-            cap.release()
-            elapsed = max(time.perf_counter() - started, 1e-9)
-            summary["clips"].append(
-                {
-                    "label": clip["label"],
-                    "camera_id": clip["camera_id"],
-                    "video": str(clip["video"]),
-                    "frames": processed_frames,
-                    "detected_frames": detected_frames,
-                    "processing_fps": processed_frames / elapsed,
-                }
-            )
-            print(f"{group['name']} {clip['label']} cam {clip['camera_id']}: {detected_frames}/{processed_frames} frames with keypoints", flush=True)
+        writer.writerows(output_rows)
 
     summary["keypoints_csv"] = keypoint_path.name
     return summary

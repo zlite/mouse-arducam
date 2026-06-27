@@ -1,0 +1,9 @@
+{
+  "camera_id": 1,
+  "label": "left_2",
+  "video": "left_2_cam_1.mp4",
+  "frames_csv": "left_2_cam_1_frames.csv",
+  "fps": 30.0,
+  "started_at_unix": 1782483902.2027996,
+  "recorder": "threaded_per_camera_queue"
+}

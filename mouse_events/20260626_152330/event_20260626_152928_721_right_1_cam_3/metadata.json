@@ -1,0 +1,9 @@
+{
+  "camera_id": 3,
+  "label": "right_1",
+  "video": "right_1_cam_3.mp4",
+  "frames_csv": "right_1_cam_3_frames.csv",
+  "fps": 30.0,
+  "started_at_unix": 1782484168.7236686,
+  "recorder": "threaded_per_camera_queue"
+}
