@@ -1,0 +1,131 @@
+{
+  "units": "meters",
+  "note": "Edit board origins/axes and id ranges to match the printed AprilTag boards fixed in the enclosure.",
+  "camera_boards": {
+    "front": [
+      "front"
+    ],
+    "back": [
+      "back"
+    ],
+    "side": [
+      "side_1",
+      "side_2"
+    ],
+    "top": [
+      "top"
+    ]
+  },
+  "boards": {
+    "front": {
+      "first_id": 0,
+      "markers_x": 4,
+      "markers_y": 3,
+      "marker_m": 0.018,
+      "separation_m": 0.006,
+      "origin_m": [
+        -0.045,
+        -0.19,
+        0.03
+      ],
+      "x_axis_m": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "y_axis_m": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "back": {
+      "first_id": 50,
+      "markers_x": 4,
+      "markers_y": 3,
+      "marker_m": 0.018,
+      "separation_m": 0.006,
+      "origin_m": [
+        0.045,
+        0.19,
+        0.03
+      ],
+      "x_axis_m": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "y_axis_m": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "side_1": {
+      "first_id": 100,
+      "markers_x": 4,
+      "markers_y": 3,
+      "marker_m": 0.018,
+      "separation_m": 0.006,
+      "origin_m": [
+        -0.145,
+        -0.045,
+        0.03
+      ],
+      "x_axis_m": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "y_axis_m": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "side_2": {
+      "first_id": 150,
+      "markers_x": 4,
+      "markers_y": 3,
+      "marker_m": 0.018,
+      "separation_m": 0.006,
+      "origin_m": [
+        0.145,
+        0.045,
+        0.03
+      ],
+      "x_axis_m": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "y_axis_m": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "top": {
+      "first_id": 200,
+      "markers_x": 5,
+      "markers_y": 4,
+      "marker_m": 0.018,
+      "separation_m": 0.006,
+      "origin_m": [
+        -0.06,
+        -0.045,
+        0.0
+      ],
+      "x_axis_m": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "y_axis_m": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  }
+}

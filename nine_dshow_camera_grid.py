@@ -1,7 +1,9 @@
 import argparse
+import json
 import math
 import threading
 import time
+from pathlib import Path
 
 import cv2
 import numpy as np
@@ -11,6 +13,21 @@ from dshow_arducam_viewer import find_format_index, fit_to_tile, rotate_frame
 
 
 WINDOW_NAME = "Nine DirectShow Cameras"
+POSITION_SLOTS = [
+    ("front_1", "Front 1"),
+    ("front_2", "Front 2"),
+    ("back_1", "Back 1"),
+    ("back_2", "Back 2"),
+    ("side_1", "Side 1"),
+    ("side_2", "Side 2"),
+    ("top_1", "Top 1"),
+    ("top_2", "Top 2"),
+    ("top_3", "Top 3"),
+]
+POSITION_LABELS = dict(POSITION_SLOTS)
+POSITION_ORDER = {position: index for index, (position, _) in enumerate(POSITION_SLOTS)}
+POSITION_PREFIXES = {"f": "front", "b": "back", "s": "side", "t": "top"}
+POSITION_LIMITS = {"front": 2, "back": 2, "side": 2, "top": 3}
 
 
 def parse_args():
@@ -25,6 +42,7 @@ def parse_args():
     parser.add_argument("--scan", action="store_true")
     parser.add_argument("--startup-timeout", type=float, default=4.0)
     parser.add_argument("--duration", type=float, default=0.0, help="Stop after this many seconds. 0 runs until q/Esc.")
+    parser.add_argument("--positions-config", type=Path, default=Path("nine_dshow_camera_grid_positions.json"))
     return parser.parse_args()
 
 
@@ -95,25 +113,68 @@ def resize_to_height(frame, target_height):
     return cv2.resize(frame, (target_width, target_height), interpolation=cv2.INTER_AREA)
 
 
-def draw_overlay(frame, camera_id, fps):
+def load_position_assignments(path):
+    if not path.exists():
+        return {}
+
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        print(f"could not load {path}: {exc}", flush=True)
+        return {}
+
+    raw_assignments = data.get("assignments", data)
+    assignments = {}
+    for camera_id, position in raw_assignments.items():
+        if position in POSITION_LABELS:
+            assignments[int(camera_id)] = position
+    return assignments
+
+
+def save_position_assignments(path, assignments):
+    data = {
+        "positions": [{"key": key, "label": label} for key, label in POSITION_SLOTS],
+        "assignments": {str(camera_id): position for camera_id, position in sorted(assignments.items())},
+    }
+    path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+
+
+def arrange_cameras(cameras, assignments):
+    return sorted(
+        cameras,
+        key=lambda camera: (
+            POSITION_ORDER.get(assignments.get(camera.camera_id), len(POSITION_ORDER)),
+            camera.camera_id,
+        ),
+    )
+
+
+def draw_overlay(frame, camera_id, fps, position, tile_number, selected):
     frame = frame.copy()
-    text = f"cam {camera_id} | {fps:4.1f} FPS"
-    cv2.rectangle(frame, (6, 6), (min(frame.shape[1] - 6, 250), 36), (0, 0, 0), thickness=-1)
-    cv2.putText(frame, text, (14, 28), cv2.FONT_HERSHEY_SIMPLEX, 0.62, (255, 255, 255), 2, cv2.LINE_AA)
+    label = POSITION_LABELS.get(position, "Unassigned")
+    text = f"{tile_number}: cam {camera_id} | {label} | {fps:4.1f} FPS"
+    cv2.rectangle(frame, (6, 6), (frame.shape[1] - 6, 38), (0, 0, 0), thickness=-1)
+    cv2.putText(frame, text, (14, 29), cv2.FONT_HERSHEY_SIMPLEX, 0.58, (255, 255, 255), 2, cv2.LINE_AA)
+    if selected:
+        cv2.rectangle(frame, (2, 2), (frame.shape[1] - 3, frame.shape[0] - 3), (0, 255, 255), thickness=4)
     return frame
 
 
-def make_grid(cameras, cols, display_height, rotation):
+def make_grid(cameras, assignments, selected_camera_id, cols, display_height, rotation):
     entries = []
-    for camera in cameras:
+    display_cameras = arrange_cameras(cameras, assignments)
+    for index, camera in enumerate(display_cameras, start=1):
         frame = camera.get_frame()
+        position = assignments.get(camera.camera_id)
+        selected = camera.camera_id == selected_camera_id
         if frame is None:
             frame = np.zeros((display_height, int(display_height * 16 / 9), 3), dtype=np.uint8)
             cv2.putText(frame, f"cam {camera.camera_id} waiting", (18, 42), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (180, 180, 180), 2)
+            frame = draw_overlay(frame, camera.camera_id, camera.average_fps(), position, index, selected)
         else:
             frame = rotate_frame(frame, rotation // 90)
             frame = resize_to_height(frame, display_height)
-            frame = draw_overlay(frame, camera.camera_id, camera.average_fps())
+            frame = draw_overlay(frame, camera.camera_id, camera.average_fps(), position, index, selected)
         entries.append(frame)
 
     tile_height = max(frame.shape[0] for frame in entries)
@@ -125,6 +186,70 @@ def make_grid(cameras, cols, display_height, rotation):
             row_tiles.append(np.zeros((tile_height, tile_width, 3), dtype=np.uint8))
         rows.append(np.hstack(row_tiles))
     return np.vstack(rows)
+
+
+def assign_position(assignments, camera_id, prefix, number):
+    position = f"{prefix}_{number}"
+    for assigned_camera_id, assigned_position in list(assignments.items()):
+        if assigned_camera_id != camera_id and assigned_position == position:
+            del assignments[assigned_camera_id]
+    assignments[camera_id] = position
+    return position
+
+
+def print_controls():
+    print("controls:", flush=True)
+    print("  1-9: select the visible tile/camera", flush=True)
+    print("  f/b/s/t then 1-3: assign Front/Back/Side/Top position", flush=True)
+    print("  u: unassign selected camera", flush=True)
+    print("  r: clear all assignments", flush=True)
+    print("  q/Esc: quit", flush=True)
+
+
+def handle_key(key, display_cameras, selected_camera_id, pending_prefix, assignments, config_path):
+    if key in (27, ord("q")):
+        return selected_camera_id, pending_prefix, True
+
+    if ord("1") <= key <= ord("9"):
+        number = key - ord("0")
+        if pending_prefix is not None and selected_camera_id is not None:
+            limit = POSITION_LIMITS[pending_prefix]
+            if number <= limit:
+                position = assign_position(assignments, selected_camera_id, pending_prefix, number)
+                save_position_assignments(config_path, assignments)
+                print(f"assigned camera {selected_camera_id} to {POSITION_LABELS[position]}", flush=True)
+            else:
+                print(f"{pending_prefix.title()} only has positions 1-{limit}", flush=True)
+            return selected_camera_id, None, False
+
+        if number <= len(display_cameras):
+            selected_camera_id = display_cameras[number - 1].camera_id
+            print(f"selected camera {selected_camera_id}", flush=True)
+        return selected_camera_id, None, False
+
+    char = chr(key).lower() if 0 <= key < 256 else ""
+    if char in POSITION_PREFIXES:
+        if selected_camera_id is None:
+            print("select a camera tile with 1-9 first", flush=True)
+            return selected_camera_id, None, False
+        pending_prefix = POSITION_PREFIXES[char]
+        print(f"assign camera {selected_camera_id} to {pending_prefix.title()} position: press 1-{POSITION_LIMITS[pending_prefix]}", flush=True)
+        return selected_camera_id, pending_prefix, False
+
+    if char == "u" and selected_camera_id is not None:
+        if selected_camera_id in assignments:
+            del assignments[selected_camera_id]
+            save_position_assignments(config_path, assignments)
+            print(f"unassigned camera {selected_camera_id}", flush=True)
+        return selected_camera_id, None, False
+
+    if char == "r":
+        assignments.clear()
+        save_position_assignments(config_path, assignments)
+        print("cleared all camera position assignments", flush=True)
+        return selected_camera_id, None, False
+
+    return selected_camera_id, pending_prefix, False
 
 
 def main():
@@ -139,6 +264,9 @@ def main():
 
     cols = max(1, args.cols or math.ceil(math.sqrt(len(args.cameras))))
     cameras = []
+    assignments = load_position_assignments(args.positions_config)
+    selected_camera_id = None
+    pending_prefix = None
     try:
         for camera_id in args.cameras:
             print(f"starting camera {camera_id}...", flush=True)
@@ -157,13 +285,24 @@ def main():
             time.sleep(0.05)
 
         cv2.namedWindow(WINDOW_NAME, cv2.WINDOW_NORMAL)
+        print_controls()
         started_at = time.perf_counter()
         while True:
-            grid = make_grid(cameras, cols, args.display_height, args.rotation)
+            display_cameras = arrange_cameras(cameras, assignments)
+            grid = make_grid(cameras, assignments, selected_camera_id, cols, args.display_height, args.rotation)
             cv2.imshow(WINDOW_NAME, grid)
             key = cv2.waitKey(1) & 0xFF
-            if key in (27, ord("q")):
-                break
+            if key != 255:
+                selected_camera_id, pending_prefix, should_quit = handle_key(
+                    key,
+                    display_cameras,
+                    selected_camera_id,
+                    pending_prefix,
+                    assignments,
+                    args.positions_config,
+                )
+                if should_quit:
+                    break
             if args.duration > 0 and time.perf_counter() - started_at >= args.duration:
                 break
     finally:

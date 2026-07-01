@@ -1,0 +1,32 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Generated camera/frame capture folders
+aruco_frames/
+background_frames/
+calibration_frames/
+floor_checkerboard_frames/
+left_wall_check/
+left_wall_frames/
+right_wall_check/
+right_wall_frames/
+timer_sync_captures/
+
+# Generated event/review output folders
+hand_keypoints/
+keypoint_events/
+mouse_events/
+
+# Large generated media/capture artifacts
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.jpg
+*.jpeg
+*.png
+*.bmp
+
+# Local runtime locks
+*.lock

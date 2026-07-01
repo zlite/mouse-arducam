@@ -1,0 +1,51 @@
+{
+  "positions": [
+    {
+      "key": "front_1",
+      "label": "Front 1"
+    },
+    {
+      "key": "front_2",
+      "label": "Front 2"
+    },
+    {
+      "key": "back_1",
+      "label": "Back 1"
+    },
+    {
+      "key": "back_2",
+      "label": "Back 2"
+    },
+    {
+      "key": "side_1",
+      "label": "Side 1"
+    },
+    {
+      "key": "side_2",
+      "label": "Side 2"
+    },
+    {
+      "key": "top_1",
+      "label": "Top 1"
+    },
+    {
+      "key": "top_2",
+      "label": "Top 2"
+    },
+    {
+      "key": "top_3",
+      "label": "Top 3"
+    }
+  ],
+  "assignments": {
+    "0": "side_1",
+    "1": "top_3",
+    "2": "back_1",
+    "3": "top_1",
+    "4": "front_1",
+    "5": "side_2",
+    "6": "front_2",
+    "8": "top_2",
+    "9": "back_2"
+  }
+}
