@@ -15,17 +15,24 @@ from dshow_arducam_viewer import find_format_index, fit_to_tile, get_formats, re
 
 
 WINDOW_NAME = "Timer Sync Capture"
+DEFAULT_TIMER_CAMERAS = [1, 4, 6, 7, 9]
 
 
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Display ten DirectShow cameras and RAM-capture a short synchronized timer test on r."
     )
-    parser.add_argument("--cameras", type=int, nargs="+", default=None, help="Defaults to the first ten Arducam/USB devices.")
+    parser.add_argument(
+        "--cameras",
+        type=int,
+        nargs="+",
+        default=None,
+        help=f"Defaults to timer-facing cameras: {' '.join(str(camera) for camera in DEFAULT_TIMER_CAMERAS)}.",
+    )
     parser.add_argument("--width", type=int, default=1280)
     parser.add_argument("--height", type=int, default=800)
     parser.add_argument("--format", default="MJPG")
-    parser.add_argument("--duration", type=float, default=1.0, help="Seconds to hold frames in RAM after r is pressed.")
+    parser.add_argument("--duration", type=float, default=2.0, help="Seconds to hold frames in RAM after r is pressed.")
     parser.add_argument(
         "--review-time",
         type=float,
@@ -413,6 +420,8 @@ def make_grid(cameras, row_counts, display_height, rotation_steps, state, remain
 
 
 def select_default_cameras(devices):
+    if all(camera_id < len(devices) for camera_id in DEFAULT_TIMER_CAMERAS):
+        return list(DEFAULT_TIMER_CAMERAS)
     arducams = [index for index, device in enumerate(devices) if "arducam" in device.lower()]
     exact_usb = [index for index, device in enumerate(devices) if device == "USB Camera"]
     likely_usb = [
@@ -420,7 +429,7 @@ def select_default_cameras(devices):
         for index, device in enumerate(devices)
         if "usb" in device.lower() or "arducam" in device.lower()
     ]
-    return (arducams or exact_usb or likely_usb)[:10]
+    return (arducams or exact_usb or likely_usb)[:5]
 
 
 def main():

@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import re
 import time
 from pathlib import Path
 
@@ -27,20 +28,20 @@ DEFAULT_CAMERA_BOARDS = {
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Estimate camera extrinsics from fixed AprilTag boards and 9-grid camera position assignments."
+        description="Estimate camera extrinsics from fixed ArUco/AprilTag boards and 9-grid camera position assignments."
     )
     parser.add_argument("--cameras", type=int, nargs="+", default=None, help="Defaults to assigned cameras.")
     parser.add_argument("--format", default="MJPG")
     parser.add_argument("--width", type=int, default=1280)
-    parser.add_argument("--height", type=int, default=720)
+    parser.add_argument("--height", type=int, default=800)
     parser.add_argument("--rotation", type=int, choices=(0, 90, 180, 270), default=180)
     parser.add_argument("--intrinsics", type=Path, default=Path("camera_intrinsics.npz"))
     parser.add_argument("--geometry", type=Path, default=Path("manual_rig_geometry.json"))
     parser.add_argument("--positions-config", type=Path, default=Path("nine_dshow_camera_grid_positions.json"))
-    parser.add_argument("--board-config", type=Path, default=Path("apriltag_extrinsics_boards.json"))
-    parser.add_argument("--output", type=Path, default=Path("camera_poses_apriltag.npz"))
-    parser.add_argument("--annotated", type=Path, default=Path("apriltag_extrinsics_detected.jpg"))
-    parser.add_argument("--dictionary", default="DICT_APRILTAG_36h11")
+    parser.add_argument("--board-config", type=Path, default=Path("composite_aruco_board_config.json"))
+    parser.add_argument("--output", type=Path, default=Path("camera_poses_aruco.npz"))
+    parser.add_argument("--annotated", type=Path, default=Path("aruco_extrinsics_detected.jpg"))
+    parser.add_argument("--dictionary", default="DICT_6X6_250")
     parser.add_argument("--frames", type=int, default=30)
     parser.add_argument("--warmup", type=float, default=1.0)
     parser.add_argument("--interval", type=float, default=0.05)
@@ -76,7 +77,7 @@ def write_board_template(path, geometry_path):
 
     template = {
         "units": "meters",
-        "note": "Edit board origins/axes and id ranges to match the printed AprilTag boards fixed in the enclosure.",
+        "note": "Edit board origins/axes and ID ranges/layouts to match the printed marker boards fixed in the enclosure.",
         "camera_boards": DEFAULT_CAMERA_BOARDS,
         "boards": {
             "front": {
@@ -158,15 +159,60 @@ def normalize(vector, name):
     return vector / norm
 
 
-def board_marker_world_corners(board, marker_id):
-    local_id = int(marker_id) - int(board["first_id"])
+def parse_marker_id(value):
+    if value is None:
+        return None
+    if isinstance(value, int):
+        return value
+    match = re.search(r"\d+", str(value))
+    if not match:
+        return None
+    return int(match.group(0))
+
+
+def normalized_id_grid(board):
+    grid = board.get("id_grid")
+    if grid is None:
+        return None
+    return [[parse_marker_id(cell) for cell in row] for row in grid]
+
+
+def marker_grid_position(board, marker_id):
+    marker_id = int(marker_id)
+    grid = normalized_id_grid(board)
+    if grid is not None:
+        for row, row_ids in enumerate(grid):
+            for col, grid_marker_id in enumerate(row_ids):
+                if grid_marker_id == marker_id:
+                    return row, col
+        return None
+
+    local_id = marker_id - int(board["first_id"])
     markers_x = int(board["markers_x"])
     markers_y = int(board["markers_y"])
     if local_id < 0 or local_id >= markers_x * markers_y:
         return None
+    return local_id // markers_x, local_id % markers_x
 
-    row = local_id // markers_x
-    col = local_id % markers_x
+
+def board_marker_ids(board):
+    grid = normalized_id_grid(board)
+    if grid is not None:
+        for row in grid:
+            for marker_id in row:
+                if marker_id is not None:
+                    yield marker_id
+        return
+
+    count = int(board["markers_x"]) * int(board["markers_y"])
+    yield from range(int(board["first_id"]), int(board["first_id"]) + count)
+
+
+def board_marker_world_corners(board, marker_id):
+    position = marker_grid_position(board, marker_id)
+    if position is None:
+        return None
+    row, col = position
     marker_m = float(board["marker_m"])
     pitch = marker_m + float(board.get("separation_m", 0.0))
     origin = np.asarray(board["origin_m"], dtype=np.float64).reshape(3)
@@ -176,14 +222,16 @@ def board_marker_world_corners(board, marker_id):
     y0 = row * pitch
 
     local_corners = [(x0, y0), (x0 + marker_m, y0), (x0 + marker_m, y0 + marker_m), (x0, y0 + marker_m)]
+    corner_shift = int(board.get("corner_shift", 0)) % 4
+    if corner_shift:
+        local_corners = local_corners[corner_shift:] + local_corners[:corner_shift]
     return np.asarray([origin + x * x_axis + y * y_axis for x, y in local_corners], dtype=np.float32)
 
 
 def build_marker_lookup(board_config):
     marker_lookup = {}
     for board_name, board in board_config["boards"].items():
-        count = int(board["markers_x"]) * int(board["markers_y"])
-        for marker_id in range(int(board["first_id"]), int(board["first_id"]) + count):
+        for marker_id in board_marker_ids(board):
             if marker_id in marker_lookup:
                 raise ValueError(f"Marker id {marker_id} appears on more than one board")
             marker_lookup[marker_id] = board_name
@@ -445,7 +493,7 @@ def main():
             )
             detections = latest_detections.get(camera_id, [])
             if len(object_points) < args.min_corners:
-                print(f"cam {camera_id}: not enough AprilTag corners ({len(object_points)}/{args.min_corners})", flush=True)
+                print(f"cam {camera_id}: not enough marker corners ({len(object_points)}/{args.min_corners})", flush=True)
                 if camera_id in latest_frames:
                     annotated.append(annotate(latest_frames[camera_id], camera_id, assignments[camera_id], detections))
                 continue
@@ -507,7 +555,7 @@ def main():
             print(f"Wrote {args.output}")
             print(f"Wrote {summary_path}")
         else:
-            print("No camera had enough AprilTag corners to save extrinsics.", flush=True)
+            print("No camera had enough marker corners to save extrinsics.", flush=True)
 
         if annotated:
             write_contact_sheet(args.annotated, annotated)

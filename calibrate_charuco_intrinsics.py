@@ -11,16 +11,21 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Calibrate camera intrinsics from ChArUco frame captures.")
     parser.add_argument("--frames-dir", type=Path, default=Path("calibration_frames"))
     parser.add_argument("--output", type=Path, default=Path("camera_intrinsics.npz"))
+    parser.add_argument("--dictionary", default="DICT_5X5_100")
     parser.add_argument("--squares-x", type=int, default=7)
     parser.add_argument("--squares-y", type=int, default=5)
     parser.add_argument("--square-mm", type=float, default=30.0)
     parser.add_argument("--marker-mm", type=float, default=22.0)
     parser.add_argument("--min-corners", type=int, default=8)
+    parser.add_argument("--model-camera", default=None, help="Camera ID whose solved intrinsics should be copied.")
+    parser.add_argument("--copy-to-cameras", type=int, nargs="*", default=[], help="Copy --model-camera intrinsics to these camera IDs.")
     return parser.parse_args()
 
 
 def make_board(args):
-    dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_100)
+    if not hasattr(cv2.aruco, args.dictionary):
+        raise RuntimeError(f"OpenCV has no aruco dictionary named {args.dictionary}")
+    dictionary = cv2.aruco.getPredefinedDictionary(getattr(cv2.aruco, args.dictionary))
     board = cv2.aruco.CharucoBoard(
         (args.squares_x, args.squares_y),
         args.square_mm / 1000.0,
@@ -90,6 +95,34 @@ def main():
             "dist_coeffs": dist_coeffs.reshape(-1).tolist(),
         }
         print(f"Camera {camera_id}: RMS={rms:.3f}, valid views={len(object_points)}")
+
+    if args.copy_to_cameras:
+        model_camera = args.model_camera
+        if model_camera is None:
+            if len(summary) != 1:
+                raise RuntimeError("--model-camera is required when more than one camera was calibrated")
+            model_camera = next(iter(summary)).removeprefix("cam_")
+        model_key = f"cam_{model_camera}"
+        matrix_key = f"{model_key}_camera_matrix"
+        dist_key = f"{model_key}_dist_coeffs"
+        size_key = f"{model_key}_image_size"
+        if matrix_key not in output or dist_key not in output or size_key not in output:
+            raise RuntimeError(f"Cannot copy intrinsics: {model_key} was not calibrated")
+        for camera_id in args.copy_to_cameras:
+            key = f"cam_{camera_id}"
+            output[f"{key}_camera_matrix"] = output[matrix_key]
+            output[f"{key}_dist_coeffs"] = output[dist_key]
+            output[f"{key}_image_size"] = output[size_key]
+            summary.setdefault(key, {})
+            summary[key].update(
+                {
+                    "copied_from": model_key,
+                    "image_size": output[size_key].tolist(),
+                    "camera_matrix": output[matrix_key].tolist(),
+                    "dist_coeffs": output[dist_key].reshape(-1).tolist(),
+                }
+            )
+        print(f"Copied {model_key} intrinsics to cameras: {' '.join(str(i) for i in args.copy_to_cameras)}")
 
     np.savez(args.output, **output)
     summary_path = args.output.with_suffix(".json")

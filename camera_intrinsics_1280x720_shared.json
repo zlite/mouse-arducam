@@ -1,0 +1,55 @@
+{
+  "model_camera": 1,
+  "copied_to_cameras": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "source_frames": "calibration_frames_top2_aruco_grid_1280x720",
+  "dictionary": "DICT_6X6_250",
+  "grid": {
+    "markers_x": 5,
+    "markers_y": 7,
+    "first_id": 0,
+    "id_order": "reverse-row-major",
+    "corner_shift": 2,
+    "marker_m": 0.027,
+    "separation_m": 0.008
+  },
+  "valid_views": 28,
+  "image_size": [
+    1280,
+    720
+  ],
+  "rms": 1.5058412520165925,
+  "camera_matrix": [
+    [
+      713.9086697216437,
+      0.0,
+      691.2255926493682
+    ],
+    [
+      0.0,
+      719.012730862125,
+      408.9057974440787
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "dist_coeffs": [
+    0.07226201876056794,
+    -0.13995823058760273,
+    0.008718773200143769,
+    0.005026067599891905,
+    0.04117601783831643
+  ]
+}

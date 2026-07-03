@@ -12,6 +12,7 @@ left_wall_frames/
 right_wall_check/
 right_wall_frames/
 timer_sync_captures/
+caliscope_workspace/
 
 # Generated event/review output folders
 hand_keypoints/
