@@ -30,7 +30,7 @@ def parse_args():
     parser.add_argument(
         "--display-fps",
         type=float,
-        default=15.0,
+        default=20.0,
         help="Preview grid refresh FPS. Capture still runs at --fps. Use 0 for uncapped.",
     )
     parser.add_argument(
