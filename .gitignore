@@ -1,6 +1,8 @@
 # Python cache
 __pycache__/
 *.py[cod]
+.venv/
+.uv-cache/
 
 # Generated camera/frame capture folders
 aruco_frames/
