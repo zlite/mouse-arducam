@@ -34,3 +34,4 @@ mouse_events/
 
 # Local runtime locks
 *.lock
+v4l2_camera_positions.json

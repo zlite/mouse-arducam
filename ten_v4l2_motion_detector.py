@@ -144,13 +144,63 @@ def draw_motion_overlay(frame, camera, detector, roi_y, boxes, capture_fps):
     return frame
 
 
+def draw_motion_overlay_display(frame, camera, detector, source_shape, roi_y, boxes, capture_fps):
+    cv2 = grid.cv2
+    source_height, source_width = source_shape[:2]
+    scale_x = frame.shape[1] / max(source_width, 1)
+    scale_y = frame.shape[0] / max(source_height, 1)
+    roi_y_display = int(round(roi_y * scale_y))
+
+    cv2.line(frame, (0, roi_y_display), (frame.shape[1] - 1, roi_y_display), (255, 180, 0), 1)
+    cv2.putText(
+        frame,
+        "ROI",
+        (8, min(frame.shape[0] - 8, roi_y_display + 18)),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.45,
+        (255, 180, 0),
+        1,
+        cv2.LINE_AA,
+    )
+
+    color = (0, 0, 255) if detector.motion_active else (80, 220, 80)
+    status = "MOTION" if detector.motion_active else "clear"
+    text = (
+        f"{camera.device} {capture_fps:4.1f} FPS {status} "
+        f"{detector.consecutive_motion_frames}/{detector.motion_frames} "
+        f"{detector.last_area_ratio * 100:4.1f}%"
+    )
+    (text_width, text_height), baseline = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)
+    cv2.rectangle(frame, (4, 4), (min(frame.shape[1] - 4, text_width + 12), text_height + baseline + 10), (0, 0, 0), -1)
+    cv2.putText(frame, text, (8, text_height + 7), cv2.FONT_HERSHEY_SIMPLEX, 0.42, color, 1, cv2.LINE_AA)
+
+    for x, y, width, height, _area in boxes:
+        x1 = int(round(x * scale_x))
+        y1 = int(round(y * scale_y))
+        x2 = int(round((x + width) * scale_x))
+        y2 = int(round((y + height) * scale_y))
+        cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
+    if detector.motion_active:
+        cv2.rectangle(frame, (1, 1), (frame.shape[1] - 2, frame.shape[0] - 2), color, 3)
+    return frame
+
+
 def make_motion_grid(cameras, detectors, cols, display_height, rotation, no_overlay, source_aspect):
     np = grid.np
-    tiles = []
-    for camera, detector in zip(cameras, detectors):
-        ok, frame, _source_shape, fps = camera.read_latest()
+    tile_height = display_height
+    tile_width = grid.tile_width_for(display_height, source_aspect, rotation)
+    rows, cols = grid.grid_shape(len(cameras), cols)
+    canvas = np.zeros((rows * tile_height, cols * tile_width, 3), dtype=np.uint8)
+
+    for index, (camera, detector) in enumerate(zip(cameras, detectors)):
+        row = index // cols
+        col = index % cols
+        x = col * tile_width
+        y = row * tile_height
+        ok, frame, _source_shape, fps = camera.read_latest(copy_frame=False)
         if ok:
             frame = grid.rotate_frame(frame, rotation)
+            source_shape = frame.shape
             _motion_active, just_activated, roi_y, boxes = detector.update(frame)
             if just_activated:
                 print(
@@ -158,22 +208,13 @@ def make_motion_grid(cameras, detectors, cols, display_height, rotation, no_over
                     f"area={detector.last_area_ratio * 100:.1f}%",
                     flush=True,
                 )
+            displayed = grid.paste_letterboxed(canvas, frame, x, y, tile_width, tile_height)
             if not no_overlay:
-                frame = draw_motion_overlay(frame, camera, detector, roi_y, boxes, fps)
-            frame = grid.resize_to_height(frame, display_height)
+                draw_motion_overlay_display(displayed, camera, detector, source_shape, roi_y, boxes, fps)
         else:
             frame = grid.make_waiting_frame(camera.device, display_height, source_aspect)
-        tiles.append(frame)
-
-    tile_height = max(tile.shape[0] for tile in tiles)
-    tile_width = max(tile.shape[1] for tile in tiles)
-    rows = []
-    for start in range(0, len(tiles), cols):
-        row_tiles = [grid.fit_to_tile(tile, tile_width, tile_height) for tile in tiles[start : start + cols]]
-        while len(row_tiles) < cols:
-            row_tiles.append(np.zeros((tile_height, tile_width, 3), dtype=np.uint8))
-        rows.append(np.hstack(row_tiles))
-    return np.vstack(rows)
+            canvas[y : y + tile_height, x : x + tile_width] = grid.fit_to_tile(frame, tile_width, tile_height)
+    return canvas
 
 
 def main():
