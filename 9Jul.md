@@ -371,9 +371,144 @@ Strongest links were mostly between front/top/right cameras, for example:
 - `cam_1-cam_8`: 35 usable shared poses
 - `cam_8-cam_9`: 32 usable shared poses
 
+## Third Extrinsic Recording
+
+Another 90-second extrinsic recording was made after focusing more deliberately
+on the weak back/right/top overlap regions.
+
+Command used:
+
+```bash
+.venv/bin/python record_caliscope_intrinsics_v4l2.py \
+  --mode extrinsic \
+  --workspace /home/cat/calibration \
+  --width 1280 \
+  --height 800 \
+  --fps 30 \
+  --duration 90 \
+  --cols 4 \
+  --display-height 160 \
+  --overwrite
+```
+
+Recording result:
+
+- All 10 cameras opened at `1280x800`.
+- 0 dropped frames.
+- 0 decode errors.
+
+Frames written:
+
+- `cam_0`: 1,291 frames
+- `cam_1`: 1,349 frames
+- `cam_2`: 1,359 frames
+- `cam_3`: 1,365 frames
+- `cam_4`: 1,229 frames
+- `cam_5`: 1,272 frames
+- `cam_8`: 1,351 frames
+- `cam_9`: 1,383 frames
+- `cam_10`: 1,304 frames
+- `cam_11`: 1,365 frames
+
+## Third Extrinsic Solve
+
+Ran:
+
+```bash
+.venv/bin/python solve_caliscope_extrinsics.py \
+  --workspace /home/cat/calibration \
+  --frame-step 10 \
+  --initial-nfev 120 \
+  --final-nfev 80
+```
+
+Detection summary:
+
+- 14,968 ChArUco observations.
+- 138 sync indices.
+
+Per-camera observations:
+
+- `cam_0`: 2,012
+- `cam_1`: 1,060
+- `cam_2`: 954
+- `cam_3`: 684
+- `cam_4`: 2,029
+- `cam_5`: 1,794
+- `cam_8`: 2,822
+- `cam_9`: 1,304
+- `cam_10`: 1,408
+- `cam_11`: 901
+
+Optimization result:
+
+- Final RMSE: `32.488 px`
+- Matched observations: `12,697 / 12,697`
+- Final optimizer: converged by `ftol`
+- Volumetric scale RMSE: `68.53 mm` over 129 frames
+
+Per-camera reprojection RMSE:
+
+- `cam_0`: `33.204 px`
+- `cam_1`: `38.779 px`
+- `cam_2`: `42.017 px`
+- `cam_3`: `16.778 px`
+- `cam_4`: `33.743 px`
+- `cam_5`: `24.920 px`
+- `cam_8`: `34.223 px`
+- `cam_9`: `33.771 px`
+- `cam_10`: `30.471 px`
+- `cam_11`: `22.457 px`
+
+This solve had a higher pixel RMSE than the second solve, but much better
+physical scale consistency:
+
+- Second solve: `27.216 px`, `997.48 mm` scale RMSE
+- Third solve: `32.488 px`, `68.53 mm` scale RMSE
+
+The third solve was saved to:
+
+- `/home/cat/calibration/calibration/extrinsic/capture_volume`
+- `/home/cat/calibration/calibration/extrinsic/CHARUCO`
+- `/home/cat/calibration/camera_array.toml`
+- `/home/cat/calibration/camera_array_aniposelib.toml`
+
+Caliscope was restarted and loaded this new capture volume successfully. The
+GUI reported:
+
+- `All extrinsics calculated: True`
+- `Point estimates available: True`
+- `Volumetric scale accuracy: pooled RMSE=68.53mm, 129 frames sampled`
+
+## Third Recording Overlap Results
+
+The third recording improved several of the previously weak links:
+
+- `cam_3-cam_10`: improved from 2 to 11 usable shared poses
+- `cam_5-cam_10`: improved from 5 to 27 usable shared poses
+- `cam_10-cam_11`: improved from 5 to 18 usable shared poses
+- `cam_3-cam_11`: 21 usable shared poses
+- `cam_2-cam_10`: 26 usable shared poses
+- `cam_4-cam_8`: 44 usable shared poses
+- `cam_0-cam_8`: 54 usable shared poses
+
+Remaining weak links after the third recording:
+
+- `cam_1-cam_5`: 1 usable shared pose
+- `cam_2-cam_4`: 1 usable shared pose
+- `cam_3-cam_5`: 1 usable shared pose
+- `cam_4-cam_11`: 1 usable shared pose
+- `cam_8-cam_11`: 1 usable shared pose
+- `cam_9-cam_10`: 1 usable shared pose
+- `cam_9-cam_11`: 1 usable shared pose
+- `cam_8-cam_10`: 2 usable shared poses
+- `cam_4-cam_9`: 3 usable shared poses
+- `cam_4-cam_10`: 3 usable shared poses
+- `cam_5-cam_11`: 3 usable shared poses
+
 ## Current Status
 
-Caliscope is open and loads the current extrinsic calibration.
+Caliscope is open and loads the third extrinsic calibration.
 
 The pipeline is functional:
 
@@ -382,19 +517,26 @@ The pipeline is functional:
 - Extrinsics can be solved and loaded.
 - Reconstruction can run and produce `xyz`, labelled CSV, and TRC output.
 
-The current extrinsic calibration is still not good enough for reliable 3D.
-The second solve is better than the first one, but `27 px` reprojection RMSE and
-about `997 mm` scale RMSE are still too high.
+The current extrinsic calibration is the third solve. It has better physical
+scale consistency than the second solve, but the reprojection RMSE is still high:
+
+- Current pixel RMSE: `32.488 px`
+- Current volumetric scale RMSE: `68.53 mm`
+
+This may behave better for reconstruction than the second solve because the
+scale is much more plausible, but the 3D output still needs visual inspection.
 
 ## Recommended Next Step
 
-Redo extrinsic recording again, but focus on shared board visibility:
+Inspect the 3D view and reconstruction output using the third solve. If it still
+looks geometrically unstable, redo extrinsic recording again with even more focus
+on the remaining weak links:
 
 - Move slowly.
 - Pause with the board visible in two or more cameras at once.
 - Prioritize weak links:
-  `cam_3-cam_5`, `cam_3-cam_10`, `cam_4-cam_10`, `cam_5-cam_9`,
-  `cam_8-cam_10`, `cam_10-cam_11`, and back/top overlap.
+  `cam_3-cam_5`, `cam_4-cam_10`, `cam_8-cam_10`, `cam_9-cam_10`,
+  `cam_9-cam_11`, `cam_4-cam_11`, and `cam_5-cam_11`.
 - Make sure the board is not only visible in one camera at a time.
 - Use short pauses in each overlap region so the solver gets multiple stable
   shared poses.
