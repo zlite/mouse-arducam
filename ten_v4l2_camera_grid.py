@@ -205,7 +205,16 @@ def arranged_cameras(cameras, assignments):
 
 
 def open_capture(device, width, height, fps, fourcc, buffer_size):
-    cap = cv2.VideoCapture(device, cv2.CAP_V4L2)
+    capture_device = device
+    device_path = Path(device)
+    try:
+        resolved_name = device_path.resolve().name
+    except OSError:
+        resolved_name = device_path.name
+    if resolved_name.startswith("video") and resolved_name[5:].isdigit():
+        capture_device = int(resolved_name[5:])
+
+    cap = cv2.VideoCapture(capture_device, cv2.CAP_V4L2)
     if not cap.isOpened():
         return None
 

@@ -24,6 +24,12 @@ def parse_args():
     )
     parser.add_argument("--mode", choices=("intrinsic", "extrinsic"), default="intrinsic")
     parser.add_argument("--workspace", type=Path, default=DEFAULT_WORKSPACE)
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=None,
+        help="Override the output directory. Useful for recording Caliscope recordings/<session>/cam_N.mp4 sets.",
+    )
     parser.add_argument("--devices", nargs="+", default=None)
     parser.add_argument("--camera-count", type=int, default=10)
     parser.add_argument("--width", type=int, default=1280)
@@ -335,7 +341,7 @@ def main():
 
     intrinsic_dir = args.workspace / "calibration" / "intrinsic"
     extrinsic_dir = args.workspace / "calibration" / "extrinsic"
-    output_dir = intrinsic_dir if args.mode == "intrinsic" else extrinsic_dir
+    output_dir = args.output_dir if args.output_dir is not None else intrinsic_dir if args.mode == "intrinsic" else extrinsic_dir
     output_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"Caliscope {args.mode} recording map:", flush=True)
