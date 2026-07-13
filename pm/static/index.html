@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mouse-Arducam · Project Management</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐭</text></svg>">
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <div class="brand">
+        <span class="logo">🐭</span>
+        <div>
+          <div class="brand-title">Mouse-Arducam</div>
+          <div class="brand-sub">3D Tracking Rig · PM</div>
+        </div>
+      </div>
+      <nav id="nav">
+        <a href="#/dashboard" data-view="dashboard"><span>📊</span> Dashboard</a>
+        <a href="#/tasks" data-view="tasks"><span>✅</span> Tasks</a>
+        <a href="#/calibration" data-view="calibration"><span>🎯</span> Calibration</a>
+        <a href="#/scripts" data-view="scripts"><span>⚙️</span> Run Scripts</a>
+        <a href="#/equipment" data-view="equipment"><span>🔧</span> Equipment &amp; Cost</a>
+        <a href="#/models" data-view="models"><span>🧊</span> 3D Models</a>
+        <a href="#/team" data-view="team"><span>👥</span> Team</a>
+        <a href="#/docs" data-view="docs"><span>📖</span> Docs &amp; Handoff</a>
+      </nav>
+      <div class="sidebar-foot">
+        <button id="theme-toggle" title="Toggle theme">🌓 Theme</button>
+      </div>
+    </aside>
+    <main id="main">
+      <header id="topbar">
+        <h1 id="view-title">Dashboard</h1>
+        <div id="topbar-actions"></div>
+      </header>
+      <section id="view"><div class="loading">Loading…</div></section>
+    </main>
+  </div>
+
+  <!-- Modal host -->
+  <div id="modal-backdrop" class="hidden">
+    <div id="modal">
+      <div id="modal-header"><h2 id="modal-title"></h2><button id="modal-close">✕</button></div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+  <div id="toast" class="hidden"></div>
+
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/charts.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

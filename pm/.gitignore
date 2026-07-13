@@ -1,0 +1,5 @@
+.venv/
+data/pm.db
+data/logs/
+__pycache__/
+*.pyc

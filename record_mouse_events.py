@@ -164,6 +164,7 @@ def trigger_camera_ids(consecutive_hits, labels, trigger_frames, trigger_mode):
     right_ready = {
         camera_id
         for camera_id in ready
+        
         if camera_side(camera_id, labels) == "right"
     }
     if left_ready and right_ready:
