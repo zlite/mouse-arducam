@@ -1,7 +1,0 @@
-{
-  "session": "20260624_123431",
-  "migrated_from": "legacy_root_event_folders",
-  "migrated_at_local": "2026-06-24T13:10:30",
-  "recorder": "record_mouse_events.py",
-  "note": "Legacy per-camera event folders moved under a timestamped session folder."
-}
