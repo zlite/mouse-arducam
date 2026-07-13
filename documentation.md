@@ -241,11 +241,13 @@ trial recordings and 3D behavioral tracking tests.
 `ten_v4l2_motion_detector.py` uses GStreamer MJPEG pass-through by default. All
 ten cameras remain at full `1280x800@30` capture while only selected frames are
 decoded for the low-compute motion detector. A rig event begins when at least
-four cameras report the foreground object.
+three cameras report the foreground object.
 
-On event close, the mini PC builds a common 30 Hz timeline, keeps the longest
-continuous interval supported by at least four cameras, and writes equal-length
-camera videos under:
+During capture, completed events remain as compressed packets in memory so the
+camera UI performs no alignment or video encoding. After the user quits and all
+cameras are released, the mini PC builds a common 30 Hz timeline, keeps the
+longest continuous interval supported by at least three cameras, and writes
+equal-length camera videos under:
 
 `motion_recordings/aligned/<event timestamp>/`
 

@@ -274,10 +274,6 @@ class VAAPIH264MP4Writer:
         if self.pipeline.set_state(gst.State.PLAYING) == gst.StateChangeReturn.FAILURE:
             self.pipeline.set_state(gst.State.NULL)
             raise RuntimeError(f"Could not create hardware H.264 video {path}")
-        state_result, _state, _pending = self.pipeline.get_state(5 * gst.SECOND)
-        if state_result == gst.StateChangeReturn.FAILURE:
-            self.pipeline.set_state(gst.State.NULL)
-            raise RuntimeError(f"Could not initialize hardware H.264 video {path}")
         self.written = 0
 
     def write(self, packet):

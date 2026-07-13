@@ -144,14 +144,20 @@ def parse_args():
     parser.add_argument(
         "--min-frame-motion-ratio",
         type=float,
-        default=0.01,
+        default=0.002,
         help="Largest moving component must cover at least this fraction of the full camera frame.",
     )
     parser.add_argument(
         "--min-roi-motion-ratio",
         type=float,
-        default=0.03,
+        default=0.005,
         help="Moving pixels must cover at least this fraction of the ROI.",
+    )
+    parser.add_argument(
+        "--min-temporal-motion-ratio",
+        type=float,
+        default=0.002,
+        help="Frame-to-frame changed pixels required within the ROI to qualify as actual motion.",
     )
     parser.add_argument(
         "--motion-frames",
@@ -170,6 +176,11 @@ def parse_args():
         type=float,
         default=0.35,
         help="Update weight for temporal long-axis smoothing in the range (0, 1].",
+    )
+    parser.add_argument(
+        "--fit-line",
+        action="store_true",
+        help="Estimate and draw the foreground object's long axis with cv2.fitLine.",
     )
     parser.add_argument(
         "--roi",
@@ -197,7 +208,7 @@ def parse_args():
     parser.add_argument(
         "--min-active-cameras",
         type=int,
-        default=4,
+        default=3,
         help="Active camera count required when --sync-mode min-cameras is used.",
     )
     parser.add_argument(
@@ -331,6 +342,7 @@ class LowComputeMotionDetector:
         self.args = args
         self.roi = roi
         self.background = None
+        self.previous_gray = None
         self.open_kernel = odd_kernel(args.open_kernel)
         self.close_kernel = odd_kernel(args.close_kernel)
         self.consecutive_hits = 0
@@ -338,18 +350,30 @@ class LowComputeMotionDetector:
         self.presence_until = 0.0
         self.axis_state = None
         self.last_bbox = None
+        self.bbox_state = None
         self.last = self.empty_result()
 
     def set_roi(self, roi, reset_background=False):
         self.roi = roi
         if reset_background:
             self.background = None
+            self.previous_gray = None
             self.consecutive_hits = 0
             self.active = False
             self.presence_until = 0.0
             self.axis_state = None
             self.last_bbox = None
+            self.bbox_state = None
             self.last = self.empty_result(status="learning_bg")
+
+    def _smooth_bbox(self, bbox):
+        np = grid.np
+        values = np.asarray(bbox, dtype=np.float64)
+        if self.bbox_state is None:
+            self.bbox_state = values
+        else:
+            self.bbox_state = 0.7 * self.bbox_state + 0.3 * values
+        return tuple(int(round(value)) for value in self.bbox_state)
 
     def _smooth_axis(self, axis):
         np = grid.np
@@ -402,11 +426,25 @@ class LowComputeMotionDetector:
 
         if self.background is None or self.background.shape != gray.shape:
             self.background = gray.astype(np.float32)
+            self.previous_gray = gray.copy()
             self.last = self.empty_result(
                 status="learning_bg",
                 roi=(roi_x1_full, roi_y1_full, roi_x2_full - roi_x1_full, roi_y2_full - roi_y1_full),
             )
             return self.last
+
+        temporal_motion_ratio = 0.0
+        if self.previous_gray is not None and self.previous_gray.shape == gray.shape:
+            temporal_shift = cv2.mean(gray)[0] - cv2.mean(self.previous_gray)[0]
+            temporal_comparison = cv2.addWeighted(
+                gray, 1.0, self.previous_gray, 0.0, -temporal_shift
+            )
+            temporal_delta = cv2.absdiff(self.previous_gray, temporal_comparison)
+            _, temporal_mask = cv2.threshold(
+                temporal_delta, self.args.pixel_threshold, 255, cv2.THRESH_BINARY
+            )
+            temporal_motion_ratio = cv2.countNonZero(temporal_mask) / roi_area
+        self.previous_gray = gray.copy()
 
         bg = cv2.convertScaleAbs(self.background)
         if self.args.lighting_compensation:
@@ -438,7 +476,9 @@ class LowComputeMotionDetector:
                 largest_box = (int(x), int(y), int(width), int(height))
 
         current_bbox = (
-            crop_box_to_full(largest_box, roi_x1_full, roi_y1_full, scale_x, scale_y)
+            self._smooth_bbox(
+                crop_box_to_full(largest_box, roi_x1_full, roi_y1_full, scale_x, scale_y)
+            )
             if largest_box is not None and not broad_change
             else None
         )
@@ -447,7 +487,15 @@ class LowComputeMotionDetector:
             largest_area / frame_area >= self.args.min_frame_motion_ratio
             and roi_motion_ratio >= self.args.min_roi_motion_ratio
         )
-        if largest_label is not None and not broad_change and largest_area >= 3 and axis_candidate:
+        if current_bbox is not None and axis_candidate:
+            self.last_bbox = current_bbox
+        if (
+            self.args.fit_line
+            and largest_label is not None
+            and not broad_change
+            and largest_area >= 3
+            and axis_candidate
+        ):
             ys, xs = np.nonzero(_labels == largest_label)
             if len(xs) >= 3:
                 points = np.column_stack((xs, ys)).astype(np.float32)
@@ -467,7 +515,6 @@ class LowComputeMotionDetector:
                         ),
                     )
                 )
-                self.last_bbox = current_bbox
 
         frame_motion_ratio = largest_area / frame_area
         qualifies = (
@@ -475,6 +522,7 @@ class LowComputeMotionDetector:
             and not broad_change
             and frame_motion_ratio >= self.args.min_frame_motion_ratio
             and roi_motion_ratio >= self.args.min_roi_motion_ratio
+            and temporal_motion_ratio >= self.args.min_temporal_motion_ratio
         )
         if qualifies:
             self.consecutive_hits += 1
@@ -485,7 +533,7 @@ class LowComputeMotionDetector:
         self.active = self.consecutive_hits >= self.args.motion_frames
         if self.active:
             self.presence_until = elapsed_sec + max(0.0, self.args.presence_hold_sec)
-        present = self.active or (self.axis_state is not None and elapsed_sec <= self.presence_until)
+        present = self.active or (self.last_bbox is not None and elapsed_sec <= self.presence_until)
         if elapsed_sec < self.args.warmup_sec:
             status = "learning_bg"
         elif broad_change:
@@ -512,6 +560,7 @@ class LowComputeMotionDetector:
             "consecutive_hits": self.consecutive_hits,
             "frame_motion_ratio": float(frame_motion_ratio),
             "roi_motion_ratio": float(roi_motion_ratio),
+            "temporal_motion_ratio": float(temporal_motion_ratio),
             "largest_area": int(round(largest_area / max(scale_x * scale_y, 1e-9))),
             "bbox": current_bbox if current_bbox is not None else self.last_bbox if present else None,
             "axis": current_axis if current_axis is not None else self._axis_from_state() if present else None,
@@ -540,6 +589,7 @@ class LowComputeMotionDetector:
             "consecutive_hits": 0,
             "frame_motion_ratio": 0.0,
             "roi_motion_ratio": 0.0,
+            "temporal_motion_ratio": 0.0,
             "largest_area": 0,
             "bbox": None,
             "axis": None,
@@ -1024,9 +1074,7 @@ class CompressedRigRecordingManager:
         self.event_stamp = None
         self.event_trigger_unix = None
         self.active_until_unix = 0.0
-        self.writer_queue = queue.Queue(maxsize=2)
-        self.writer_thread = threading.Thread(target=self._writer_loop, name="aligned-event-writer", daemon=True)
-        self.writer_thread.start()
+        self.pending_events = []
 
     def update(self, snapshots, rig_active):
         now_unix = max((snapshot["unix_time"] for snapshot in snapshots), default=time.time())
@@ -1096,7 +1144,11 @@ class CompressedRigRecordingManager:
             "trigger_unix": self.event_trigger_unix,
             "packets": self.event_packets,
         }
-        self.writer_queue.put(payload)
+        self.pending_events.append(payload)
+        print(
+            f"queued event {payload['stamp']} for alignment after camera shutdown",
+            flush=True,
+        )
         self.recording = False
         self.event_packets = None
         self.event_stamp = None
@@ -1177,7 +1229,11 @@ class CompressedRigRecordingManager:
     def _write_event(self, payload):
         alignment = self._align_event(payload)
         if alignment is None:
-            print(f"discarded {payload['stamp']}: no continuous four-camera 30 FPS interval", flush=True)
+            print(
+                f"discarded {payload['stamp']}: no continuous "
+                f"{self.min_active_cameras}-camera 30 FPS interval",
+                flush=True,
+            )
             return
         targets, aligned, selected_ids = alignment
         event_dir = self.output_root / "aligned" / payload["stamp"]
@@ -1263,22 +1319,19 @@ class CompressedRigRecordingManager:
             flush=True,
         )
 
-    def _writer_loop(self):
-        while True:
-            payload = self.writer_queue.get()
+    def close(self):
+        self._finish_event()
+        if self.pending_events:
+            print(
+                f"cameras stopped; aligning {len(self.pending_events)} queued event(s)",
+                flush=True,
+            )
+        for payload in self.pending_events:
             try:
-                if payload is None:
-                    return
                 self._write_event(payload)
             except Exception as exc:
                 print(f"aligned event writer failed: {exc}", flush=True)
-            finally:
-                self.writer_queue.task_done()
-
-    def close(self):
-        self._finish_event()
-        self.writer_queue.put(None)
-        self.writer_thread.join(timeout=60.0)
+        self.pending_events.clear()
         for stable_id, missed in self.capture_misses.items():
             if missed:
                 print(f"{self.roles[stable_id]}: lost {missed} compressed packets before draining", flush=True)
@@ -1292,7 +1345,9 @@ def rig_is_active(args, active_cameras, camera_count):
     return len(active_cameras) == camera_count and camera_count > 0
 
 
-def draw_motion_overlay_display(frame, camera, result, source_shape, capture_fps, thresholds):
+def draw_motion_overlay_display(
+    frame, camera, result, source_shape, capture_fps, thresholds, recording_active=False
+):
     cv2 = grid.cv2
     source_height, source_width = source_shape[:2]
     scale_x = frame.shape[1] / max(source_width, 1)
@@ -1311,7 +1366,8 @@ def draw_motion_overlay_display(frame, camera, result, source_shape, capture_fps
         y1 = int(round(y * scale_y))
         x2 = int(round((x + width) * scale_x))
         y2 = int(round((y + height) * scale_y))
-        cv2.rectangle(frame, (x1, y1), (x2, y2), (80, 255, 80), 2)
+        color = (0, 0, 255) if recording_active else (80, 255, 80)
+        cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
     if result["axis"] is not None:
         (x1, y1), (x2, y2) = result["axis"]
         start = (int(round(x1 * scale_x)), int(round(y1 * scale_y)))
@@ -1403,6 +1459,7 @@ def make_motion_grid(
     config,
     selected_index=None,
     pending_group=None,
+    recording_active=False,
     return_layout=False,
 ):
     np = grid.np
@@ -1426,13 +1483,30 @@ def make_motion_grid(
             source_shape = snapshot["source_shape"]
             displayed = grid.paste_letterboxed(canvas, frame, x, y, tile_width, tile_height)
             if not no_overlay:
-                draw_motion_overlay_display(displayed, camera, snapshot["result"], source_shape, snapshot["fps"], thresholds)
+                draw_motion_overlay_display(
+                    displayed,
+                    camera,
+                    snapshot["result"],
+                    source_shape,
+                    snapshot["fps"],
+                    thresholds,
+                    recording_active,
+                )
         else:
             frame = grid.make_waiting_frame(camera.device, display_height, source_aspect)
             canvas[y : y + tile_height, x : x + tile_width] = grid.fit_to_tile(frame, tile_width, tile_height)
         if index == selected_index:
             selected_camera = camera
             selected_role = camera_role(config, camera)
+        if recording_active:
+            grid.cv2.rectangle(
+                canvas,
+                (x + 2, y + 2),
+                (x + tile_width - 3, y + tile_height - 3),
+                (0, 0, 255),
+                4,
+            )
+        elif index == selected_index:
             grid.cv2.rectangle(canvas, (x + 2, y + 2), (x + tile_width - 3, y + tile_height - 3), (0, 255, 255), 3)
     if return_layout:
         return canvas, tile_rects
@@ -1663,6 +1737,7 @@ def main():
                     config,
                     selected_index,
                     pending_group,
+                    recording_active=bool(recording_manager and recording_manager.recording),
                     return_layout=True,
                 )
                 displayed_image_shape[:] = list(grid_frame.shape[:2])
