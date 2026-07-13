@@ -21,6 +21,8 @@ caliscope_workspace/
 hand_keypoints/
 keypoint_events/
 mouse_events/
+motion_events/
+motion_recordings/
 
 # Large generated media/capture artifacts
 *.mp4

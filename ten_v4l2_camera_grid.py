@@ -270,6 +270,9 @@ class V4L2Camera:
         self.cap = None
         self.latest_frame = None
         self.latest_shape = None
+        self.latest_frame_index = None
+        self.latest_perf_time = None
+        self.latest_unix_time = None
         self.frame_count = 0
         self.started_at = None
         self.running = False
@@ -298,14 +301,23 @@ class V4L2Camera:
 
     def _capture_loop(self):
         while self.running:
-            ok, frame = self.cap.read()
+            try:
+                ok, frame = self.cap.read()
+            except cv2.error as exc:
+                print(f"{self.device}: skipped bad frame: {exc}", flush=True)
+                time.sleep(0.005)
+                continue
             now = time.perf_counter()
+            now_unix = time.time()
             if not ok:
                 time.sleep(0.005)
                 continue
             with self.lock:
                 self.latest_frame = frame
                 self.latest_shape = frame.shape
+                self.latest_frame_index = self.frame_count
+                self.latest_perf_time = now
+                self.latest_unix_time = now_unix
                 self.frame_count += 1
                 self.frame_times.append(now)
 
@@ -315,6 +327,21 @@ class V4L2Camera:
                 return False, None, None, self.current_fps()
             frame = self.latest_frame.copy() if copy_frame else self.latest_frame
             return True, frame, self.latest_shape, self.current_fps()
+
+    def read_latest_packet(self, copy_frame=True):
+        with self.lock:
+            if self.latest_frame is None:
+                return False, None, None, self.current_fps(), None, None, None
+            frame = self.latest_frame.copy() if copy_frame else self.latest_frame
+            return (
+                True,
+                frame,
+                self.latest_shape,
+                self.current_fps(),
+                self.latest_frame_index,
+                self.latest_perf_time,
+                self.latest_unix_time,
+            )
 
     def current_fps(self):
         if len(self.frame_times) < 2:

@@ -235,3 +235,27 @@ After recording, rerun the headless extrinsic solve and check whether:
 
 Once extrinsic quality improves, the system should be ready for more meaningful
 trial recordings and 3D behavioral tracking tests.
+
+## Motion-Triggered 30 FPS Pose Recordings
+
+`ten_v4l2_motion_detector.py` uses GStreamer MJPEG pass-through by default. All
+ten cameras remain at full `1280x800@30` capture while only selected frames are
+decoded for the low-compute motion detector. A rig event begins when at least
+four cameras report the foreground object.
+
+On event close, the mini PC builds a common 30 Hz timeline, keeps the longest
+continuous interval supported by at least four cameras, and writes equal-length
+camera videos under:
+
+`motion_recordings/aligned/<event timestamp>/`
+
+Each event contains `cam_N.mp4`, matching `cam_N.csv` and `cam_N.json` files,
+plus `timestamps.csv`. On this mini PC, GStreamer decodes JPEG frames and uses
+the AMD GPU for H.264 encoding. If VA-API is unavailable, recording automatically
+falls back to pass-through MJPEG in `cam_N.mov`. The timestamp table records
+source frame IDs, capture times, alignment error, visibility, bounding boxes,
+and markerless axis estimates. These event folders are the upload input for
+offline SLEAP inference and Caliscope triangulation.
+
+Use the OpenCV backend only as a compatibility fallback. It samples decoded
+preview frames and cannot preserve all ten native 30 FPS streams on this PC.
